@@ -24,7 +24,7 @@ export default function BlogPage() {
       setToastMessage("Successfully subscribed to our newsletter!");
       setEmail("");
       setShowModal(false);
-    } catch (error) {
+    } catch {
       setIsSuccess(false);
       setToastMessage("Failed to subscribe. Please try again.");
     }

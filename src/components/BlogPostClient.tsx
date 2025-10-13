@@ -16,7 +16,7 @@ export default function BlogPostClient({ title }: BlogPostClientProps) {
     if (navigator.share) {
       try {
         await navigator.share({ title, url });
-      } catch (error) {
+      } catch {
         copyToClipboard(url);
       }
     } else {

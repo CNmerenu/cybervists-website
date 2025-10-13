@@ -6,7 +6,20 @@ interface Params {
   params: Promise<{ slug: string }>;
 }
 
-const workshopGalleries: Record<string, any> = {
+interface WorkshopData {
+  title: string;
+  date: string;
+  location: string;
+  participants: number;
+  description: string;
+  images: Array<{
+    url: string;
+    alt: string;
+    caption: string;
+  }>;
+}
+
+const workshopGalleries: Record<string, WorkshopData> = {
   "cybersecurity-awareness-c3-centre": {
     title: "Cybersecurity Awareness Workshop - C3 Centre Community",
     date: "2024-11-15",

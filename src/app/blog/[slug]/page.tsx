@@ -8,7 +8,15 @@ interface Params {
 }
 
 // Sample blog content for demonstration
-const samplePosts: Record<string, any> = {
+const samplePosts: Record<string, {
+  title: string;
+  publishedAt: string;
+  author: { name: string };
+  mainImage: { asset: { url: string }; alt: string };
+  contentImages?: Array<{ asset: { url: string }; alt: string; caption: string }>;
+  content: string;
+  references: Array<{ title: string; url: string }>;
+}> = {
   "cybersecurity-practices-small-business": {
     title: "Essential Cybersecurity Practices for Small Businesses",
     publishedAt: "2024-12-15",
@@ -306,7 +314,12 @@ Know how to report and block abusive users, document harassment for potential le
 If you have children using social media, educate them about online safety, monitor their activity appropriately, set clear rules and boundaries, and maintain open communication about their online experiences.
 
 ## Conclusion
-Social media security requires ongoing vigilance and proactive measures. By implementing these practices and staying informed about emerging threats, you can enjoy the benefits of social media while protecting your privacy and security.`
+Social media security requires ongoing vigilance and proactive measures. By implementing these practices and staying informed about emerging threats, you can enjoy the benefits of social media while protecting your privacy and security.`,
+    references: [
+      { title: "Social Media Security Guide - CISA", url: "https://www.cisa.gov/news-events/news/social-media-cybersecurity-tips" },
+      { title: "Facebook Privacy Settings", url: "https://www.facebook.com/privacy/explanation" },
+      { title: "Twitter Security Best Practices", url: "https://help.twitter.com/en/safety-and-security" }
+    ]
   }
 };
 
@@ -415,7 +428,7 @@ export default async function PostPage({ params }: Params) {
                   </div>
                 )}
                 
-                {post.content.split('\n\n').map((paragraph: string, index: number) => {
+                {post.content.split('\n\n').map((paragraph, index: number) => {
                   if (paragraph.startsWith('## ')) {
                     return (
                       <h2 key={index} className="text-2xl font-bold text-gray-900 mt-8 mb-4 clear-both">
@@ -447,7 +460,7 @@ export default async function PostPage({ params }: Params) {
           {/* Remaining Content Images */}
           {post.contentImages && post.contentImages.length > 1 && (
             <div className="mt-12 space-y-8">
-              {post.contentImages.slice(1).map((image: any, index: number) => (
+              {post.contentImages.slice(1).map((image, index: number) => (
                 <div key={index} className="max-w-md mx-auto">
                   <Image
                     src={image.asset.url}
@@ -472,7 +485,7 @@ export default async function PostPage({ params }: Params) {
               <h3 className="text-lg font-bold text-gray-900 mb-4">References</h3>
               <div className="bg-gray-50 rounded-lg p-4">
                 <ul className="space-y-2">
-                  {post.references.map((ref: any, index: number) => (
+                  {post.references.map((ref, index: number) => (
                     <li key={index} className="flex items-start gap-2">
                       <ExternalLink className="w-3 h-3 text-primary-600 mt-1 flex-shrink-0" />
                       <a 

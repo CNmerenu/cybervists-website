@@ -40,7 +40,7 @@ export default function WorkshopGalleryClient({ images, workshopTitle, workshopD
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {images.map((image: any, index: number) => (
+        {images.map((image, index) => (
           <div
             key={index}
             className="group relative cursor-pointer overflow-hidden rounded-lg bg-gray-100"
