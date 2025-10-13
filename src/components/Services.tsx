@@ -44,7 +44,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="w-full md:w-[1440px] py-16 md:py-24 bg-gray-900 relative overflow-hidden"
+      className="w-full md:w-[1440px] py-16 md:py-24 bg-gray-800 relative overflow-hidden"
     >
       {/* Rotating Background Image */}
       <div className="absolute right-[-200px] top-1/2 -translate-y-1/2 opacity-15">
@@ -72,9 +72,9 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-gray-800 border border-blue-500/30 rounded-xl p-4 md:p-8 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl group"
+              className="bg-white border border-blue-500/30 rounded-xl p-4 md:p-8 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl group"
             >
-              <div className="w-32 h-32 mb-4 mx-auto bg-white rounded-full overflow-hidden border-8 border-primary-700 relative">
+              <div className="w-32 h-32 mb-4 mx-auto bg-white rounded-full overflow-hidden relative">
                 <Image
                   src={service.image}
                   alt={service.title}
@@ -83,11 +83,11 @@ export default function Services() {
                 />
               </div>
               <Link href={"/#contact"}>
-                <h3 className="text-lg md:text-2xl font-bold text-white mb-3 md:mb-4 group-hover:text-blue-400 transition-colors text-center cursor-pointer">
+                <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 transition-colors text-center cursor-pointer">
                   {service.title}
                 </h3>
               </Link>
-              <p className="text-sm md:text-base text-gray-300 leading-relaxed text-center">
+              <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center">
                 {service.description}
               </p>
             </div>
