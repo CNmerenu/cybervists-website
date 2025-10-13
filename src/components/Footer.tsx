@@ -74,7 +74,7 @@ export default function Footer() {
                     Cybervists
                   </h3>
                   <div className="text-xs text-gray-400 -mt-1">
-                    Digital Security Advocates
+                    Cyber awareness & Inclusion
                   </div>
                 </div>
               </div>

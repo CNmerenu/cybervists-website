@@ -10,28 +10,28 @@ module.exports = {
       colors: {
         // Cybersecurity Activism Theme - Dynamic Brand Colors
         primary: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9", // Cyber Blue (primary)
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c3d66",
+          50: "#f0f1ff",
+          100: "#e1e4ff",
+          200: "#c8cdff",
+          300: "#a5acff",
+          400: "#7d86ff",
+          500: "#0F149A", // Cyber Blue (primary)
+          600: "#0d1287",
+          700: "#0b0f75",
+          800: "#090d62",
+          900: "#070a50",
         },
         accent: {
-          50: "#fdf2f8",
-          100: "#fce7f3",
-          200: "#fbcfe8",
-          300: "#f8a5d8",
-          400: "#f472b6",
-          500: "#ec4899", // Neon Pink (accent - digital resistance)
-          600: "#db2777",
-          700: "#be185d",
-          800: "#9d174d",
-          900: "#831843",
+          50: "#fff5f4",
+          100: "#ffe8e6",
+          200: "#ffd5d1",
+          300: "#ffb5ad",
+          400: "#ff9284",
+          500: "#ff6f61", // Neon Pink (accent - digital resistance)
+          600: "#e6564a",
+          700: "#cc4036",
+          800: "#b32d25",
+          900: "#991d17",
         },
         dark: {
           50: "#f9fafb",

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="w-full md:[w-1440px] py-5 md:h-[828px] border-b-[1px] border-blue-500/20 flex items-center relative overflow-hidden bg-primary-50">
+    <section className="w-full md:[w-1440px] py-5 md:h-[828px] border-b-[1px] border-blue-500/20 flex items-center relative overflow-hidden bg-transparent">
       {/* Rotating Background Image */}
       <div className="absolute right-[-200px] top-1/2 -translate-y-1/2 opacity-15">
         <div className="animate-spin" style={{ animationDuration: "20s" }}>
@@ -46,7 +46,7 @@ export default function Hero() {
               href={"/#contact"}
               className="px-4 py-3 md:px-8 md:py-4 bg-primary-600 text-white text-sm md:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              Get Security Assessment
+              Get in Touch with Us
             </Link>
             <Link
               href={"https://www.eventbrite.co.uk/o/cybervists-113913212541"}
