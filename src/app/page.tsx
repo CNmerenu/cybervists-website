@@ -6,6 +6,7 @@ import CTA from "@/components/CTA";
 import Partners from "@/components/Partners";
 import Programs from "@/components/Programs";
 import Testimonials from "@/components/Testimonials";
+import CommunityVideo from "@/components/CommunityVideo";
 import Contact from "@/components/Contact";
 
 export default async function Home() {
@@ -18,6 +19,7 @@ export default async function Home() {
       <CTA />
       <Services />
       <Testimonials />
+      <CommunityVideo />
       <Partners />
       <Contact />
     </section>

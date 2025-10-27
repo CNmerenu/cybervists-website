@@ -1,116 +1,123 @@
-import {
-  Shield,
-  Users,
-  Target,
-  Award,
-  ArrowRight,
-  CheckCircle,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
+const aboutPageContent = {
+  hero: {
+    title: "About Cybervists",
+    description:
+      "We are a pioneer, community-centric non-profit organisation dedicated to making the digital world safer for everyone through tailored digital and cybersecurity awareness sessions and technology empowerment. We keep it simple, fun and effective.",
+  },
+  mission: {
+    title: "Our Mission",
+    description:
+      "To transform how everyday people interact with technology by building confidence, ethical use, and cyber resilience in digital spaces.",
+  },
+  vision: {
+    title: "Our Vision",
+    description:
+      "We envision a world where digital literacy and cyber awareness is universal, where every generation and ethnicity feels digitally confident and safe without fear and anxiety",
+  },
+  values: {
+    title: "Our Core Values",
+    items: [
+      {
+        title: "Strengthen Digital Literacy",
+        description:
+          "We're committed to breaking down barriers. We equip every community—from youth to elderly—with the tech skills they need to succeed, not just survive, in the digital age. No one gets left behind.",
+      },
+      {
+        title: "Advocate for Responsible Use",
+        description:
+          "We stand for a digital world built on respect, not harm. Every interaction matters; we advocate for responsible online use. building digital spaces where humanity comes first.",
+      },
+      {
+        title: "Fostering Technology Empowerment",
+        description:
+          "Technology should unlock opportunity, not create obstacles. We empower grassroots communities with the skills and confidence to harness tech for good—driving economic growth, building resilience, and creating lasting impact.",
+      },
+      {
+        title: "Enhance Cybersecurity Awareness",
+        description:
+          "Security isn't a luxury; everyone deserves the right to digital safety. We are committed to the cause, turning vulnerability into strength, one community at a time.",
+      },
+    ],
+  },
+  approach: {
+    title: "Our Approach",
+    description:
+      "We combine technical expertise with community understanding to deliver cybersecurity education that is both comprehensive and accessible. Our team includes cybersecurity professionals, educators, and community advocates who work together to create impactful programs.",
+    pillars: [
+      {
+        title: "Community-First",
+        description:
+          "We listen to community needs and design our programs accordingly",
+      },
+      {
+        title: "Practical Focus",
+        description:
+          "Our training emphasizes actionable skills that can be immediately applied",
+      },
+      {
+        title: "Ongoing Support",
+        description:
+          "We provide continuous support beyond initial training sessions",
+      },
+    ],
+  },
+  cta: {
+    title: "Join Our Mission",
+    description:
+      "Whether you're looking to enhance your digital security knowledge, volunteer your expertise, or partner with us to serve your community, there's a place for you in the Cybervists mission.",
+    buttons: [
+      {
+        text: "Volunteer With Us",
+        href: "https://docs.google.com/forms/d/e/1FAIpQLScvuIh_KihpjARqJph8xGXS_8bueIdLYadZ7WC5cEdDZwZX5g/viewform",
+        primary: true,
+        external: true,
+      },
+      {
+        text: "Partner With Us",
+        href: "/#contact",
+        primary: false,
+        external: false,
+      },
+    ],
+  },
+};
+
 export default function About() {
-  const stats = [
-    { number: "200+", label: "Community Members Supported" },
-    { number: "6+", label: "Organizations Partnered" },
-    { number: "10+", label: "Training Sessions Delivered" },
-    { number: "24/7", label: "Community Support" },
-  ];
-
-  const values = [
-    {
-      icon: Shield,
-      title: "Digital Security for All",
-      description:
-        "We believe cybersecurity should be accessible to everyone, not just those with technical expertise.",
-    },
-    {
-      icon: Users,
-      title: "Community-Centered Approach",
-      description:
-        "Our programs are designed with and for the communities we serve, ensuring relevance and impact.",
-    },
-    {
-      icon: Target,
-      title: "Practical Solutions",
-      description:
-        "We focus on actionable, real-world cybersecurity practices that make an immediate difference.",
-    },
-    {
-      icon: Award,
-      title: "Excellence in Education",
-      description:
-        "Our training programs are recognized for their quality, accessibility, and measurable outcomes.",
-    },
-  ];
-
-  const achievements = [
-    "Delivered cybersecurity training to over 500 community members",
-    "Partnered with 50+ organizations across various sectors",
-    "Developed accessible digital literacy programs for all skill levels",
-    "Created volunteer opportunities for aspiring cybersecurity professionals",
-    "Established 24/7 community support channels",
-    "Built partnerships with educational institutions and government agencies",
-  ];
-
   return (
     <main className="w-full md:w-[1440px] min-h-screen bg-white">
       {/* Hero Section */}
       <section className="py-16 md:py-24 px-4 md:px-16">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
-            About Cybervists
+            {aboutPageContent.hero.title}
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-            We are digital security advocates committed to empowering
-            communities with cybersecurity knowledge, tools, and support to
-            navigate the digital world safely and confidently.
+            {aboutPageContent.hero.description}
           </p>
         </div>
       </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-50 px-4 md:px-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-2xl md:text-4xl font-bold text-primary-600 mb-2">
-                {stat.number}
-              </div>
-              <div className="text-sm md:text-base text-gray-600">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Mission Section */}
-      <section className="py-16 md:py-24 px-4 md:px-16">
+      <section className="pb-16 md:pb-24 px-4 md:px-16">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
-                Our Mission
+                {aboutPageContent.mission.title}
               </h2>
-              <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
-                To democratize cybersecurity by making digital security
-                knowledge, tools, and support accessible to individuals and
-                organizations of all sizes and technical backgrounds.
-              </p>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                We bridge the gap between complex cybersecurity concepts and
-                practical, everyday digital safety through community-centered
-                education, advocacy, and hands-on support.
-              </p>
+              {
+                <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
+                  {aboutPageContent.mission.description}
+                </p>
+              }
             </div>
             <div className="bg-primary-50 rounded-2xl p-8">
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-                Our Vision
+                {aboutPageContent.vision.title}
               </h3>
               <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                A world where everyone has the knowledge, tools, and confidence
-                to protect themselves and their communities in the digital
-                space, regardless of their technical background or resources.
+                {aboutPageContent.vision.description}
               </p>
             </div>
           </div>
@@ -122,20 +129,30 @@ export default function About() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Core Values
+              {aboutPageContent.values.title}
             </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              These principles guide everything we do, from program development
-              to community engagement
-            </p>
+
+            <div className="flex flex-row gap-5 justify-center">
+              {aboutPageContent.values.items.map((value, index) => {
+                return (
+                  <span
+                    key={index}
+                    className="font-bold capitalize text-xl md:text-2xl w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center"
+                  >
+                    {value.title.trim().charAt(0)}
+                  </span>
+                );
+              })}
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, index) => {
-              const IconComponent = value.icon;
+            {aboutPageContent.values.items.map((value, index) => {
               return (
                 <div key={index} className="bg-white rounded-xl p-6 md:p-8">
                   <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                    <IconComponent className="w-6 h-6 text-primary-600" />
+                    <span className="font-bold capitalize text-xl md:text-2xl">
+                      {value.title.trim().charAt(0)}
+                    </span>
                   </div>
                   <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
                     {value.title}
@@ -150,70 +167,26 @@ export default function About() {
         </div>
       </section>
 
-      {/* Achievements Section */}
-      <section className="py-16 md:py-24 px-4 md:px-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Impact
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              Since our founding, we&apos;ve been dedicated to making a
-              measurable difference in digital security awareness
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-primary-600 mt-1 flex-shrink-0" />
-                <p className="text-sm md:text-base text-gray-600">
-                  {achievement}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Team Section */}
       <section className="py-16 md:py-24 bg-gray-50 px-4 md:px-16">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
-            Our Approach
+            {aboutPageContent.approach.title}
           </h2>
           <p className="text-base md:text-lg text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-            We combine technical expertise with community understanding to
-            deliver cybersecurity education that is both comprehensive and
-            accessible. Our team includes cybersecurity professionals,
-            educators, and community advocates who work together to create
-            impactful programs.
+            {aboutPageContent.approach.description}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-6 md:p-8">
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
-                Community-First
-              </h3>
-              <p className="text-sm md:text-base text-gray-600">
-                We listen to community needs and design our programs accordingly
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6 md:p-8">
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
-                Practical Focus
-              </h3>
-              <p className="text-sm md:text-base text-gray-600">
-                Our training emphasizes actionable skills that can be
-                immediately applied
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-6 md:p-8">
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
-                Ongoing Support
-              </h3>
-              <p className="text-sm md:text-base text-gray-600">
-                We provide continuous support beyond initial training sessions
-              </p>
-            </div>
+            {aboutPageContent.approach.pillars.map((pillar, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 md:p-8">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
+                  {pillar.title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-600">
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -222,30 +195,27 @@ export default function About() {
       <section className="py-16 md:py-24 px-4 md:px-16">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
-            Join Our Mission
+            {aboutPageContent.cta.title}
           </h2>
           <p className="text-base md:text-lg text-gray-600 mb-8 leading-relaxed">
-            Whether you&apos;re looking to enhance your digital security
-            knowledge, volunteer your expertise, or partner with us to serve
-            your community, there&apos;s a place for you in the Cybervists
-            mission.
+            {aboutPageContent.cta.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="https://docs.google.com/forms/d/e/1FAIpQLScvuIh_KihpjARqJph8xGXS_8bueIdLYadZ7WC5cEdDZwZX5g/viewform"
-              target="_blank"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
-            >
-              Volunteer With Us
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
-            >
-              Partner With Us
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            {aboutPageContent.cta.buttons.map((button, index) => (
+              <Link
+                key={index}
+                href={button.href}
+                target={button.external ? "_blank" : undefined}
+                className={`inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-lg transition-colors ${
+                  button.primary
+                    ? "bg-primary-600 text-white hover:bg-primary-700"
+                    : "border-2 border-primary-600 text-primary-600 hover:bg-primary-50"
+                }`}
+              >
+                {button.text}
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            ))}
           </div>
         </div>
       </section>

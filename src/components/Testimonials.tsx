@@ -81,7 +81,7 @@ export default function Testimonials() {
       name: "Reg",
       role: "Community Member",
       content:
-        "Thank you so much. I tried to sort this out two times in the market, the first person couldn&apos;t do it, and the second person charged me £90. Now, I&apos;ve learnt how to do it, I should give you 90 quids. lol",
+        "Thank you so much. I tried to sort this out two times in the market, the first person couldn't do it, and the second person charged me £90. Now, I've learnt how to do it, I should give you 90 quids. lol",
       rating: 5,
     },
     {
@@ -95,14 +95,14 @@ export default function Testimonials() {
       name: "Angie",
       role: "Community Partner",
       content:
-        "I&apos;ve NEVER really looked at emails properly until now – this game is a total eye-opener!",
+        "I've NEVER really looked at emails properly until now – this game is a total eye-opener!",
       rating: 5,
     },
     {
       name: "Malia",
       role: "Community Member",
       content:
-        "Now I know how to join in online for the church service if I can&apos;t drive down. That&apos;s very helpful. Thank you",
+        "Now I know how to join in online for the church service if I can't drive down. That's very helpful. Thank you",
       rating: 5,
     },
     {
@@ -116,7 +116,7 @@ export default function Testimonials() {
       name: "Jade",
       role: "Community Member",
       content:
-        "I&apos;m 81, I don&apos;t use computer very much but now I&apos;ve learnt a lot. I&apos;m so happy, I can share with my grand kids.",
+        "I'm 81, I don't use computer very much but now I've learnt a lot. I'm so happy, I can share with my grand kids.",
       rating: 5,
     },
   ];
@@ -129,7 +129,7 @@ export default function Testimonials() {
             What Our Community Says
           </h2>
           <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-            Real stories from organizations and individuals who&aposve
+            Real stories from organizations and individuals who've
             strengthened their digital security with our programs
           </p>
         </div>
