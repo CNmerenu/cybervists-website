@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, MapPin, Users } from "lucide-react";
+import { ArrowLeft, Calendar, HeartPulse, MapPin, Users } from "lucide-react";
 import Link from "next/link";
 import WorkshopGalleryClient from "@/components/WorkshopGalleryClient";
 
@@ -8,9 +8,9 @@ interface Params {
 
 interface WorkshopData {
   title: string;
-  date: string;
   location: string;
-  participants: number;
+  participants: number | string;
+  partners: string;
   description: string;
   images: Array<{
     url: string;
@@ -20,303 +20,118 @@ interface WorkshopData {
 }
 
 const workshopGalleries: Record<string, WorkshopData> = {
-  "cybersecurity-awareness-c3-centre": {
-    title: "Cybersecurity Awareness Workshop - C3 Centre Community",
-    date: "2024-11-15",
-    location: "C3 Centre, London",
-    participants: 25,
+  "community-cyber-support-hub": {
+    title: "Community Cyber Support Hub",
+    location: "United Kingdom",
+    partners: "BMHS, C3 Center for Creativity and Culture.",
+    participants: "Community members",
     description:
-      "Interactive workshop focusing on online safety and digital literacy for young people during Youth Mental Health Awareness Week.",
+      "Walk-in support for anyone needing digital or cybersecurity help, no appointment required. Whether you're facing a tech challenge, need password help, or want to learn how to stay safe online, our team is here to provide the guidance and confidence you need.",
     images: [
       {
-        url: "/assets/gallery/workshop1-1.jpg",
-        alt: "Participants engaged in cybersecurity discussion",
-        caption: "Young participants learning about online safety",
+        url: "/assets/gallery/Community Cyber Support Hub/1.png",
+        alt: "Community members receiving digital support",
+        caption: "Walk-in support session in progress",
       },
       {
-        url: "/assets/gallery/workshop1-2.jpg",
-        alt: "Presenter explaining phishing techniques",
-        caption: "Interactive demonstration of phishing recognition",
+        url: "/assets/gallery/Community Cyber Support Hub/2.png",
+        alt: "One-on-one cybersecurity help",
+        caption: "Personalized cybersecurity guidance",
       },
       {
-        url: "/assets/gallery/workshop1-3.jpg",
-        alt: "Group activity on password security",
-        caption: "Hands-on password security exercise",
+        url: "/assets/gallery/Community Cyber Support Hub/3.png",
+        alt: "Password help session",
+        caption: "Helping community members with password security",
       },
       {
-        url: "/assets/gallery/workshop2-1.jpg",
-        alt: "Workshop setup and preparation",
-        caption: "Setting up interactive learning stations",
+        url: "/assets/gallery/Community Cyber Support Hub/4.png",
+        alt: "Digital literacy support",
+        caption: "Building digital confidence",
       },
       {
-        url: "/assets/gallery/workshop2-2.jpg",
-        alt: "Participants working in groups",
-        caption: "Collaborative learning in small groups",
+        url: "/assets/gallery/Community Cyber Support Hub/5.png",
+        alt: "Tech challenge resolution",
+        caption: "Solving technical challenges together",
       },
       {
-        url: "/assets/gallery/workshop3-1.jpg",
-        alt: "Q&A session with participants",
-        caption: "Engaging discussion about digital threats",
+        url: "/assets/gallery/Community Cyber Support Hub/6.png",
+        alt: "Online safety education",
+        caption: "Learning to stay safe online",
       },
       {
-        url: "/assets/gallery/workshop3-2.jpg",
-        alt: "Hands-on device security demo",
-        caption: "Learning practical security measures",
-      },
-      {
-        url: "/assets/gallery/workshop4-1.jpg",
-        alt: "Workshop conclusion and feedback",
-        caption: "Gathering feedback and next steps",
+        url: "/assets/gallery/Community Cyber Support Hub/7.png",
+        alt: "Community support hub overview",
+        caption: "Overview of our community support services",
       },
     ],
   },
-  "digital-literacy-seniors": {
-    title: "Digital Literacy Training for Seniors",
-    date: "2024-10-28",
-    location: "Community Centre, Birmingham",
-    participants: 18,
+  "cyber-secure-generation-project": {
+    title: "Cyber Secure Generation Project",
+    location: "United Kingdom",
+    participants: "Community wide",
+    partners:
+      "National Lottery, Community-wide partnership with multiple organisations",
     description:
-      "Comprehensive digital literacy program designed specifically for senior citizens, covering basic cybersecurity and safe online practices.",
-    images: [
-      {
-        url: "/assets/gallery/workshop2-1.jpg",
-        alt: "Senior participants learning digital skills",
-        caption: "Seniors exploring digital security concepts",
-      },
-      {
-        url: "/assets/gallery/workshop2-2.jpg",
-        alt: "One-on-one support session",
-        caption: "Personalized guidance on device security",
-      },
-      {
-        url: "/assets/gallery/workshop2-3.jpg",
-        alt: "Group discussion on online safety",
-        caption: "Collaborative learning about online safety",
-      },
-      {
-        url: "/assets/gallery/workshop2-4.jpg",
-        alt: "Certificate presentation ceremony",
-        caption: "Celebrating completion of digital literacy program",
-      },
-      {
-        url: "/assets/gallery/workshop1-1.jpg",
-        alt: "Participants practicing password creation",
-        caption: "Learning to create strong passwords",
-      },
-      {
-        url: "/assets/gallery/workshop1-2.jpg",
-        alt: "Email security demonstration",
-        caption: "Understanding email threats and protection",
-      },
-      {
-        url: "/assets/gallery/workshop3-1.jpg",
-        alt: "Social media privacy settings",
-        caption: "Configuring privacy settings together",
-      },
-      {
-        url: "/assets/gallery/workshop3-2.jpg",
-        alt: "Device setup assistance",
-        caption: "Helping with secure device configuration",
-      },
-      {
-        url: "/assets/gallery/workshop4-1.jpg",
-        alt: "Group photo with certificates",
-        caption: "Proud graduates with their certificates",
-      },
-      {
-        url: "/assets/gallery/workshop4-2.jpg",
-        alt: "Feedback and evaluation session",
-        caption: "Sharing experiences and improvements",
-      },
-      {
-        url: "/assets/gallery/workshop5-1.jpg",
-        alt: "Follow-up support planning",
-        caption: "Planning ongoing support sessions",
-      },
-      {
-        url: "/assets/gallery/workshop5-2.jpg",
-        alt: "Community networking",
-        caption: "Building connections for continued learning",
-      },
-    ],
+      "The Cyber-Secured Generation Project is an intergenerational initiative aimed at equipping young people, immigrant parents, and seniors with cybersecurity and digital literacy skills. Built on the success of previous initiatives, it emphasises inclusivity, bilingual communication, and community ownership.",
+    images: Array.from({ length: 16 }, (_, i) => ({
+      url: `/assets/gallery/Cyber Secure Generation project Community Led/${
+        i + 1
+      }.png`,
+      alt: `Cyber Secure Generation Project activity ${i + 1}`,
+      caption: `Intergenerational cybersecurity learning session ${i + 1}`,
+    })).concat({
+      url: `/assets/gallery/Cyber Secure Generation project Community Led/Project main image.png`,
+      alt: "Cyber Secure Generation Project main image",
+      caption: "Project overview and community impact",
+    }),
   },
-  "small-business-cybersecurity": {
-    title: "Small Business Cybersecurity Seminar",
-    date: "2024-09-20",
-    location: "Business Hub, Manchester",
-    participants: 35,
+  "digitally-confident-cyber-safe-adults": {
+    title: "Digitally Confident & Cyber-Safe - Adults Session",
+    location: "Our Lady Star of the Sea, Mumbles Community, United Kingdom",
+    participants: 47,
+    partners: "Our Lady Star of the Sea, Mumbles Community.",
     description:
-      "Professional development seminar for small business owners focusing on practical cybersecurity measures and risk management.",
-    images: [
-      {
-        url: "/assets/gallery/workshop3-1.jpg",
-        alt: "Business owners attending cybersecurity presentation",
-        caption: "Business leaders learning about cyber threats",
-      },
-      {
-        url: "/assets/gallery/workshop3-2.jpg",
-        alt: "Interactive cybersecurity assessment",
-        caption: "Hands-on security assessment workshop",
-      },
-      {
-        url: "/assets/gallery/workshop1-1.jpg",
-        alt: "Risk assessment exercise",
-        caption: "Identifying business-specific security risks",
-      },
-      {
-        url: "/assets/gallery/workshop2-1.jpg",
-        alt: "Policy development workshop",
-        caption: "Creating cybersecurity policies",
-      },
-      {
-        url: "/assets/gallery/workshop4-1.jpg",
-        alt: "Incident response planning",
-        caption: "Preparing for security incidents",
-      },
-      {
-        url: "/assets/gallery/workshop5-1.jpg",
-        alt: "Networking and knowledge sharing",
-        caption: "Business owners sharing experiences",
-      },
-    ],
+      "This workshop focuses on adults gaining the cybersecurity knowledge and digital confidence to protect themselves and their families online. Build skills that create safety, and connection.",
+    images: Array.from({ length: 8 }, (_, i) => ({
+      url: `/assets/gallery/Digitally Confident & Cyber-Safe - Adults Session/${
+        i + 1
+      }.png`,
+      alt: `Adults cybersecurity session ${i + 1}`,
+      caption: `Building digital confidence and cyber safety ${i + 1}`,
+    })).filter((_, i) => i !== 7), // Skip index 8 as file doesn't exist
   },
-  "school-cybersecurity-education": {
-    title: "School Cybersecurity Education Program",
-    date: "2024-08-15",
-    location: "Greenfield Secondary School, Leeds",
-    participants: 120,
+  "young-cyber-defenders-secure-futures": {
+    title: "Young Cyber Defenders, Secure Futures",
+    location: "BMHS, C3 Center for Creativity and Culture, United Kingdom",
+    participants: 67,
+    partners: "BMHS, C3 Center for Creativity and Culture",
     description:
-      "Educational program for students aged 13-16, covering digital citizenship, online privacy, and cyberbullying prevention.",
+      "This program empowers young people to become cyber defenders who are critical in building secure digital futures from the ground up, protecting themselves, teaching families, and transforming communities one connection at a time.",
     images: [
       {
-        url: "/assets/gallery/workshop4-1.jpg",
-        alt: "Students participating in cybersecurity quiz",
-        caption: "Interactive cybersecurity knowledge quiz",
+        url: "/assets/gallery/Young Cyber Defenders,Secure Futures/1.png",
+        alt: "Young cyber defenders in training",
+        caption: "Empowering young people as cyber defenders",
       },
       {
-        url: "/assets/gallery/workshop4-2.jpg",
-        alt: "Classroom presentation on digital privacy",
-        caption: "Learning about digital footprints and privacy",
+        url: "/assets/gallery/Young Cyber Defenders,Secure Futures/2.png",
+        alt: "Secure futures workshop session",
+        caption: "Building secure digital futures from the ground up",
       },
       {
-        url: "/assets/gallery/workshop4-3.jpg",
-        alt: "Group project on online safety",
-        caption: "Collaborative project on creating safe online spaces",
+        url: "/assets/gallery/Young Cyber Defenders,Secure Futures/3.png",
+        alt: "Community transformation through learning",
+        caption: "Transforming communities one connection at a time",
       },
       {
-        url: "/assets/gallery/workshop1-1.jpg",
-        alt: "Digital citizenship workshop",
-        caption: "Understanding rights and responsibilities online",
+        url: "/assets/gallery/Young Cyber Defenders,Secure Futures/Nurture 2.png",
+        alt: "Nurturing young cyber talent",
+        caption: "Nurturing the next generation of cyber defenders",
       },
       {
-        url: "/assets/gallery/workshop1-2.jpg",
-        alt: "Cyberbullying prevention session",
-        caption: "Learning to recognize and prevent cyberbullying",
-      },
-      {
-        url: "/assets/gallery/workshop2-1.jpg",
-        alt: "Password security game",
-        caption: "Fun activities teaching password security",
-      },
-      {
-        url: "/assets/gallery/workshop2-2.jpg",
-        alt: "Social media safety discussion",
-        caption: "Discussing safe social media practices",
-      },
-      {
-        url: "/assets/gallery/workshop3-1.jpg",
-        alt: "Phishing simulation exercise",
-        caption: "Hands-on phishing recognition training",
-      },
-      {
-        url: "/assets/gallery/workshop3-2.jpg",
-        alt: "Digital footprint activity",
-        caption: "Understanding online presence and privacy",
-      },
-      {
-        url: "/assets/gallery/workshop5-1.jpg",
-        alt: "Student presentations",
-        caption: "Students presenting their cybersecurity projects",
-      },
-      {
-        url: "/assets/gallery/workshop5-2.jpg",
-        alt: "Q&A with cybersecurity experts",
-        caption: "Students asking questions about cybersecurity careers",
-      },
-      {
-        url: "/assets/gallery/workshop2-3.jpg",
-        alt: "Certificate ceremony",
-        caption: "Recognizing student achievements",
-      },
-      {
-        url: "/assets/gallery/workshop2-4.jpg",
-        alt: "Teacher training session",
-        caption: "Training teachers on cybersecurity education",
-      },
-      {
-        url: "/assets/gallery/workshop1-3.jpg",
-        alt: "Interactive technology demo",
-        caption: "Demonstrating security technologies",
-      },
-      {
-        url: "/assets/gallery/workshop4-3.jpg",
-        alt: "Group reflection session",
-        caption: "Students reflecting on their learning",
-      },
-    ],
-  },
-  "community-volunteer-training": {
-    title: "Community Volunteer Training Session",
-    date: "2024-07-10",
-    location: "Cybervists Office, London",
-    participants: 12,
-    description:
-      "Training session for new community volunteers, covering cybersecurity fundamentals and teaching methodologies.",
-    images: [
-      {
-        url: "/assets/gallery/workshop5-1.jpg",
-        alt: "Volunteer training session in progress",
-        caption: "Training future cybersecurity advocates",
-      },
-      {
-        url: "/assets/gallery/workshop5-2.jpg",
-        alt: "Hands-on technical demonstration",
-        caption: "Technical skills development for volunteers",
-      },
-      {
-        url: "/assets/gallery/workshop1-1.jpg",
-        alt: "Teaching methodology workshop",
-        caption: "Learning effective teaching techniques",
-      },
-      {
-        url: "/assets/gallery/workshop2-1.jpg",
-        alt: "Cybersecurity fundamentals session",
-        caption: "Building foundational knowledge",
-      },
-      {
-        url: "/assets/gallery/workshop3-1.jpg",
-        alt: "Community outreach planning",
-        caption: "Planning community engagement strategies",
-      },
-      {
-        url: "/assets/gallery/workshop4-1.jpg",
-        alt: "Role-playing exercises",
-        caption: "Practicing workshop delivery",
-      },
-      {
-        url: "/assets/gallery/workshop2-2.jpg",
-        alt: "Resource development",
-        caption: "Creating educational materials",
-      },
-      {
-        url: "/assets/gallery/workshop3-2.jpg",
-        alt: "Volunteer certification",
-        caption: "Celebrating new certified volunteers",
-      },
-      {
-        url: "/assets/gallery/workshop4-2.jpg",
-        alt: "Team building activities",
-        caption: "Building strong volunteer relationships",
+        url: "/assets/gallery/Young Cyber Defenders,Secure Futures/Screenshot 2025-10-23 233522.png",
+        alt: "Program overview and impact",
+        caption: "Overview of the Young Cyber Defenders program",
       },
     ],
   },
@@ -375,20 +190,16 @@ export default async function WorkshopGallery({ params }: Params) {
 
           <div className="flex flex-wrap gap-4 text-sm text-gray-500">
             <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              {new Date(workshop.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </div>
-            <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
               {workshop.location}
             </div>
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4" />
               {workshop.participants} participants
+            </div>
+            <div className="flex items-center gap-2">
+              <HeartPulse className="w-4 h-4" />
+              Supported by {workshop.partners}
             </div>
           </div>
         </div>
@@ -400,7 +211,6 @@ export default async function WorkshopGallery({ params }: Params) {
           <WorkshopGalleryClient
             images={workshop.images}
             workshopTitle={workshop.title}
-            workshopDate={workshop.date}
           />
         </div>
       </section>

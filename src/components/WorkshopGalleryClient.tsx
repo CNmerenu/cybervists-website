@@ -11,11 +11,15 @@ interface WorkshopGalleryClientProps {
     caption: string;
   }>;
   workshopTitle: string;
-  workshopDate: string;
 }
 
-export default function WorkshopGalleryClient({ images, workshopTitle, workshopDate }: WorkshopGalleryClientProps) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+export default function WorkshopGalleryClient({
+  images,
+  workshopTitle,
+}: WorkshopGalleryClientProps) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null
+  );
 
   const openModal = (index: number) => {
     setSelectedImageIndex(index);
@@ -27,13 +31,17 @@ export default function WorkshopGalleryClient({ images, workshopTitle, workshopD
 
   const goToPrevious = () => {
     if (selectedImageIndex !== null) {
-      setSelectedImageIndex(selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1);
+      setSelectedImageIndex(
+        selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1
+      );
     }
   };
 
   const goToNext = () => {
     if (selectedImageIndex !== null) {
-      setSelectedImageIndex(selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1);
+      setSelectedImageIndex(
+        selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1
+      );
     }
   };
 
@@ -54,11 +62,7 @@ export default function WorkshopGalleryClient({ images, workshopTitle, workshopD
               className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-              <p className="text-white text-sm font-medium">
-                {image.caption}
-              </p>
-            </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4"></div>
           </div>
         ))}
       </div>
@@ -89,7 +93,7 @@ export default function WorkshopGalleryClient({ images, workshopTitle, workshopD
             >
               <ChevronRight className="w-6 h-6" />
             </button>
-            
+
             <Image
               src={images[selectedImageIndex].url}
               alt={images[selectedImageIndex].alt}
@@ -97,7 +101,7 @@ export default function WorkshopGalleryClient({ images, workshopTitle, workshopD
               height={600}
               className="w-full h-auto max-h-[70vh] object-contain"
             />
-            
+
             <div className="p-6">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="text-lg font-bold text-gray-900">
@@ -107,13 +111,6 @@ export default function WorkshopGalleryClient({ images, workshopTitle, workshopD
                   {selectedImageIndex + 1} / {images.length}
                 </span>
               </div>
-              <p className="text-sm text-gray-600 mb-2">
-                {new Date(workshopDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
               <p className="text-base text-gray-700">
                 {images[selectedImageIndex].caption}
               </p>

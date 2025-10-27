@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, MapPin, Users, Eye } from "lucide-react";
+import { Calendar, MapPin, Users, Eye, HeartPulse } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,78 +8,65 @@ export default function Gallery() {
   const workshops = [
     {
       id: 1,
-      title: "Cybersecurity Awareness Workshop - C3 Centre Community",
-      date: "2024-11-15",
-      location: "C3 Centre, London",
-      participants: 25,
+      title:
+        "Community Cyber Support Hub - Drop-in support for all your digital needs",
+      location: "United Kingdom",
+      participants: "Community members",
+      partners: "The Community",
       description:
-        "Interactive workshop focusing on online safety and digital literacy for young people during Youth Mental Health Awareness Week.",
-      slug: "cybersecurity-awareness-c3-centre",
+        "Walk-in support for anyone needing digital or cybersecurity help, no appointment required. Whether you're facing a tech challenge, need password help, or want to learn how to stay safe online, our team is here to provide the guidance and confidence you need.",
+      slug: "community-cyber-support-hub",
       previewImages: [
-        "/assets/gallery/workshop1-1.jpg",
-        "/assets/gallery/workshop1-2.jpg",
+        "/assets/gallery/Community Cyber Support Hub/1.png",
+        "/assets/gallery/Community Cyber Support Hub/2.png",
+      ],
+      totalImages: 7,
+    },
+    {
+      id: 2,
+      title: "Cyber Secure Generation Project",
+      location: "United Kingdom",
+      participants: "Community wide",
+      partners:
+        "National Lottery, Community-wide partnership with multiple organisations",
+      description:
+        "The Cyber-Secured Generation Project is an intergenerational initiative aimed at equipping young people, immigrant parents, and seniors with cybersecurity and digital literacy skills. Built on the success of previous initiatives, it emphasises inclusivity, bilingual communication, and community ownership.",
+      slug: "cyber-secure-generation-project",
+      previewImages: [
+        "/assets/gallery/Cyber Secure Generation project Community Led/1.png",
+        "/assets/gallery/Cyber Secure Generation project Community Led/2.png",
+      ],
+      totalImages: 17,
+    },
+    {
+      id: 3,
+      title: "Digitally Confident & Cyber-Safe - Adults Session",
+      location: "United Kingdom",
+      participants: 47,
+      partners: "Our Lady Star of the Sea, Mumbles Community.",
+      description:
+        "This workshop focuses on adults gaining the cybersecurity knowledge and digital confidence to protect themselves and their families online. Build skills that create safety, and connection.",
+      slug: "digitally-confident-cyber-safe-adults",
+      previewImages: [
+        "/assets/gallery/Digitally Confident & Cyber-Safe - Adults Session/1.png",
+        "/assets/gallery/Digitally Confident & Cyber-Safe - Adults Session/2.png",
       ],
       totalImages: 8,
     },
     {
-      id: 2,
-      title: "Digital Literacy Training for Seniors",
-      date: "2024-10-28",
-      location: "Community Centre, Birmingham",
-      participants: 18,
-      description:
-        "Comprehensive digital literacy program designed specifically for senior citizens, covering basic cybersecurity and safe online practices.",
-      slug: "digital-literacy-seniors",
-      previewImages: [
-        "/assets/gallery/workshop2-1.jpg",
-        "/assets/gallery/workshop2-2.jpg",
-      ],
-      totalImages: 12,
-    },
-    {
-      id: 3,
-      title: "Small Business Cybersecurity Seminar",
-      date: "2024-09-20",
-      location: "Business Hub, Manchester",
-      participants: 35,
-      description:
-        "Professional development seminar for small business owners focusing on practical cybersecurity measures and risk management.",
-      slug: "small-business-cybersecurity",
-      previewImages: [
-        "/assets/gallery/workshop3-1.jpg",
-        "/assets/gallery/workshop3-2.jpg",
-      ],
-      totalImages: 6,
-    },
-    {
       id: 4,
-      title: "School Cybersecurity Education Program",
-      date: "2024-08-15",
-      location: "Greenfield Secondary School, Leeds",
-      participants: 120,
+      title: "Young Cyber Defenders, Secure Futures",
+      location: "United Kingdom",
+      participants: 67,
+      partners: "BMHS, C3 Center for Creativity and Culture.",
       description:
-        "Educational program for students aged 13-16, covering digital citizenship, online privacy, and cyberbullying prevention.",
-      slug: "school-cybersecurity-education",
+        "This program empowers young people to become cyber defenders who are critical in building secure digital futures from the ground up, protecting themselves, teaching families, and transforming communities one connection at a time.",
+      slug: "young-cyber-defenders-secure-futures",
       previewImages: [
-        "/assets/gallery/workshop4-1.jpg",
-        "/assets/gallery/workshop4-2.jpg",
+        "/assets/gallery/Young Cyber Defenders,Secure Futures/1.png",
+        "/assets/gallery/Young Cyber Defenders,Secure Futures/2.png",
       ],
-      totalImages: 15,
-    },
-    {
-      id: 5,
-      title: "Community Volunteer Training Session",
-      date: "2024-07-10",
-      location: "Cybervists Office, London",
-      participants: 12,
-      description:
-        "Training session for new community volunteers, covering cybersecurity fundamentals and teaching methodologies.",
-      slug: "community-volunteer-training",
-      previewImages: [
-        "/assets/gallery/workshop5-1.jpg",
-        "/assets/gallery/workshop5-2.jpg",
-      ],
-      totalImages: 9,
+      totalImages: 5,
     },
   ];
 
@@ -96,14 +83,6 @@ export default function Gallery() {
             empower individuals and organizations with essential cybersecurity
             knowledge and digital literacy skills.
           </p>
-          <div className="text-sm text-gray-500">
-            {workshops.length} workshops •{" "}
-            {workshops.reduce(
-              (total, workshop) => total + workshop.participants,
-              0
-            )}{" "}
-            participants reached
-          </div>
         </div>
       </section>
 
@@ -130,20 +109,16 @@ export default function Gallery() {
 
                 <div className="flex flex-wrap gap-4 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4" />
-                    {new Date(workshop.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </div>
-                  <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4" />
                     {workshop.location}
                   </div>
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4" />
                     {workshop.participants} participants
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <HeartPulse className="w-4 h-4" />
+                    Supported by {workshop.partners}
                   </div>
                 </div>
               </div>
