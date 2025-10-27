@@ -7,38 +7,48 @@ interface Service {
   image: string;
 }
 
-const services: Service[] = [
-  {
-    title: "Cybersecurity Training and Awareness",
-    description:
-      "Comprehensive security awareness programs to protect against phishing, malware, and social engineering attacks.",
-    image: "/assets/security_awareness.jpg",
-  },
-  {
-    title: "Digital Literacy & Support",
-    description:
-      "Bridging the digital divide with accessible technology education and one-on-one support for all skill levels.",
-    image: "/assets/digital_litreracy_support.png",
-  },
-  {
-    title: "Tech Research & Development",
-    description:
-      "Innovative research into emerging technologies and development of privacy-focused digital solutions.",
-    image: "/assets/research.png",
-  },
-  {
-    title: "Community Empowerment",
-    description:
-      "Building stronger communities through digital inclusion initiatives and grassroots technology programs.",
-    image: "/assets/community_hands.jpg",
-  },
-  {
-    title: "Coaching/Employment Support",
-    description:
-      "Career guidance and skills development in cybersecurity and technology fields for job seekers.",
-    image: "/assets/coaching.png",
-  },
-];
+interface ServiceContent {
+  title: string;
+  subtitle: string;
+  services: Service[];
+}
+const servicesContent: ServiceContent = {
+  title: "Our Services",
+  subtitle:
+    "Comprehensive cybersecurity solutions for the modern digital landscape",
+  services: [
+    {
+      title: "Cybersecurity Training and Awareness",
+      description:
+        "Comprehensive security awareness programs to protect against phishing, malware, and social engineering attacks.",
+      image: "/assets/security_awareness.jpg",
+    },
+    {
+      title: "Digital Literacy & Support",
+      description:
+        "Bridging the digital divide with accessible technology education and one-on-one support for all skill levels.",
+      image: "/assets/digital_litreracy_support.png",
+    },
+    {
+      title: "Tech Research & Development",
+      description:
+        "Innovative research into emerging technologies and development of privacy-focused digital solutions.",
+      image: "/assets/research.png",
+    },
+    {
+      title: "Community Empowerment",
+      description:
+        "Building stronger communities through digital inclusion initiatives and grassroots technology programs.",
+      image: "/assets/community_hands.jpg",
+    },
+    {
+      title: "Coaching/Employment Support",
+      description:
+        "Career guidance and skills development in cybersecurity and technology fields for job seekers.",
+      image: "/assets/coaching.png",
+    },
+  ],
+};
 
 export default function Services() {
   return (
@@ -60,16 +70,15 @@ export default function Services() {
       <div className="px-4 md:px-16 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 text-white">
-            Our Services
+            {servicesContent.title}
           </h2>
           <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto px-2">
-            Comprehensive cybersecurity solutions for the modern digital
-            landscape
+            {servicesContent.subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-          {services.map((service, index) => (
+          {servicesContent.services.map((service, index) => (
             <div
               key={index}
               className="bg-white border border-blue-500/30 rounded-xl p-4 md:p-8 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl group"

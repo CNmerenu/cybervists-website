@@ -14,9 +14,9 @@ export default async function Home() {
       <Hero />
       <Challenge />
       <Programs />
+      <Stats />
       <CTA />
       <Services />
-      <Stats />
       <Testimonials />
       <Partners />
       <Contact />

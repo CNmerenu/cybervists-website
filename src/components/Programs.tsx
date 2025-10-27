@@ -1,6 +1,6 @@
 "use client";
 
-import { Shield, Users, BookOpen, Zap, ArrowLeft } from "lucide-react";
+import { Shield, Users, Laptop, Heart, ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Programs() {
@@ -14,92 +14,96 @@ export default function Programs() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const programs = [
-    {
-      icon: Shield,
-      title: "Cybersecurity Training",
-      description:
-        "Comprehensive security awareness programs for organizations and individuals to protect against digital threats.",
-      features: [
-        "Threat Recognition",
-        "Incident Response",
-        "Security Protocols",
-      ],
-      bgImage: "/assets/cybersecurity_action.png",
-      content: [
-        "Interactive phishing simulation exercises to identify suspicious emails and links",
-        "Hands-on incident response workshops with real-world scenarios",
-        "Password security training including multi-factor authentication setup",
-        "Social engineering awareness sessions with practical examples",
-        "Network security fundamentals for small businesses",
-        "Data backup and recovery best practices",
-      ],
-    },
-    {
-      icon: Users,
-      title: "Digital Inclusion",
-      description:
-        "Bridging the digital divide through accessible technology education and community support programs.",
-      features: ["Digital Literacy", "Tech Access", "Community Support"],
-      bgImage: "/assets/digital_inclusion.png",
-      content: [
-        "Basic computer skills training for seniors and underserved communities",
-        "Smartphone and tablet navigation workshops",
-        "Online banking and digital payments safety courses",
-        "Video calling and social media privacy settings guidance",
-        "Digital government services access training",
-        "One-on-one tech support sessions for vulnerable populations",
-      ],
-    },
-    {
-      icon: BookOpen,
-      title: "Educational Workshops",
-      description:
-        "Interactive learning sessions covering privacy, data protection, and responsible digital citizenship.",
-      features: ["Privacy Protection", "Data Rights", "Digital Ethics"],
-      bgImage: "/assets/digital_litreracy.png",
-      content: [
-        "GDPR and data protection rights awareness sessions",
-        "Social media privacy settings and digital footprint management",
-        "Online safety for children and teenagers",
-        "Digital ethics and responsible AI usage discussions",
-        "Cryptocurrency and online financial security workshops",
-        "Digital wellness and screen time management strategies",
-      ],
-    },
-    {
-      icon: Zap,
-      title: "Rapid Response",
-      description:
-        "Emergency cybersecurity support and guidance for organizations facing digital security incidents.",
-      features: ["24/7 Support", "Incident Analysis", "Recovery Planning"],
-      bgImage: "/assets/symbol.svg",
-      content: [
-        "Immediate malware and ransomware incident containment",
-        "Data breach assessment and notification compliance guidance",
-        "Emergency password reset and account recovery procedures",
-        "Forensic analysis of security incidents and attack vectors",
-        "Business continuity planning during cyber incidents",
-        "Post-incident security hardening and prevention strategies",
-      ],
-    },
-  ];
+  const programsContent = {
+    title: "Our Main Pillers",
+    subtitle:
+      "Empowering communities through bespoke cyber awareness literacy, ethical online use and technology support.",
+    programs: [
+      {
+        icon: Shield,
+        title: "Cyber Security",
+        description:
+          "Facilitating cyber resilient grassroots communities through continuous training and events centred on cybersecurity awareness.",
+        features: ["Cyber Hygiene", "Security Awareness", "Online Safety"],
+        bgImage: "/assets/cybersecurity_action.png",
+        content: [
+          "Interactive phishing simulation exercises to identify suspicious emails and links",
+          "Hands-on incident response workshops with real-world scenarios",
+          "Password security training including multi-factor authentication setup",
+          "Social engineering awareness sessions with practical examples",
+          "Network security fundamentals for small businesses",
+          "Data backup and recovery best practices",
+        ],
+      },
+      {
+        icon: Users,
+        title: "Digital Inclusion",
+        description:
+          "Bridging the digital divide through comprehensive support programs tailored for vulnerable communities, delivering culturally appropriate training, and offering a safe space for coaching to ensure sustained digital adoption.",
+        features: ["Digital Literacy", "Tech Access", "Community Support"],
+        bgImage: "/assets/digital_inclusion.png",
+        content: [
+          "Basic computer skills training for seniors and underserved communities",
+          "Smartphone and tablet navigation workshops",
+          "Online banking and digital payments safety courses",
+          "Video calling and social media privacy settings guidance",
+          "Digital government services access training",
+          "One-on-one tech support sessions for vulnerable populations",
+        ],
+      },
+      {
+        icon: Laptop,
+        title: "Technology empowerment",
+        description:
+          "Making digital skills accessible to all, one community one audience at a time.",
+        features: ["Digital Skills", "Tech Literacy", "Accessibility"],
+        bgImage: "/assets/digital_litreracy.png",
+        content: [
+          "Basic computer and smartphone navigation training",
+          "Digital communication tools and video calling setup",
+          "Online services access including banking and government portals",
+          "Digital document creation and file management",
+          "Assistive technology training for users with disabilities",
+          "Tech troubleshooting and maintenance basics",
+        ],
+      },
+      {
+        icon: Heart,
+        title: "Ethical Digital Citizenship",
+        description:
+          "Promoting respectful communication, responsible behaviour, and digital well-being.",
+        features: [
+          "Digital Wellbeing",
+          "Responsible online use",
+          "Tech for Good",
+        ],
+        bgImage: "/assets/symbol.svg",
+        content: [
+          "Digital empathy and respectful online communication workshops",
+          "Screen time management and digital wellness strategies",
+          "Combating cyberbullying and online harassment",
+          "Ethical AI usage and understanding algorithmic bias",
+          "Digital footprint awareness and reputation management",
+          "Using technology for positive social impact and community building",
+        ],
+      },
+    ],
+  };
 
   return (
     <section id="programs" className="w-full py-16 md:py-24 bg-[#E8E8E8]">
-      <div className="px-4 md:px-16  w-full md:w-[1440px] ">
+      <div className="w-full md:w-[1440px] mx-auto px-4 md:px-16">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
-            Our Programs
+            {programsContent.title}
           </h2>
           <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-            Empowering communities through comprehensive cybersecurity education
-            and digital literacy initiatives
+            {programsContent.subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-12">
-          {programs.map((program, index) => (
+          {programsContent.programs.map((program, index) => (
             <div
               key={index}
               className="relative h-72 md:h-80 perspective-1000"

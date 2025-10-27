@@ -19,72 +19,66 @@ interface Challenge {
   impact: string;
 }
 
-const challenges: Challenge[] = [
-  {
-    icon: DollarSign,
-    title: "Global Scam Losses",
-    stat: "$10.5B",
+const challengeContent = {
+  title: "The Challenge",
+  subtitle:
+    "Cybersecurity threats are escalating at an unprecedented rate, creating significant challenges for businesses, individuals, and communities worldwide.",
+  challenges: [
+    {
+      icon: DollarSign,
+      title: "Global Scam Losses",
+      stat: "$10.5B",
+      description:
+        "Lost to online scams annually worldwide, devastating individuals and families",
+      impact: "Lost globally per year",
+    },
+    {
+      icon: Clock,
+      title: "Attack Frequency",
+      stat: "39 sec",
+      description:
+        "Average time between cyber attacks, showing the relentless nature of threats",
+      impact: "Between attacks",
+    },
+    {
+      icon: UserX,
+      title: "Digital Exclusion",
+      stat: "2.7B",
+      description:
+        "People worldwide lack basic digital skills, leaving them vulnerable to exploitation",
+      impact: "People digitally excluded",
+    },
+    {
+      icon: Users,
+      title: "Senior Isolation",
+      stat: "47%",
+      description:
+        "Of seniors feel left behind digitally, making them prime targets for scammers",
+      impact: "Of seniors affected",
+    },
+    {
+      icon: Heart,
+      title: "Child Cyberbullying",
+      stat: "1 in 3",
+      description:
+        "Children experience cyberbullying, causing lasting psychological harm",
+      impact: "Children affected",
+    },
+    {
+      icon: Mic,
+      title: "AI Voice Scams",
+      stat: "1 in 10",
+      description:
+        "Adults have experienced AI voice scams, a rapidly growing threat",
+      impact: "Adults targeted",
+    },
+  ],
+  summary: {
+    title: "The Human Cost",
     description:
-      "Lost to online scams annually worldwide, devastating individuals and families",
-    impact: "Lost globally per year",
+      "Beyond financial losses, cyber attacks cause stress, anxiety, and loss of trust. Vulnerable communities—including seniors, small businesses, and digitally excluded individuals—are disproportionately affected and often lack the resources to recover.",
   },
-  {
-    icon: Clock,
-    title: "Attack Frequency",
-    stat: "39 sec",
-    description:
-      "Average time between cyber attacks, showing the relentless nature of threats",
-    impact: "Between attacks",
-  },
-  {
-    icon: UserX,
-    title: "Digital Exclusion",
-    stat: "2.7B",
-    description:
-      "People worldwide lack basic digital skills, leaving them vulnerable to exploitation",
-    impact: "People digitally excluded",
-  },
-  {
-    icon: Users,
-    title: "Senior Isolation",
-    stat: "47%",
-    description:
-      "Of seniors feel left behind digitally, making them prime targets for scammers",
-    impact: "Of seniors affected",
-  },
-  {
-    icon: Heart,
-    title: "Child Cyberbullying",
-    stat: "1 in 3",
-    description:
-      "Children experience cyberbullying, causing lasting psychological harm",
-    impact: "Children affected",
-  },
-  {
-    icon: Mic,
-    title: "AI Voice Scams",
-    stat: "1 in 10",
-    description:
-      "Adults have experienced AI voice scams, a rapidly growing threat",
-    impact: "Adults targeted",
-  },
-  {
-    icon: Shield,
-    title: "Skills Gap",
-    stat: "3.5M",
-    description:
-      "Unfilled cybersecurity jobs globally, leaving organizations vulnerable",
-    impact: "Open positions worldwide",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Data Breaches",
-    stat: "83%",
-    description:
-      "Of organizations experienced multiple data breaches in the past year",
-    impact: "Of businesses affected",
-  },
-];
+};
 
 export default function Challenge() {
   return (
@@ -92,17 +86,15 @@ export default function Challenge() {
       <div className="px-4 md:px-16">
         <div className="text-center mb-20">
           <h2 className="text-2xl md:text-5xl font-bold mb-6 md:mb-8 text-gray-900">
-            The Challenge
+            {challengeContent.title}
           </h2>
           <p className="text-sm md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Cybersecurity threats are escalating at an unprecedented rate,
-            creating significant challenges for businesses, individuals, and
-            communities worldwide.
+            {challengeContent.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-16">
-          {challenges.slice(0, 4).map((challenge, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16">
+          {challengeContent.challenges.slice(0, 3).map((challenge, index) => (
             <div key={index} className="text-center group">
               <div className="w-16 h-16 mx-auto mb-6 bg-accent-100 rounded-full flex items-center justify-center group-hover:bg-accent-200 transition-colors duration-300">
                 {challenge.icon ? (
@@ -127,9 +119,9 @@ export default function Challenge() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          {challenges.slice(4).map((challenge, index) => (
-            <div key={index + 4} className="text-center group">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          {challengeContent.challenges.slice(3).map((challenge, index) => (
+            <div key={index + 3} className="text-center group">
               <div className="w-16 h-16 mx-auto mb-6 bg-accent-100 rounded-full flex items-center justify-center group-hover:bg-accent-200 transition-colors duration-300">
                 {challenge.icon ? (
                   <challenge.icon className="w-8 h-8 text-accent-600" />
@@ -156,14 +148,10 @@ export default function Challenge() {
         <div className="mt-20 text-center">
           <div className="bg-gray-50 rounded-xl p-8 md:p-12 max-w-4xl mx-auto">
             <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-              The Human Cost
+              {challengeContent.summary.title}
             </h3>
             <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-              Beyond financial losses, cyber attacks cause stress, anxiety, and
-              loss of trust. Vulnerable communities—including seniors, small
-              businesses, and digitally excluded individuals—are
-              disproportionately affected and often lack the resources to
-              recover.
+              {challengeContent.summary.description}
             </p>
           </div>
         </div>
