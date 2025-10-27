@@ -73,6 +73,10 @@ export default async function BlogPost({ params }: Params) {
           <div className="prose prose-lg max-w-none">
             <div className="text-gray-700 leading-relaxed space-y-6">
               {post.content?.split('\n\n').map((paragraph, index) => {
+                const totalParagraphs = post.content?.split('\n\n').length || 0;
+                const firstImagePosition = Math.floor(totalParagraphs * 0.3);
+                const secondImagePosition = Math.floor(totalParagraphs * 0.7);
+                
                 if (paragraph.startsWith('## ')) {
                   return (
                     <h2 key={index} className="text-2xl font-bold text-gray-900 mt-8 mb-4">
@@ -87,10 +91,49 @@ export default async function BlogPost({ params }: Params) {
                     </h1>
                   );
                 }
+                
                 return (
-                  <p key={index} className="text-base leading-relaxed">
-                    {paragraph}
-                  </p>
+                  <div key={index}>
+                    <p className="text-base leading-relaxed">
+                      {paragraph}
+                    </p>
+                    
+                    {/* Embed first image after 30% of content */}
+                    {index === firstImagePosition && post.contentImages?.[0] && (
+                      <div className="my-8">
+                        <Image
+                          src={post.contentImages[0].asset.url}
+                          alt={post.contentImages[0].alt}
+                          width={400}
+                          height={250}
+                          className="w-2/3 mx-auto rounded-lg shadow-md"
+                        />
+                        {post.contentImages[0].caption && (
+                          <p className="text-sm text-gray-500 mt-2 italic text-center">
+                            {post.contentImages[0].caption}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                    
+                    {/* Embed second image after 70% of content */}
+                    {index === secondImagePosition && post.contentImages?.[1] && (
+                      <div className="my-8">
+                        <Image
+                          src={post.contentImages[1].asset.url}
+                          alt={post.contentImages[1].alt}
+                          width={400}
+                          height={250}
+                          className="w-2/3 mx-auto rounded-lg shadow-md"
+                        />
+                        {post.contentImages[1].caption && (
+                          <p className="text-sm text-gray-500 mt-2 italic text-center">
+                            {post.contentImages[1].caption}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
