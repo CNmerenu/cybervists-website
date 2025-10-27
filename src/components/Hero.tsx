@@ -33,20 +33,23 @@ export default function Hero() {
         <div className="w-full md:w-2/3 text-center md:text-left md:order-1">
           <h1 className="text-xl sm:text-2xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
             <span className="text-gray-900">
-              Digital Literacy, Security, Responsible Use & Inclusion
+              Cyber Awareness <span className="block"> Ethical Use &</span>
+              <span className="block">Digital Inclusion</span>
             </span>
           </h1>
           <p className="text-sm sm:text-base md:text-2xl text-gray-700 mb-6 md:mb-8 leading-relaxed md:w-[65%]">
-            Empowering organizations and individuals through cybersecurity
-            awareness, digital privacy advocacy, and inclusive digital
-            education.
+            Championing Digital Literacy and Security, Responsible Use &
+            Inclusion
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center md:justify-start w-full">
             <Link
-              href={"/#contact"}
+              href={
+                "https://docs.google.com/forms/d/e/1FAIpQLScvuIh_KihpjARqJph8xGXS_8bueIdLYadZ7WC5cEdDZwZX5g/viewform"
+              }
+              target="_blank"
               className="px-4 py-3 md:px-8 md:py-4 bg-primary-600 text-white text-sm md:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              Get Security Assessment
+              Get Involved
             </Link>
             <Link
               href={"https://www.eventbrite.co.uk/o/cybervists-113913212541"}
