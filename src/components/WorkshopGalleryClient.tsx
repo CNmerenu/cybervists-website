@@ -3,13 +3,10 @@
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { WorkshopImage } from "@/lib/galleryData";
 
 interface WorkshopGalleryClientProps {
-  images: Array<{
-    url: string;
-    alt: string;
-    caption: string;
-  }>;
+  images: WorkshopImage[];
   workshopTitle: string;
 }
 

@@ -1,74 +1,40 @@
 "use client";
 
-import { Calendar, MapPin, Users, Eye, HeartPulse } from "lucide-react";
+import { useState, useEffect } from "react";
+import { MapPin, Users, Eye, HeartPulse } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { getWorkshopPreview, Workshop } from "@/lib/galleryData";
 
 export default function Gallery() {
-  const workshops = [
-    {
-      id: 1,
-      title:
-        "Community Cyber Support Hub - Drop-in support for all your digital needs",
-      location: "United Kingdom",
-      participants: "Community members",
-      partners: "The Community",
-      description:
-        "Walk-in support for anyone needing digital or cybersecurity help, no appointment required. Whether you're facing a tech challenge, need password help, or want to learn how to stay safe online, our team is here to provide the guidance and confidence you need.",
-      slug: "community-cyber-support-hub",
-      previewImages: [
-        "/assets/gallery/Community Cyber Support Hub/1.png",
-        "/assets/gallery/Community Cyber Support Hub/2.png",
-      ],
-      totalImages: 7,
-    },
-    {
-      id: 2,
-      title: "Cyber Secure Generation Project",
-      location: "United Kingdom",
-      participants: "Community wide",
-      partners:
-        "National Lottery, Community-wide partnership with multiple organisations",
-      description:
-        "The Cyber-Secured Generation Project is an intergenerational initiative aimed at equipping young people, immigrant parents, and seniors with cybersecurity and digital literacy skills. Built on the success of previous initiatives, it emphasises inclusivity, bilingual communication, and community ownership.",
-      slug: "cyber-secure-generation-project",
-      previewImages: [
-        "/assets/gallery/Cyber Secure Generation project Community Led/1.png",
-        "/assets/gallery/Cyber Secure Generation project Community Led/2.png",
-      ],
-      totalImages: 17,
-    },
-    {
-      id: 3,
-      title: "Digitally Confident & Cyber-Safe - Adults Session",
-      location: "United Kingdom",
-      participants: 47,
-      partners: "Our Lady Star of the Sea, Mumbles Community.",
-      description:
-        "This workshop focuses on adults gaining the cybersecurity knowledge and digital confidence to protect themselves and their families online. Build skills that create safety, and connection.",
-      slug: "digitally-confident-cyber-safe-adults",
-      previewImages: [
-        "/assets/gallery/Digitally Confident & Cyber-Safe - Adults Session/1.png",
-        "/assets/gallery/Digitally Confident & Cyber-Safe - Adults Session/2.png",
-      ],
-      totalImages: 8,
-    },
-    {
-      id: 4,
-      title: "Young Cyber Defenders, Secure Futures",
-      location: "United Kingdom",
-      participants: 67,
-      partners: "BMHS, C3 Center for Creativity and Culture.",
-      description:
-        "This program empowers young people to become cyber defenders who are critical in building secure digital futures from the ground up, protecting themselves, teaching families, and transforming communities one connection at a time.",
-      slug: "young-cyber-defenders-secure-futures",
-      previewImages: [
-        "/assets/gallery/Young Cyber Defenders,Secure Futures/1.png",
-        "/assets/gallery/Young Cyber Defenders,Secure Futures/2.png",
-      ],
-      totalImages: 5,
-    },
-  ];
+  const [workshops, setWorkshops] = useState<Omit<Workshop, 'images'>[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchWorkshops = async () => {
+      try {
+        const data = getWorkshopPreview();
+        setWorkshops(data);
+      } catch (error) {
+        console.error('Error fetching workshops:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWorkshops();
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="w-full md:w-[1440px] min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading workshops...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="w-full md:w-[1440px] min-h-screen bg-white">
