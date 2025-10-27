@@ -77,30 +77,60 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-          {servicesContent.services.map((service, index) => (
-            <div
-              key={index}
-              className="bg-white border border-blue-500/30 rounded-xl p-4 md:p-8 hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl group"
-            >
-              <div className="w-32 h-32 mb-4 mx-auto bg-white rounded-full overflow-hidden relative">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                />
+        <div className="flex flex-col items-center gap-8">
+          {/* Top row - 3 services */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+            {servicesContent.services.slice(0, 3).map((service, index) => (
+              <div
+                key={index}
+                className="bg-white border border-gray-200 rounded-xl p-6 md:p-10 hover:border-gray-300 hover:shadow-md transition-all duration-300 group w-full md:w-80"
+              >
+                <div className="w-32 h-32 mb-4 mx-auto bg-white rounded-full overflow-hidden relative">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <Link href={"/#contact"}>
+                  <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 transition-colors text-center cursor-pointer">
+                    {service.title}
+                  </h3>
+                </Link>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center">
+                  {service.description}
+                </p>
               </div>
-              <Link href={"/#contact"}>
-                <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 transition-colors text-center cursor-pointer">
-                  {service.title}
-                </h3>
-              </Link>
-              <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center">
-                {service.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          {/* Bottom row - 2 services centered */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+            {servicesContent.services.slice(3, 5).map((service, index) => (
+              <div
+                key={index + 3}
+                className="bg-white border border-gray-200 rounded-xl p-6 md:p-10 hover:border-gray-300 hover:shadow-md transition-all duration-300 group w-full md:w-80"
+              >
+                <div className="w-32 h-32 mb-4 mx-auto bg-white rounded-full overflow-hidden relative">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <Link href={"/#contact"}>
+                  <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 transition-colors text-center cursor-pointer">
+                    {service.title}
+                  </h3>
+                </Link>
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed text-center">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

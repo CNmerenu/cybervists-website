@@ -3,8 +3,9 @@
 import { siFacebook, siYoutube, siInstagram } from "simple-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin } from "lucide-react";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   const [formData, setFormData] = useState({
@@ -70,7 +71,7 @@ export default function Footer() {
                 />
 
                 <div>
-                  <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent">
+                  <h3 className="text-xl font-bold bg-accent-500 bg-clip-text text-transparent">
                     Cybervists
                   </h3>
                   <div className="text-xs text-gray-400 -mt-1">
@@ -104,9 +105,10 @@ export default function Footer() {
                 </Link>
                 <Link
                   href="https://www.linkedin.com/company/cybervists/"
-                  className="w-10 h-10 bg-gray-800 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors"
+                  target="_blank"
+                  className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
                 >
-                  <Linkedin className="text-white" />
+                  <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5 text-white" />
                 </Link>
                 <Link
                   href="https://www.instagram.com/cybervists?igsh=MTNuN2VzNTg2b2Mwdw%3D%3D"

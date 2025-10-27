@@ -1,11 +1,21 @@
 "use client";
 
 import { Star, Quote, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (!isPaused) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev === 1 ? 0 : prev + 1));
+      }, 5000); // Change slide every 5 seconds
+      return () => clearInterval(interval);
+    }
+  }, [isPaused]);
   const [formData, setFormData] = useState<{
     name: string;
     role: string;
@@ -145,9 +155,13 @@ export default function Testimonials() {
           </button>
 
           {/* Carousel Container */}
-          <div className="overflow-hidden mx-12">
+          <div 
+            className="overflow-hidden mx-12"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <div
-              className="flex transition-transform duration-500 ease-in-out"
+              className="flex transition-transform duration-1000 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {/* Slide 1 */}
