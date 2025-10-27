@@ -86,11 +86,8 @@ export default function Programs() {
   ];
 
   return (
-    <section
-      id="programs"
-      className="w-full md:w-[1440px] py-16 md:py-24 bg-gray-50"
-    >
-      <div className="px-4 md:px-16">
+    <section id="programs" className="w-full py-16 md:py-24 bg-[#E8E8E8]">
+      <div className="px-4 md:px-16  w-full md:w-[1440px] ">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
             Our Programs
