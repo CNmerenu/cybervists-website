@@ -205,6 +205,7 @@ export const getWorkshopBySlug = (slug: string): Workshop | undefined => {
 
 export const getWorkshopPreview = () => {
   return workshopsData.map(workshop => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { images, ...workshopPreview } = workshop;
     return workshopPreview;
   });
