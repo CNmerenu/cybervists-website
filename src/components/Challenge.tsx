@@ -5,7 +5,6 @@ import {
   UserX,
   Mic,
   Heart,
-  Info,
   LucideIcon,
 } from "lucide-react";
 
@@ -18,7 +17,7 @@ interface Challenge {
 }
 
 const challengeContent = {
-  title: "The Challenge",
+  title: "The problem we are solving together",
   subtitle:
     "Cybersecurity threats are escalating at an unprecedented rate, creating significant challenges for businesses, individuals, and communities worldwide.",
   challenges: [
@@ -74,14 +73,23 @@ const challengeContent = {
   summary: {
     title: "The Human Cost",
     description:
-      "Beyond financial losses, cyber attacks cause stress, anxiety, and loss of trust. Vulnerable communities—including seniors, small businesses, and digitally excluded individuals—are disproportionately affected and often lack the resources to recover.",
+      "Beyond financial losses, cyber attacks cause stress, anxiety, and loss of trust. Vulnerable communities including seniors, small businesses, and digitally excluded individuals are disproportionately affected and often lack the resources to recover.",
   },
 };
 
 export default function Challenge() {
   return (
-    <section className="w-full py-24 md:py-32 bg-white">
-      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+    <section
+      className="w-full py-24 md:py-32 bg-white relative overflow-hidden"
+      style={{
+        backgroundImage: "url(/assets/websitechallenge.jpeg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="absolute inset-0 bg-white/90"></div>
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-2xl md:text-5xl font-bold mb-6 md:mb-8 text-gray-900">
             {challengeContent.title}
@@ -94,14 +102,7 @@ export default function Challenge() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16">
           {challengeContent.challenges.slice(0, 3).map((challenge, index) => (
             <div key={index} className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-6 bg-accent-100 rounded-full flex items-center justify-center group-hover:bg-accent-200 transition-colors duration-300">
-                {challenge.icon ? (
-                  <challenge.icon className="w-8 h-8 text-accent-600" />
-                ) : (
-                  <Info className="w-8 h-8 text-accent-600" />
-                )}
-              </div>
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <div className="text-5xl md:text-7xl font-bold text-gray-900 mb-2">
                 {challenge.stat}
               </div>
               <div className="text-sm text-accent-600 font-medium mb-4">
@@ -120,14 +121,7 @@ export default function Challenge() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {challengeContent.challenges.slice(3).map((challenge, index) => (
             <div key={index + 3} className="text-center group">
-              <div className="w-16 h-16 mx-auto mb-6 bg-accent-100 rounded-full flex items-center justify-center group-hover:bg-accent-200 transition-colors duration-300">
-                {challenge.icon ? (
-                  <challenge.icon className="w-8 h-8 text-accent-600" />
-                ) : (
-                  <Info className="w-8 h-8 text-accent-600" />
-                )}
-              </div>
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <div className="text-5xl md:text-7xl font-bold text-gray-900 mb-2">
                 {challenge.stat}
               </div>
               <div className="text-sm text-accent-600 font-medium mb-4">
