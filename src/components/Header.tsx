@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <section className="w-full px-4 md:px-16 py-6 md:py-8 bg-gradient-to-b md:bg-gradient-to-r from-primary-500 to-accent-500 h-auto md:h-[100px] flex justify-center items-center sticky top-0 z-50">
-      <header className="w-full md:max-w-[1440px] h-full">
+      <header className="w-full max-w-[1440px] mx-auto h-full">
         <div className="flex items-center justify-between ">
           <div className="flex items-center justify-between w-full">
             <Link href="/">

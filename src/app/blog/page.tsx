@@ -71,7 +71,7 @@ export default function BlogPage() {
 
   if (loading) {
     return (
-      <main className="w-full md:w-[1440px] min-h-screen bg-white flex items-center justify-center">
+      <main className="w-full min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading articles...</p>
@@ -81,7 +81,7 @@ export default function BlogPage() {
   }
 
   return (
-    <main className="w-full md:w-[1440px] min-h-screen bg-white">
+    <main className="w-full min-h-screen bg-white">
       {/* Hero Section */}
       <section className="py-16 md:py-24 px-4 md:px-16">
         <div className="max-w-4xl mx-auto text-center">

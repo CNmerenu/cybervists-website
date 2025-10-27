@@ -78,8 +78,8 @@ const Partners = () => {
       id="partners"
       className="w-full flex flex-col items-center  border-b-[1px]"
     >
-      <div className="w-full md:w-[1440px] py-16 md:py-24 md:h-[562px] bg-white justify-center">
-        <div className=" w-full h-full justify-center">
+      <div className="w-full py-16 md:py-24 md:h-[562px] bg-white justify-center">
+        <div className="w-full max-w-[1440px] mx-auto h-full justify-center">
           <div className="w-full h-full flex flex-col items-center text-black">
             <h2 className="font-black text-xl md:text-[40px] leading-[110%] -tracking-[2] text-center px-4">
               {partnersContent.title}

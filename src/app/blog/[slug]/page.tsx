@@ -18,7 +18,7 @@ export default async function BlogPost({ params }: Params) {
   }
 
   return (
-    <main className="w-full md:w-[1440px] min-h-screen bg-white">
+    <main className="w-full min-h-screen bg-white">
       {/* Back Navigation */}
       <div className="px-4 md:px-16 pt-8">
         <Link

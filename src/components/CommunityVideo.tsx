@@ -21,7 +21,7 @@ function convertToEmbedUrl(url: string): string {
 export default function CommunityVideo() {
   return (
     <section className="w-full py-24 md:py-32 bg-gray-50">
-      <div className="w-full md:w-[1440px] mx-auto px-4 md:px-16">
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Messaging */}
           <div>

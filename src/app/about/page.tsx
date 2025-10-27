@@ -87,7 +87,7 @@ const aboutPageContent = {
 
 export default function About() {
   return (
-    <main className="w-full md:w-[1440px] min-h-screen bg-white">
+    <main className="w-full min-h-screen bg-white">
       {/* Hero Section */}
       <section className="py-16 md:py-24 px-4 md:px-16">
         <div className="max-w-4xl mx-auto text-center">

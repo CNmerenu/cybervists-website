@@ -38,7 +38,7 @@ export default function WorkshopGallery() {
 
   if (loading) {
     return (
-      <main className="w-full md:w-[1440px] min-h-screen bg-white flex items-center justify-center">
+      <main className="w-full min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading workshop...</p>
@@ -49,7 +49,7 @@ export default function WorkshopGallery() {
 
   if (notFound || !workshop) {
     return (
-      <main className="w-full md:w-[1440px] min-h-screen bg-white flex items-center justify-center px-4">
+      <main className="w-full min-h-screen bg-white flex items-center justify-center px-4">
         <div className="text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Gallery Not Found
@@ -70,7 +70,7 @@ export default function WorkshopGallery() {
   }
 
   return (
-    <main className="w-full md:w-[1440px] min-h-screen bg-white">
+    <main className="w-full min-h-screen bg-white">
       {/* Navigation */}
       <section className="py-8 px-4 md:px-16 border-b border-gray-200">
         <div className="max-w-6xl mx-auto">

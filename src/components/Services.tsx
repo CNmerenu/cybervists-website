@@ -54,7 +54,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="w-full md:w-[1440px] py-16 md:py-24 bg-gray-800 relative overflow-hidden"
+      className="w-full py-16 md:py-24 bg-gray-800 relative overflow-hidden"
     >
       {/* Rotating Background Image */}
       <div className="absolute right-[-200px] top-1/2 -translate-y-1/2 opacity-15">
@@ -67,7 +67,7 @@ export default function Services() {
           />
         </div>
       </div>
-      <div className="px-4 md:px-16 relative z-10">
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 text-white">
             {servicesContent.title}

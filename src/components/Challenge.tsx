@@ -80,8 +80,8 @@ const challengeContent = {
 
 export default function Challenge() {
   return (
-    <section className="w-full md:w-[1440px] py-24 md:py-32 bg-white">
-      <div className="px-4 md:px-16">
+    <section className="w-full py-24 md:py-32 bg-white">
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
         <div className="text-center mb-20">
           <h2 className="text-2xl md:text-5xl font-bold mb-6 md:mb-8 text-gray-900">
             {challengeContent.title}

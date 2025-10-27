@@ -11,7 +11,7 @@ import Contact from "@/components/Contact";
 
 export default async function Home() {
   return (
-    <section className="w-full md:w-[1440px] min-h-screen">
+    <section className="w-full min-h-screen">
       <Hero />
       <Challenge />
       <Programs />

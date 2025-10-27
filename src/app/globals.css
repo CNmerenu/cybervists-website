@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #0ea5e9;
+  --color-primary: #0f149a;
   --color-primary-dark: #0284c7;
-  --color-accent: #ec4899;
+  --color-accent: #ff6f61;
   --color-accent-dark: #db2777;
   --color-background: #111827;
   --color-surface: #1f2937;
@@ -87,7 +87,7 @@ body {
 
 /* Firefox Scrollbar */
 * {
-  scrollbar-color: var(--color-primary) var(--color-background);
+  scrollbar-color: var(--color-accent) var(--color-background);
 }
 
 /* Smooth Animations */

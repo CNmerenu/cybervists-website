@@ -57,9 +57,9 @@ export default function Footer() {
   };
 
   return (
-    <section className="w-full md:w-[1440px] border-t-2 border-blue-500/20">
+    <section className="w-full border-t-2 border-blue-500/20">
       <footer className="w-full flex bg-gray-900 p-6">
-        <div className="w-full">
+        <div className="w-full max-w-[1440px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-4">

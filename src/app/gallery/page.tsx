@@ -27,7 +27,7 @@ export default function Gallery() {
 
   if (loading) {
     return (
-      <main className="w-full md:w-[1440px] min-h-screen bg-white flex items-center justify-center">
+      <main className="w-full min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading workshops...</p>
@@ -37,10 +37,11 @@ export default function Gallery() {
   }
 
   return (
-    <main className="w-full md:w-[1440px] min-h-screen bg-white">
+    <main className="w-full min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 md:py-24 px-4 md:px-16">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16 md:py-24">
+        <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+          <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
             Workshop Gallery
           </h1>
@@ -49,12 +50,14 @@ export default function Gallery() {
             empower individuals and organizations with essential cybersecurity
             knowledge and digital literacy skills.
           </p>
+          </div>
         </div>
       </section>
 
       {/* Workshops Grid */}
-      <section className="py-16 px-4 md:px-16">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section className="py-16">
+        <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+          <div className="space-y-16">
           {workshops.map((workshop) => (
             <div
               key={workshop.id}
@@ -123,12 +126,14 @@ export default function Gallery() {
               </div>
             </div>
           ))}
+          </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-50 px-4 md:px-16">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-16 bg-gray-50">
+        <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+          <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
             Our Impact Through Workshops
           </h2>
@@ -157,6 +162,7 @@ export default function Gallery() {
                 Training participant satisfaction
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
