@@ -15,7 +15,7 @@ export default function Programs() {
   }, []);
 
   const programsContent = {
-    title: "Our Main Pillers",
+    title: "Our Main Pilars",
     subtitle:
       "Empowering communities through bespoke cyber awareness literacy, ethical online use and technology support.",
     programs: [
