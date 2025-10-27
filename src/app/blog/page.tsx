@@ -3,7 +3,10 @@
 import { Calendar, User, ArrowRight, X, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import BlogCard from "@/components/BlogCard";
+import { Post } from "@/types";
+import { getAllPosts, getFeaturedPosts } from "@/lib/blogData";
 
 export default function BlogPage() {
   const [showModal, setShowModal] = useState(false);
@@ -11,6 +14,32 @@ export default function BlogPage() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [featuredPost, setFeaturedPost] = useState<Post | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [displayedPosts, setDisplayedPosts] = useState<Post[]>([]);
+  const [showLoadMore, setShowLoadMore] = useState(false);
+  const POSTS_PER_PAGE = 6;
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        const [allPosts, featured] = await Promise.all([
+          getAllPosts(),
+          getFeaturedPosts(1)
+        ]);
+        setPosts(allPosts);
+        setFeaturedPost(featured[0] || null);
+        setDisplayedPosts(allPosts.slice(0, POSTS_PER_PAGE));
+        setShowLoadMore(allPosts.length > POSTS_PER_PAGE);
+      } catch (error) {
+        console.error('Failed to load posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadPosts();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,81 +61,24 @@ export default function BlogPage() {
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
-  // Sample blog posts for demonstration
-  const posts = [
-    {
-      _id: "1",
-      title: "Essential Cybersecurity Practices for Small Businesses",
-      slug: { current: "cybersecurity-practices-small-business" },
-      excerpt: "Learn the fundamental cybersecurity measures every small business should implement to protect against common threats and data breaches.",
-      publishedAt: "2024-12-15",
-      mainImage: {
-        asset: { url: "/assets/blog/cybersecurity-business.jpg" },
-        alt: "Cybersecurity for small business"
-      },
-      author: { name: "Cybervists Team" }
-    },
-    {
-      _id: "2",
-      title: "Password Security: Beyond the Basics",
-      slug: { current: "password-security-beyond-basics" },
-      excerpt: "Discover advanced password security strategies including multi-factor authentication, password managers, and creating unbreakable passwords.",
-      publishedAt: "2024-12-10",
-      mainImage: {
-        asset: { url: "/assets/blog/password-security.jpg" },
-        alt: "Password security concepts"
-      },
-      author: { name: "Cybervists Team" }
-    },
-    {
-      _id: "3",
-      title: "Phishing Attacks: How to Recognize and Avoid Them",
-      slug: { current: "phishing-attacks-recognition-prevention" },
-      excerpt: "Stay safe from phishing scams with our comprehensive guide on identifying suspicious emails, links, and social engineering tactics.",
-      publishedAt: "2024-12-05",
-      mainImage: {
-        asset: { url: "/assets/blog/phishing-prevention.jpg" },
-        alt: "Phishing attack prevention"
-      },
-      author: { name: "Cybervists Team" }
-    },
-    {
-      _id: "4",
-      title: "Digital Privacy in the Modern Age",
-      slug: { current: "digital-privacy-modern-age" },
-      excerpt: "Understand your digital footprint and learn practical steps to protect your personal information online in today's connected world.",
-      publishedAt: "2024-11-28",
-      mainImage: {
-        asset: { url: "/assets/blog/digital-privacy.jpg" },
-        alt: "Digital privacy protection"
-      },
-      author: { name: "Cybervists Team" }
-    },
-    {
-      _id: "5",
-      title: "Secure Remote Work: Best Practices for Teams",
-      slug: { current: "secure-remote-work-best-practices" },
-      excerpt: "Essential security guidelines for remote teams including VPN usage, secure communication tools, and home network protection.",
-      publishedAt: "2024-11-20",
-      mainImage: {
-        asset: { url: "/assets/blog/remote-work-security.jpg" },
-        alt: "Remote work security"
-      },
-      author: { name: "Cybervists Team" }
-    },
-    {
-      _id: "6",
-      title: "Social Media Security: Protecting Your Online Presence",
-      slug: { current: "social-media-security-protection" },
-      excerpt: "Learn how to secure your social media accounts, manage privacy settings, and avoid common social media security pitfalls.",
-      publishedAt: "2024-11-15",
-      mainImage: {
-        asset: { url: "/assets/blog/social-media-security.jpg" },
-        alt: "Social media security"
-      },
-      author: { name: "Cybervists Team" }
-    }
-  ];
+  const loadMorePosts = () => {
+    const currentLength = displayedPosts.length;
+    const nextPosts = posts.slice(currentLength, currentLength + POSTS_PER_PAGE);
+    const newDisplayedPosts = [...displayedPosts, ...nextPosts];
+    setDisplayedPosts(newDisplayedPosts);
+    setShowLoadMore(newDisplayedPosts.length < posts.length);
+  };
+
+  if (loading) {
+    return (
+      <main className="w-full md:w-[1440px] min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading articles...</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="w-full md:w-[1440px] min-h-screen bg-white">
@@ -127,17 +99,17 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Article */}
-      {posts.length > 0 && (
+      {featuredPost && (
         <section className="py-16 bg-gray-50 px-4 md:px-16">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">Featured Article</h2>
-            <Link href={`/blog/${posts[0].slug.current}`}>
+            <Link href={`/blog/${featuredPost.slug.current}`}>
               <article className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                   <div className="relative h-64 lg:h-full overflow-hidden">
                     <Image
-                      src={posts[0].mainImage?.asset?.url || "/assets/blog/default.jpg"}
-                      alt={posts[0].mainImage?.alt || posts[0].title}
+                      src={featuredPost.mainImage?.asset?.url || "/assets/blog/default.jpg"}
+                      alt={featuredPost.mainImage?.alt || featuredPost.title}
                       width={600}
                       height={400}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -145,15 +117,15 @@ export default function BlogPage() {
                   </div>
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 group-hover:text-primary-600 transition-colors">
-                      {posts[0].title}
+                      {featuredPost.title}
                     </h3>
                     <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
-                      {posts[0].excerpt}
+                      {featuredPost.excerpt}
                     </p>
                     <div className="flex items-center gap-4 text-sm text-gray-500">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
-                        {new Date(posts[0].publishedAt).toLocaleDateString("en-US", {
+                        {new Date(featuredPost.publishedAt).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
@@ -161,7 +133,7 @@ export default function BlogPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4" />
-                        {posts[0].author?.name}
+                        {featuredPost.author?.name}
                       </div>
                     </div>
                     <div className="mt-6">
@@ -183,44 +155,21 @@ export default function BlogPage() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">All Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-              <Link key={post._id} href={`/blog/${post.slug.current}`}>
-                <article className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={post.mainImage?.asset?.url || "/assets/blog/default.jpg"}
-                      alt={post.mainImage?.alt || post.title}
-                      width={400}
-                      height={250}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <User className="w-3 h-3" />
-                        {post.author?.name}
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </Link>
+            {displayedPosts.map((post) => (
+              <BlogCard key={post._id} post={post} />
             ))}
           </div>
+          
+          {showLoadMore && (
+            <div className="text-center mt-12">
+              <button
+                onClick={loadMorePosts}
+                className="px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                Load More Articles
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

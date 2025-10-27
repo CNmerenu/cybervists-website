@@ -15,6 +15,19 @@ export interface Image {
   alt?: string;
 }
 
+export interface ContentImage {
+  asset: {
+    url: string;
+  };
+  alt: string;
+  caption?: string;
+}
+
+export interface Reference {
+  title: string;
+  url: string;
+}
+
 export interface Post {
   _id: string;
   title: string;
@@ -24,6 +37,9 @@ export interface Post {
   excerpt?: string;
   publishedAt: string;
   body?: unknown[];
+  content?: string;
   mainImage?: Image;
+  contentImages?: ContentImage[];
   author?: Author;
+  references?: Reference[];
 }

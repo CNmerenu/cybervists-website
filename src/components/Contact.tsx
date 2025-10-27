@@ -81,7 +81,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your name"
                 />
               </div>
@@ -91,7 +91,7 @@ export default function Contact() {
                 </label>
                 <input
                   type="email"
-                  className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="your@email.com"
                 />
               </div>
@@ -101,7 +101,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="How can we help you?"
                 />
               </div>

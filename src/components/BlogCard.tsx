@@ -5,35 +5,35 @@ import Image from "next/image";
 export default function BlogCard({ post }: { post: Post }) {
   return (
     <Link href={`/blog/${post.slug.current}`}>
-      <div className="group h-full bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30 rounded-xl overflow-hidden hover:border-pink-500/50 transition-all duration-300 hover:shadow-xl cursor-pointer">
+      <article className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 h-full">
         {post.mainImage?.asset?.url && (
-          <div className="relative h-48 sm:h-56 overflow-hidden">
+          <div className="relative h-48 overflow-hidden">
             <Image
               src={post.mainImage.asset.url}
               alt={post.mainImage.alt || post.title}
               width={400}
               height={250}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
           </div>
         )}
 
-        <div className="p-4 sm:p-6">
-          <h2 className="text-lg sm:text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
+        <div className="p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
             {post.title}
           </h2>
 
-          <p className="text-xs sm:text-sm text-gray-300 mt-2 sm:mt-3 line-clamp-2">
+          <p className="text-sm text-gray-600 mb-4 line-clamp-3">
             {post.excerpt}
           </p>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 sm:mt-6 gap-3 sm:gap-0">
-            <time className="text-xs sm:text-sm text-blue-400 font-medium">
+          <div className="flex items-center justify-between text-xs text-gray-500">
+            <time className="flex items-center gap-1">
+              <span className="w-1 h-1 bg-primary-600 rounded-full"></span>
               {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
                 month: "short",
                 day: "numeric",
+                year: "numeric",
               })}
             </time>
 
@@ -43,19 +43,19 @@ export default function BlogCard({ post }: { post: Post }) {
                   <Image
                     src={post.author.image.asset.url}
                     alt={post.author.name}
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 rounded-full border border-blue-500/50"
+                    width={24}
+                    height={24}
+                    className="w-6 h-6 rounded-full"
                   />
                 )}
-                <span className="text-xs sm:text-sm text-gray-300">
+                <span className="text-xs text-gray-600">
                   {post.author.name}
                 </span>
               </div>
             )}
           </div>
         </div>
-      </div>
+      </article>
     </Link>
   );
 }

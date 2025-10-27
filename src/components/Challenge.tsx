@@ -1,8 +1,6 @@
 import {
-  Shield,
   DollarSign,
   Users,
-  AlertTriangle,
   Clock,
   UserX,
   Mic,
