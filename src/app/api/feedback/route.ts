@@ -4,11 +4,11 @@ import nodemailer from "nodemailer";
 function sanitizeInput(input: string): string {
   return input.replace(/[<>"'&]/g, (match) => {
     const entities: { [key: string]: string } = {
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#x27;',
-      '&': '&amp;'
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#x27;",
+      "&": "&amp;",
     };
     return entities[match];
   });
@@ -30,37 +30,46 @@ export async function POST(request: NextRequest) {
 
     // Input validation
     if (!name || !role || !feedback || !rating) {
-      return NextResponse.json({ error: 'Required fields missing' }, { status: 400 });
+      return NextResponse.json(
+        { error: "Required fields missing" },
+        { status: 400 }
+      );
     }
 
-    if (typeof rating !== 'number' || rating < 1 || rating > 5) {
-      return NextResponse.json({ error: 'Invalid rating' }, { status: 400 });
+    if (typeof rating !== "number" || rating < 1 || rating > 5) {
+      return NextResponse.json({ error: "Invalid rating" }, { status: 400 });
     }
 
     if (name.length > 100 || feedback.length > 2000) {
-      return NextResponse.json({ error: 'Input too long' }, { status: 400 });
+      return NextResponse.json({ error: "Input too long" }, { status: 400 });
     }
 
     // Sanitize inputs
     const safeName = sanitizeInput(name.trim());
     const safeRole = sanitizeInput(role.trim());
-    const safeExperience = experience ? sanitizeInput(experience.trim()) : '';
+    const safeExperience = experience ? sanitizeInput(experience.trim()) : "";
     const safeFeedback = sanitizeInput(feedback.trim());
-    const safeFutureEngagement = futureEngagement ? sanitizeInput(futureEngagement.trim()) : '';
-    const safeSupportLevel = Array.isArray(supportLevel) ? supportLevel.map(item => sanitizeInput(item)) : [];
-    const safeSupportType = Array.isArray(supportType) ? supportType.map(item => sanitizeInput(item)) : [];
+    const safeFutureEngagement = futureEngagement
+      ? sanitizeInput(futureEngagement.trim())
+      : "";
+    const safeSupportLevel = Array.isArray(supportLevel)
+      ? supportLevel.map((item) => sanitizeInput(item))
+      : [];
+    const safeSupportType = Array.isArray(supportType)
+      ? supportType.map((item) => sanitizeInput(item))
+      : [];
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.NEXT_PUBLIC_EMAIL_USER,
+        pass: process.env.NEXT_EMAIL_PASS,
       },
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.ADMIN_EMAIL,
+      from: process.env.NEXT_PUBLIC_EMAIL_USER,
+      to: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
       subject: `Feedback: ${safeName} (${rating}/5 stars)`,
       html: `
         <h3>New Feedback Submission</h3>
@@ -77,7 +86,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Feedback form error:', error);
+    console.error("Feedback form error:", error);
     return NextResponse.json(
       { error: "Failed to send feedback" },
       { status: 500 }

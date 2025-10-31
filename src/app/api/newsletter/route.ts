@@ -8,12 +8,18 @@ export async function POST(req: NextRequest) {
 
     // Input validation
     if (!email) {
-      return NextResponse.json({ message: "Email is required" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Email is required" },
+        { status: 400 }
+      );
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return NextResponse.json({ message: "Invalid email format" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Invalid email format" },
+        { status: 400 }
+      );
     }
 
     const safeEmail = email.trim().toLowerCase();
@@ -22,14 +28,14 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.NEXT_PUBLIC_EMAIL_USER,
+        pass: process.env.NEXT_EMAIL_PASS,
       },
     });
 
     // Email Content
     const subscriberMailOptions = {
-      from: `"Cybervists Alert" <${process.env.EMAIL_USER}>`,
+      from: `"Cybervists Alert" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
       to: safeEmail,
       subject: "Welcome to Cybervists Newsletter!",
       html: `
@@ -40,8 +46,8 @@ export async function POST(req: NextRequest) {
     };
     // Email Content
     const adminMailOptions = {
-      from: `"WebAdmin" <${process.env.EMAIL_USER}>`,
-      to: process.env.ADMIN_EMAIL,
+      from: `"WebAdmin" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
+      to: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
       subject: "New Newsletter Subscription",
       html: `
           <h2>New subscriber alert!</h2>
