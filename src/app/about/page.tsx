@@ -190,6 +190,11 @@ export default function About() {
             </div>
             <div className="space-y-6">
               {aboutPageContent.values.items.map((item, index) => {
+                // Swap last 2 cards for mobile: reorder indices 2 and 3
+                const mobileOrder = [0, 1, 3, 2];
+                const mobileIndex = mobileOrder[index];
+                const mobileItem = aboutPageContent.values.items[mobileIndex];
+                
                 const colors = [
                   "bg-[#0f189a]",
                   "bg-[#ff796d]", 
@@ -199,13 +204,13 @@ export default function About() {
                 return (
                   <div key={index} className="bg-white rounded-xl p-4 shadow-lg relative">
                     <div
-                      className={`absolute -top-1 left-1/2 transform -translate-x-1/2 w-14 h-3 ${colors[index]} rounded-full`}
+                      className={`absolute -top-1 left-1/2 transform -translate-x-1/2 w-14 h-3 ${colors[mobileIndex]} rounded-full`}
                     ></div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2 mt-2 text-center">
-                      {item.title}
+                      {mobileItem.title}
                     </h3>
                     <p className="text-sm text-gray-600 leading-relaxed text-center">
-                      {item.description}
+                      {mobileItem.description}
                     </p>
                   </div>
                 );
