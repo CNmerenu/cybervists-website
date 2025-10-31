@@ -118,7 +118,7 @@ export default function About() {
       </section>
 
       {/* Mission and Vision Section */}
-      <section className="py-8 md:py-16 px-4 md:px-16 bg-gradient-to-b from-[#ffefe4]/20 to-[#c5c5c5]">
+      <section className="py-8 md:py-16 px-4 md:px-16 bg-gradient-to-b from-[#ffefe4]/10 to-[#c5c5c5]">
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Vision Row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -171,8 +171,19 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-8 md:py-16 bg-primary-50 flex flex-col items-center justify-center">
-        <div className="max-w-6xl">
+      <section className="py-8 md:py-16 bg-gradient-to-b from-[#c5c5c5]/90 to-primary-50 flex flex-col items-center justify-center relative">
+        <div className="max-w-6xl relative">
+          {/* Center Image */}
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <Image
+              src="/assets/ourcorevalues.svg"
+              alt="Our Core Values"
+              width={200}
+              height={200}
+              className="w-32 h-32 md:w-48 md:h-48"
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-40">
             {aboutPageContent.values.items.map((value, index) => {
               return (
