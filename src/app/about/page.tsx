@@ -1,11 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const aboutPageContent = {
   hero: {
-    title: "About Cybervists",
+    title: "About Us",
     description:
-      "We are a pioneer, community-centric non-profit organisation dedicated to making the digital world safer for everyone through tailored digital and cybersecurity awareness sessions and technology empowerment. We keep it simple, fun and effective.",
+      "We are a community-centered non-profit organisation dedicated to making the digital world safer for everyone through tailored digital and cybersecurity awareness sessions and technology empowerment. We keep it simple, fun and effective.",
   },
   mission: {
     title: "Our Mission",
@@ -15,7 +16,7 @@ const aboutPageContent = {
   vision: {
     title: "Our Vision",
     description:
-      "We envision a world where digital literacy and cyber awareness is universal, where every generation and ethnicity feels digitally confident and safe without fear and anxiety",
+      "We envision a world where digital literacy and cyber awareness is universal, where every generation and ethnicity feels digitally confident and safe without fear and anxiety.",
   },
   values: {
     title: "Our Core Values",
@@ -88,72 +89,97 @@ const aboutPageContent = {
 export default function About() {
   return (
     <main className="w-full min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="py-16 md:py-24 px-4 md:px-16">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
-            {aboutPageContent.hero.title}
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-            {aboutPageContent.hero.description}
-          </p>
+      {/* New Hero Section - Two Column Layout */}
+      <section className="py-4 px-4 md:px-16 bg-white]">
+        <div className="max-w-7xl mx-auto h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center h-full">
+            {/* Left - Message (40%) */}
+            <div className="lg:col-span-2">
+              <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
+                {aboutPageContent.hero.title}
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                {aboutPageContent.hero.description}
+              </p>
+            </div>
+
+            {/* Right - Image (60%) */}
+            <div className="lg:col-span-3 flex justify-center">
+              <Image
+                src="/assets/aboutusbg.jpg"
+                alt="About Us Hero"
+                width={600}
+                height={600}
+                className="w-full h-full"
+              />
+            </div>
+          </div>
         </div>
       </section>
-      <section className="pb-16 md:pb-24 px-4 md:px-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      {/* Mission and Vision Section */}
+      <section className="py-8 md:py-16 px-4 md:px-16 bg-gradient-to-b from-[#ffefe4]/20 to-[#c5c5c5]">
+        <div className="max-w-7xl mx-auto space-y-16">
+          {/* Vision Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left - Vision Image */}
+            <div className="flex justify-center">
+              <Image
+                src="/assets/visionbulb.jpg"
+                alt="Our Vision"
+                width={500}
+                height={400}
+                className="w-full h-auto rounded-2xl shadow-lg"
+              />
+            </div>
+
+            {/* Right - Vision Statement */}
+            <div>
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
+                {aboutPageContent.vision.title}
+              </h2>
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                {aboutPageContent.vision.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Mission Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left - Mission Statement */}
             <div>
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
                 {aboutPageContent.mission.title}
               </h2>
-              {
-                <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
-                  {aboutPageContent.mission.description}
-                </p>
-              }
-            </div>
-            <div className="bg-primary-50 rounded-2xl p-8">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-                {aboutPageContent.vision.title}
-              </h3>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                {aboutPageContent.vision.description}
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                {aboutPageContent.mission.description}
               </p>
+            </div>
+
+            {/* Right - Mission Image */}
+            <div className="flex justify-center">
+              <Image
+                src="/assets/cybervistsgroup.png"
+                alt="Our Mission"
+                width={500}
+                height={400}
+                className="w-full h-auto rounded-2xl shadow-lg"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-16 md:py-24 bg-gray-50 px-4 md:px-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
-              {aboutPageContent.values.title}
-            </h2>
-
-            <div className="flex flex-row gap-5 justify-center">
-              {aboutPageContent.values.items.map((value, index) => {
-                return (
-                  <span
-                    key={index}
-                    className="font-bold capitalize text-xl md:text-2xl w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center"
-                  >
-                    {value.title.trim().charAt(0)}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="py-8 md:py-16 bg-primary-50 flex flex-col items-center justify-center">
+        <div className="max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-40">
             {aboutPageContent.values.items.map((value, index) => {
               return (
-                <div key={index} className="bg-white rounded-xl p-6 md:p-8">
-                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                    <span className="font-bold capitalize text-xl md:text-2xl">
-                      {value.title.trim().charAt(0)}
-                    </span>
-                  </div>
+                <div
+                  key={index}
+                  className="bg-white rounded-xl p-6 md:p-8 max-w-[350px]"
+                >
                   <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
                     {value.title}
                   </h3>
@@ -167,26 +193,45 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 md:py-24 bg-gray-50 px-4 md:px-16">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
-            {aboutPageContent.approach.title}
-          </h2>
-          <p className="text-base md:text-lg text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-            {aboutPageContent.approach.description}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {aboutPageContent.approach.pillars.map((pillar, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 md:p-8">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-600">
-                  {pillar.description}
-                </p>
+      {/* Our Approach Section */}
+      <section className="py-16 md:py-16 bg-white px-4 md:px-16 text-center flex flex-col items-center justify-center">
+        <div className="max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left - Content */}
+            <div>
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
+                {aboutPageContent.approach.title}
+              </h2>
+              <p className="text-base md:text-lg text-gray-600 mb-8 md:mb-10 leading-relaxed">
+                {aboutPageContent.approach.description}
+              </p>
+              <div className="space-y-6">
+                {aboutPageContent.approach.pillars.map((pillar, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-xl p-2 md:max-w-[350px]"
+                  >
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600">
+                      {pillar.description}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Right - Visual */}
+            <div className=" w-full h-full flex justify-center relative">
+              <Image
+                src="/assets/ourapproachbg.jpg"
+                alt="Our Approach"
+                width={1400}
+                height={900}
+                className="w-full object-contain absolute bottom-0"
+              />
+            </div>
           </div>
         </div>
       </section>
