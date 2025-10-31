@@ -16,9 +16,11 @@ export default function Footer() {
     error: false,
     message: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const response = await fetch("/api/newsletter", {
@@ -53,6 +55,7 @@ export default function Footer() {
       });
     }
     
+    setLoading(false);
     setTimeout(() => {
       // clear Message
       setStatus({
@@ -248,9 +251,10 @@ export default function Footer() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full sm:w-[115px] h-[48px] bg-accent-500 rounded-r-md sm:rounded-l-none rounded-l-md text-white text-base font-medium"
+                  disabled={loading}
+                  className="w-full sm:w-[115px] h-[48px] bg-accent-500 rounded-r-md sm:rounded-l-none rounded-l-md text-white text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Submit
+                  {loading ? "Submitting..." : "Submit"}
                 </button>
               </form>
               {status.show && (

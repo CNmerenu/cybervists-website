@@ -59,13 +59,13 @@ export default function CTA() {
         </button>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
           {/* Media */}
-          <div className="aspect-square rounded-xl overflow-hidden bg-gray-100 max-w-[120px] mx-auto md:max-w-none">
+          <div className="aspect-square rounded-xl overflow-hidden bg-gray-100 max-w-[180px] mx-auto md:max-w-none">
             {ctaContent.mediaType === "image" ? (
               <Image
                 src={ctaContent.mediaUrl}
                 alt="CTA Media"
-                width={120}
-                height={120}
+                width={200}
+                height={200}
                 className="w-full h-full object-cover"
               />
             ) : (

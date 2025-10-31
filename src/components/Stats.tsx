@@ -74,7 +74,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   return (
     <div
       ref={ref}
-      className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2"
+      className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-2 md:mb-4"
     >
       {count}
       {suffix}
@@ -84,7 +84,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 
 export default function Stats() {
   return (
-    <section className="w-full py-16 md:py-24 bg-gradient-to-b from-[#ffefe4] to-[#c5c5c5]">
+    <section className="w-full py-16 md:py-32 bg-gradient-to-b from-[#ffefe4] to-[#c5c5c5]">
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
         {/* Mobile Layout */}
         <div className="block md:hidden">
@@ -110,11 +110,11 @@ export default function Stats() {
         {/* Desktop Layout */}
         <div className="hidden md:flex relative items-center justify-center">
           {/* Left Stats */}
-          <div className="flex flex-col space-y-8 mr-8 md:mr-16">
+          <div className="flex flex-col space-y-12 mr-12 md:mr-20">
             {impactContent.stats.slice(0, 3).map((stat, index) => (
               <div key={index} className="text-right">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                <div className="text-gray-700 text-sm md:text-base max-w-xs">
+                <div className="text-gray-700 text-sm md:text-lg max-w-sm">
                   {stat.label}
                 </div>
               </div>
@@ -126,13 +126,13 @@ export default function Stats() {
             <Image
               src="/assets/laptopimage-nobg.svg"
               alt="Laptop Impact"
-              width={600}
-              height={450}
-              sizes="(max-width: 768px) 500px, 600px"
-              className="w-[500px] md:w-[600px] h-auto"
+              width={800}
+              height={600}
+              sizes="(max-width: 768px) 500px, 800px"
+              className="w-[500px] md:w-[800px] h-auto"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase tracking-wider text-center leading-tight">
+              <h2 className="text-3xl md:text-6xl font-bold text-gray-900 uppercase tracking-wider text-center leading-tight">
                 <div>HOW WE ARE</div>
                 <div>MAKING A</div>
                 <div>DIFFERENCE</div>
@@ -141,11 +141,11 @@ export default function Stats() {
           </div>
 
           {/* Right Stats */}
-          <div className="flex flex-col space-y-8 ml-8 md:ml-16">
+          <div className="flex flex-col space-y-12 ml-12 md:ml-20">
             {impactContent.stats.slice(3, 6).map((stat, index) => (
               <div key={index} className="text-left">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                <div className="text-gray-700 text-sm md:text-base max-w-xs">
+                <div className="text-gray-700 text-sm md:text-lg max-w-sm">
                   {stat.label}
                 </div>
               </div>
