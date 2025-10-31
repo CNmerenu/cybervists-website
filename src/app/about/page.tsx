@@ -31,15 +31,16 @@ const aboutPageContent = {
         description:
           "We stand for a digital world built on respect, not harm. Every interaction matters; we advocate for responsible online use. building digital spaces where humanity comes first.",
       },
-      {
-        title: "Fostering Technology Empowerment",
-        description:
-          "Technology should unlock opportunity, not create obstacles. We empower grassroots communities with the skills and confidence to harness tech for good—driving economic growth, building resilience, and creating lasting impact.",
-      },
+
       {
         title: "Enhance Cybersecurity Awareness",
         description:
           "Security isn't a luxury; everyone deserves the right to digital safety. We are committed to the cause, turning vulnerability into strength, one community at a time.",
+      },
+      {
+        title: "Fostering Technology Empowerment",
+        description:
+          "Technology should unlock opportunity, not create obstacles. We empower grassroots communities with the skills and confidence to harness tech for good—driving economic growth, building resilience, and creating lasting impact.",
       },
     ],
   },
@@ -171,35 +172,70 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-8 md:py-16 bg-gradient-to-b from-[#c5c5c5]/90 to-primary-50 flex flex-col items-center justify-center relative">
-        <div className="max-w-6xl relative">
-          {/* Center Image */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <Image
-              src="/assets/ourcorevalues.svg"
-              alt="Our Core Values"
-              width={200}
-              height={200}
-              className="w-32 h-32 md:w-48 md:h-48"
-            />
-          </div>
+      <section className="py-16 md:py-24 bg-gradient-to-b from-[#c5c5c5]/90 to-primary-50 px-4 md:px-16">
+        <div className="max-w-7xl mx-auto relative">
+          <div className="relative min-h-[600px] flex items-center justify-center">
+            {/* Center Image */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <Image
+                src="/assets/ourcorevalues.svg"
+                alt="Our Core Values"
+                width={600}
+                height={600}
+                className="w-[400px] h-[400px] md:w-[700px] md:h-[700px]"
+              />
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-40">
-            {aboutPageContent.values.items.map((value, index) => {
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl p-6 md:p-8 max-w-[350px]"
-                >
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
-                    {value.title}
+            {/* Value Cards positioned around center */}
+            <div className="absolute inset-0">
+              {/* Top Left */}
+              <div className="absolute top-0 left-0 w-[250px]">
+                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                    {aboutPageContent.values.items[0].title}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-                    {value.description}
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                    {aboutPageContent.values.items[0].description}
                   </p>
                 </div>
-              );
-            })}
+              </div>
+
+              {/* Top Right */}
+              <div className="absolute top-0 right-0 max-w-[280px]">
+                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                    {aboutPageContent.values.items[1].title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                    {aboutPageContent.values.items[1].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Left */}
+              <div className="absolute bottom-0 left-0 max-w-[280px]">
+                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                    {aboutPageContent.values.items[2].title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                    {aboutPageContent.values.items[2].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Right */}
+              <div className="absolute bottom-0 right-0 max-w-[280px]">
+                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                    {aboutPageContent.values.items[3].title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
+                    {aboutPageContent.values.items[3].description}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
