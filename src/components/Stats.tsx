@@ -86,7 +86,29 @@ export default function Stats() {
   return (
     <section className="w-full py-16 md:py-24 bg-gradient-to-b from-[#ffefe4] to-[#c5c5c5]">
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
-        <div className="relative flex items-center justify-center">
+        {/* Mobile Layout */}
+        <div className="block md:hidden">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-wider leading-tight">
+              <div>HOW WE ARE</div>
+              <div>MAKING A</div>
+              <div>DIFFERENCE</div>
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {impactContent.stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <AnimatedNumber value={stat.value} suffix={stat.suffix} />
+                <div className="text-gray-700 text-sm">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden md:flex relative items-center justify-center">
           {/* Left Stats */}
           <div className="flex flex-col space-y-8 mr-8 md:mr-16">
             {impactContent.stats.slice(0, 3).map((stat, index) => (

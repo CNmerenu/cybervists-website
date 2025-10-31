@@ -216,16 +216,16 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-          <div className="w-full flex flex-col items-end mb-6">
+          <div className="w-full flex flex-col items-center md:items-end mb-6">
             <div className="w-full md:w-1/2 h-full md:pl-5">
-              <h2 className="text-white">Newsletter Signup</h2>
+              <h2 className="text-white mb-3 text-center md:text-left">Newsletter Signup</h2>
               <form
                 onSubmit={handleSubmit}
-                className="flex w-full md: md:w-[643px]"
+                className="flex flex-col sm:flex-row w-full gap-2 sm:gap-0"
               >
-                <div className="w-full h-[48px]">
+                <div className="flex-1">
                   <input
-                    className=" text-black w-full h-full flex justify-start items-start  p-2 font-medium text-sm"
+                    className="text-black w-full h-[48px] p-3 font-medium text-sm rounded-l-md sm:rounded-r-none rounded-r-md"
                     type="email"
                     name="email"
                     placeholder="Enter your email"
@@ -235,20 +235,20 @@ export default function Footer() {
                 </div>
                 <button
                   type="submit"
-                  className="w-[115px] h-[48px] bg-accent-500 rounded-r-md text-white text-base"
+                  className="w-full sm:w-[115px] h-[48px] bg-accent-500 rounded-r-md sm:rounded-l-none rounded-l-md text-white text-base font-medium"
                 >
                   Submit
                 </button>
               </form>
               {status.show && (
                 <p
-                  className={`text-sm ${
-                    status.error ? "text-red-700" : "text-green-700"
-                  } `}
+                  className={`text-sm mt-2 text-center md:text-left ${
+                    status.error ? "text-red-400" : "text-green-400"
+                  }`}
                 >
                   {status.message}
                 </p>
-              )}{" "}
+              )}
             </div>
           </div>
 

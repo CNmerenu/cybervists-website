@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${geist.variable} ${geistMono.variable}`}>
-        <div className="min-h-screen flex flex-col w-screen items-center">
+        <div className="min-h-screen flex flex-col w-full items-center overflow-x-hidden">
           <Header />
           <main className="w-full h-full flex flex-col items-center">
             {children}

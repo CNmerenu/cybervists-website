@@ -48,8 +48,8 @@ export default function CTA() {
   if (!ctaContent.enabled || !showCTA || !isVisible) return null;
 
   return (
-    <section className="fixed bottom-8 right-8 z-50 max-w-xl w-full">
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 relative">
+    <section className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 max-w-sm md:max-w-xl w-[calc(100vw-2rem)] md:w-full">
+      <div className="bg-white border border-gray-200 rounded-2xl p-4 md:p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 relative">
         {/* Close Button */}
         <button
           onClick={() => setIsVisible(false)}
@@ -57,9 +57,9 @@ export default function CTA() {
         >
           <X className="w-3 h-3 text-gray-600" />
         </button>
-        <div className="grid grid-cols-2 gap-4 items-center">
-          {/* Left - Media */}
-          <div className="aspect-square rounded-xl overflow-hidden bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+          {/* Media */}
+          <div className="aspect-square rounded-xl overflow-hidden bg-gray-100 max-w-[120px] mx-auto md:max-w-none">
             {ctaContent.mediaType === "image" ? (
               <Image
                 src={ctaContent.mediaUrl}
@@ -78,8 +78,8 @@ export default function CTA() {
             )}
           </div>
 
-          {/* Right - Information */}
-          <div>
+          {/* Information */}
+          <div className="text-center md:text-left">
             <h3 className="text-sm font-bold text-gray-900 mb-2">
               {ctaContent.title}
             </h3>
@@ -89,7 +89,7 @@ export default function CTA() {
 
             <div className="space-y-1 mb-4">
               {ctaContent.infoItems.map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
+                <div key={index} className="flex items-start gap-2">
                   <p className="text-xs text-gray-700">{item}</p>
                 </div>
               ))}

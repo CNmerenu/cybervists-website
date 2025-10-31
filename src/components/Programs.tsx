@@ -1,16 +1,4 @@
-"use client";
-
-import { useState, useEffect } from "react";
-
 export default function Programs() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   const programsContent = {
     title: "Our Main Pillars",
@@ -51,23 +39,23 @@ export default function Programs() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-32 mb-8 md:mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12 justify-items-center">
           {programsContent.programs.map((program, index) => (
-            <div key={index} className="space-y-4 max-w-[300px] ">
+            <div key={index} className="space-y-4 w-full max-w-[320px]">
               {/* Image Section */}
               <div
-                className="h-[250px] bg-cover bg-center bg-no-repeat rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+                className="h-[200px] md:h-[250px] bg-cover bg-center bg-no-repeat rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 w-full"
                 style={{
                   backgroundImage: `url(${program.bgImage})`,
                 }}
               />
 
               {/* Text Section */}
-              <div className="rounded-xl shadow-sm p-2">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 capitalize">
+              <div className="rounded-xl shadow-sm p-4">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 capitalize mb-2">
                   {program.title}
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed flex items-center">
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                   {program.description}
                 </p>
               </div>
