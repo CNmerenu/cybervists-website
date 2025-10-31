@@ -29,12 +29,16 @@ export default function BlogPage() {
           getAllPosts(),
           getFeaturedPosts(1),
         ]);
-        setPosts(allPosts);
-        setFeaturedPost(featured[0] || null);
-        setDisplayedPosts(allPosts.slice(0, POSTS_PER_PAGE));
-        setShowLoadMore(allPosts.length > POSTS_PER_PAGE);
+        setPosts(allPosts || []);
+        setFeaturedPost(featured && featured.length > 0 ? featured[0] : null);
+        setDisplayedPosts((allPosts || []).slice(0, POSTS_PER_PAGE));
+        setShowLoadMore((allPosts || []).length > POSTS_PER_PAGE);
       } catch (error) {
         console.error("Failed to load posts:", error);
+        setPosts([]);
+        setFeaturedPost(null);
+        setDisplayedPosts([]);
+        setShowLoadMore(false);
       } finally {
         setLoading(false);
       }
@@ -64,7 +68,7 @@ export default function BlogPage() {
         setToastMessage("Failed to subscribe. Please try again.");
       }
     } catch (error) {
-      console.log(error);
+      console.error('Newsletter subscription error:', error);
       setIsSuccess(false);
       setToastMessage("Failed to subscribe. Please try again.");
     }

@@ -91,13 +91,13 @@ const Partners = () => {
             <div className="w-[220px] h-[1px] bg-gradient-to-r from-primary-500  to-accent-500 mt-6" />
             {/* Desktop Layout */}
             <div className="w-full max-w-4xl hidden md:flex flex-wrap items-center justify-center gap-8 mt-8">
-              {partnersContent.partners.map((partner, index) => (
+              {partnersContent.partners?.map((partner, index) => (
                 <div key={index} className="flex items-center justify-center">
                   <Image
                     src={partner.logo}
-                    width={partner.width || 200}
-                    height={partner.height || 50}
-                    alt={partner.alt}
+                    width={partner.width ?? 200}
+                    height={partner.height ?? 50}
+                    alt={partner.alt || `Partner ${index + 1}`}
                     className="cursor-pointer transition-transform duration-300 hover:scale-110"
                     style={{ width: "auto", height: "auto", maxHeight: "60px" }}
                   />
@@ -108,13 +108,13 @@ const Partners = () => {
             {/* Mobile Layout */}
             <div className="flex md:hidden flex-col items-center mt-8 w-full max-w-[280px] px-4">
               <div className="flex flex-col justify-center items-center w-full gap-6">
-                {partnersContent.partners.map((partner, index) => (
+                {partnersContent.partners?.map((partner, index) => (
                   <Image
                     key={index}
                     src={partner.logo}
-                    width={partner.width ? partner.width * 0.4 : 120}
-                    height={partner.height ? partner.height * 0.4 : 30}
-                    alt={partner.alt}
+                    width={(partner.width ?? 300) * 0.4}
+                    height={(partner.height ?? 75) * 0.4}
+                    alt={partner.alt || `Partner ${index + 1}`}
                     className="transition-transform duration-300 hover:scale-210 cursor-pointer"
                     style={{ width: "auto", height: "auto", maxHeight: "40px" }}
                   />

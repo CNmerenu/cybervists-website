@@ -1,5 +1,6 @@
 import { Post } from "@/types";
 
+// amazonq-ignore-next-line
 const blogPosts: Post[] = [];
 
 // // Sample blog data - replace with actual API calls
@@ -345,19 +346,34 @@ const blogPosts: Post[] = [];
 
 // API functions - replace with actual API calls
 export async function getAllPosts(): Promise<Post[]> {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 100));
-  return blogPosts;
+  try {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    return blogPosts || [];
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 100));
-  return blogPosts.find((post) => post.slug.current === slug) || null;
+  try {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    return blogPosts?.find((post) => post.slug?.current === slug) || null;
+  } catch (error) {
+    console.error('Error fetching post by slug:', error);
+    return null;
+  }
 }
 
 export async function getFeaturedPosts(limit: number = 3): Promise<Post[]> {
-  // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 100));
-  return blogPosts.slice(0, limit);
+  try {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    return blogPosts?.slice(0, limit) || [];
+  } catch (error) {
+    console.error('Error fetching featured posts:', error);
+    return [];
+  }
 }

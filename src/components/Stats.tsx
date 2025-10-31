@@ -128,6 +128,7 @@ export default function Stats() {
               alt="Laptop Impact"
               width={600}
               height={450}
+              sizes="(max-width: 768px) 500px, 600px"
               className="w-[500px] md:w-[600px] h-auto"
             />
             <div className="absolute inset-0 flex items-center justify-center">

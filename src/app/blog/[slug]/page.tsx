@@ -72,10 +72,13 @@ export default async function BlogPost({ params }: Params) {
           {/* Article Content */}
           <div className="prose prose-lg max-w-none">
             <div className="text-gray-700 leading-relaxed space-y-6">
-              {post.content?.split('\n\n').map((paragraph, index) => {
-                const totalParagraphs = post.content?.split('\n\n').length || 0;
+              {(() => {
+                const paragraphs = post.content?.split('\n\n') || [];
+                const totalParagraphs = paragraphs.length;
                 const firstImagePosition = Math.floor(totalParagraphs * 0.3);
                 const secondImagePosition = Math.floor(totalParagraphs * 0.7);
+                
+                return paragraphs.map((paragraph, index) => {
                 
                 if (paragraph.startsWith('## ')) {
                   return (
@@ -99,11 +102,11 @@ export default async function BlogPost({ params }: Params) {
                     </p>
                     
                     {/* Embed first image after 30% of content */}
-                    {index === firstImagePosition && post.contentImages?.[0] && (
+                    {index === firstImagePosition && post.contentImages?.[0]?.asset?.url && (
                       <div className="my-8">
                         <Image
                           src={post.contentImages[0].asset.url}
-                          alt={post.contentImages[0].alt}
+                          alt={post.contentImages[0].alt || 'Content image'}
                           width={400}
                           height={250}
                           className="w-2/3 mx-auto rounded-lg shadow-md"
@@ -117,11 +120,11 @@ export default async function BlogPost({ params }: Params) {
                     )}
                     
                     {/* Embed second image after 70% of content */}
-                    {index === secondImagePosition && post.contentImages?.[1] && (
+                    {index === secondImagePosition && post.contentImages?.[1]?.asset?.url && (
                       <div className="my-8">
                         <Image
                           src={post.contentImages[1].asset.url}
-                          alt={post.contentImages[1].alt}
+                          alt={post.contentImages[1].alt || 'Content image'}
                           width={400}
                           height={250}
                           className="w-2/3 mx-auto rounded-lg shadow-md"
@@ -135,7 +138,9 @@ export default async function BlogPost({ params }: Params) {
                     )}
                   </div>
                 );
-              })}
+                });
+              })()
+            }
             </div>
           </div>
 

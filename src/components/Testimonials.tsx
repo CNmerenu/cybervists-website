@@ -12,6 +12,26 @@ export default function Testimonials() {
   const [feedbackModalType, setFeedbackModalType] = useState<'success' | 'error'>('success');
   const [feedbackModalMessage, setFeedbackModalMessage] = useState('');
 
+  const [formData, setFormData] = useState<{
+    name: string;
+    role: string;
+    experience: string;
+    supportLevel: string[];
+    supportType: string[];
+    feedback: string;
+    futureEngagement: string;
+    rating: number;
+  }>({
+    name: "",
+    role: "",
+    experience: "",
+    supportLevel: [],
+    supportType: [],
+    feedback: "",
+    futureEngagement: "",
+    rating: 5,
+  });
+
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFeedbackLoading(true);
@@ -38,10 +58,13 @@ export default function Testimonials() {
         });
         setShowModal(false);
       } else {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Feedback submission failed:', response.status, errorData);
         setFeedbackModalType('error');
         setFeedbackModalMessage('Failed to submit feedback. Please try again.');
       }
     } catch (error) {
+      console.error('Feedback submission error:', error);
       setFeedbackModalType('error');
       setFeedbackModalMessage('An error occurred. Please try again.');
     }
@@ -148,26 +171,6 @@ export default function Testimonials() {
       return () => clearInterval(interval);
     }
   }, [isPaused, totalSlides]);
-
-  const [formData, setFormData] = useState<{
-    name: string;
-    role: string;
-    experience: string;
-    supportLevel: string[];
-    supportType: string[];
-    feedback: string;
-    futureEngagement: string;
-    rating: number;
-  }>({
-    name: "",
-    role: "",
-    experience: "",
-    supportLevel: [],
-    supportType: [],
-    feedback: "",
-    futureEngagement: "",
-    rating: 5,
-  });
 
   const experienceOptions = [
     "Attended a workshop or training session",

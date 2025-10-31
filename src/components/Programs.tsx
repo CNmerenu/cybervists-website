@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Programs() {
 
   const programsContent = {
@@ -43,12 +45,15 @@ export default function Programs() {
           {programsContent.programs.map((program, index) => (
             <div key={index} className="space-y-4 w-full max-w-[320px]">
               {/* Image Section */}
-              <div
-                className="h-[200px] md:h-[250px] bg-cover bg-center bg-no-repeat rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 w-full"
-                style={{
-                  backgroundImage: `url(${program.bgImage})`,
-                }}
-              />
+              <div className="relative h-[200px] md:h-[250px] rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 w-full overflow-hidden">
+                <Image
+                  src={program.bgImage}
+                  alt={program.title}
+                  fill
+                  sizes="(max-width: 768px) 320px, 320px"
+                  className="object-cover"
+                />
+              </div>
 
               {/* Text Section */}
               <div className="rounded-xl shadow-sm p-4">

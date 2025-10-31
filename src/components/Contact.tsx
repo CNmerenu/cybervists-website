@@ -5,36 +5,41 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState<'success' | 'error'>('success');
-  const [modalMessage, setModalMessage] = useState('');
+  const [modalType, setModalType] = useState<"success" | "error">("success");
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      
+
       if (response.ok) {
-        setModalType('success');
-        setModalMessage('Thank you! Your message has been sent successfully.');
-        setFormData({ name: '', email: '', message: '' });
+        setModalType("success");
+        setModalMessage("Thank you! Your message has been sent successfully.");
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        setModalType('error');
-        setModalMessage('Failed to send message. Please try again.');
+        setModalType("error");
+        setModalMessage("Failed to send message. Please try again.");
       }
     } catch (error) {
-      setModalType('error');
-      setModalMessage('An error occurred. Please try again.');
+      console.log(error);
+      setModalType("error");
+      setModalMessage("An error occurred. Please try again later.");
     }
-    
+
     setLoading(false);
     setShowModal(true);
   };
@@ -103,7 +108,9 @@ export default function Contact() {
                 <input
                   type="text"
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your name"
                   required
@@ -116,7 +123,9 @@ export default function Contact() {
                 <input
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="your@email.com"
                   required
@@ -129,7 +138,9 @@ export default function Contact() {
                 <textarea
                   rows={4}
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   className="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base bg-white border border-gray-600 rounded-lg text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="How can we help you?"
                   required
@@ -140,25 +151,25 @@ export default function Contact() {
                 disabled={loading}
                 className="w-full px-4 py-3 md:px-8 md:py-4 text-sm md:text-base bg-accent-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? 'Sending...' : 'Send Message'}
+                {loading ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>
         </div>
-        
+
         {/* Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-xl p-6 max-w-md w-full">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  {modalType === 'success' ? (
+                  {modalType === "success" ? (
                     <CheckCircle className="w-6 h-6 text-green-500" />
                   ) : (
                     <XCircle className="w-6 h-6 text-red-500" />
                   )}
                   <h3 className="text-lg font-bold text-gray-900">
-                    {modalType === 'success' ? 'Success!' : 'Error'}
+                    {modalType === "success" ? "Success!" : "Error"}
                   </h3>
                 </div>
                 <button

@@ -30,11 +30,18 @@ export default function BlogCard({ post }: { post: Post }) {
           <div className="flex items-center justify-between text-xs text-gray-500">
             <time className="flex items-center gap-1">
               <span className="w-1 h-1 bg-primary-600 rounded-full"></span>
-              {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              })}
+              {(() => {
+                try {
+                  const date = new Date(post.publishedAt);
+                  return isNaN(date.getTime()) ? 'Date unavailable' : date.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  });
+                } catch {
+                  return 'Date unavailable';
+                }
+              })()}
             </time>
 
             {post.author && (

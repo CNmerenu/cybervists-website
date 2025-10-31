@@ -20,19 +20,31 @@ export default function Footer() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch("/api/newsletter", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-    if (response.ok) {
-      setStatus({
-        show: true,
-        error: false,
-        message: "Submitted. Great! We'll get back to you soon.",
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-      setFormData({ email: "" }); // Clear form
-    } else {
+      
+      if (response.ok) {
+        setStatus({
+          show: true,
+          error: false,
+          message: "Submitted. Great! We'll get back to you soon.",
+        });
+        setFormData({ email: "" }); // Clear form
+      } else {
+        console.error('Newsletter subscription failed:', response.status);
+        setStatus({
+          show: true,
+          error: true,
+          message:
+            "There was an issue submitting your email. Please try again later or please send us an email.",
+        });
+      }
+    } catch (error) {
+      console.error('Newsletter submission error:', error);
       setStatus({
         show: true,
         error: true,
@@ -40,6 +52,7 @@ export default function Footer() {
           "There was an issue submitting your email. Please try again later or please send us an email.",
       });
     }
+    
     setTimeout(() => {
       // clear Message
       setStatus({

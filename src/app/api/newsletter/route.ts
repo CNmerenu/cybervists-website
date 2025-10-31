@@ -1,36 +1,36 @@
-"use server";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
-  if (req.method !== "POST") {
-    return NextResponse.json(
-      { message: "Method Not Allowed" },
-      { status: 405 }
-    );
-  }
-  const body = await new Response(req.body).json();
-
-  const { email } = body;
-
-  if (!email) {
-    return NextResponse.json({ message: "Email is required" }, { status: 400 });
-  }
-
   try {
+    const body = await req.json();
+    const { email } = body;
+
+    // Input validation
+    if (!email) {
+      return NextResponse.json({ message: "Email is required" }, { status: 400 });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ message: "Invalid email format" }, { status: 400 });
+    }
+
+    const safeEmail = email.trim().toLowerCase();
+
     // Nodemailer Transporter Configuration
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.NEXT_PUBLIC_EMAIL_USER,
-        pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // Email Content
     const subscriberMailOptions = {
-      from: `"Cybervists Alert" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
-      to: email,
+      from: `"Cybervists Alert" <${process.env.EMAIL_USER}>`,
+      to: safeEmail,
       subject: "Welcome to Cybervists Newsletter!",
       html: `
         <h2>Thank You for subscribing to our Newsletter</h2>
@@ -40,12 +40,12 @@ export async function POST(req: NextRequest) {
     };
     // Email Content
     const adminMailOptions = {
-      from: `"WebAdmin" <${process.env.NEXT_PUBLIC_EMAIL_USER}>`,
-      to: process.env.NEXT_PUBLIC_ADMIN_USER,
+      from: `"WebAdmin" <${process.env.EMAIL_USER}>`,
+      to: process.env.ADMIN_EMAIL,
       subject: "New Newsletter Subscription",
       html: `
-          <h2>New subcriber alert!</h2>
-          <p>Email: ${email},</p>
+          <h2>New subscriber alert!</h2>
+          <p>Email: ${safeEmail}</p>
           <p>Please take note.</p>
           <p>Best regards, <br/>Web Admin</p>
         `,
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Newsletter subscription error:", error);
     return NextResponse.json(
       { message: "Internal Server Error" },
       { status: 500 }
