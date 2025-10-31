@@ -119,8 +119,8 @@ export default function About() {
       </section>
 
       {/* Mission and Vision Section */}
-      <section className="py-8 md:py-16 px-4 md:px-16 bg-gradient-to-b from-[#ffefe4]/10 to-[#c5c5c5]">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section className="py-8 md:py-16 px-4 md:px-16 bg-gradient-to-b from-[#ffefe4]/10 to-[#c5c5c5]/50">
+        <div className="max-w-[1440px] mx-auto space-y-16 py-16">
           {/* Vision Row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left - Vision Image */}
@@ -172,8 +172,8 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-[#c5c5c5]/90 to-primary-50 px-4 md:px-16">
-        <div className="max-w-7xl mx-auto relative">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-primary-50 to-primary-50 px-4 md:px-16 ">
+        <div className="max-w-[1440px] mx-auto relative">
           <div className="relative min-h-[600px] flex items-center justify-center">
             {/* Center Image */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -188,53 +188,41 @@ export default function About() {
 
             {/* Value Cards positioned around center */}
             <div className="absolute inset-0">
-              {/* Top Left */}
-              <div className="absolute top-0 left-0 w-[250px]">
-                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
-                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
-                    {aboutPageContent.values.items[0].title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                    {aboutPageContent.values.items[0].description}
-                  </p>
-                </div>
-              </div>
+              {aboutPageContent.values.items.map((item, index) => {
+                const positions = [
+                  "top-0 left-0", // Top Left
+                  "top-0 right-0", // Top Right
+                  "bottom-0 left-0", // Bottom Left
+                  "bottom-0 right-0", // Bottom Right
+                ];
 
-              {/* Top Right */}
-              <div className="absolute top-0 right-0 max-w-[280px]">
-                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
-                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
-                    {aboutPageContent.values.items[1].title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                    {aboutPageContent.values.items[1].description}
-                  </p>
-                </div>
-              </div>
+                const colors = [
+                  "bg-[#0f189a]", // Top Left
+                  "bg-[#ff796d]", // Top Right
+                  "bg-[#8094b2]", // Bottom Left
+                  "bg-[#007bff]", // Bottom Right
+                ];
 
-              {/* Bottom Left */}
-              <div className="absolute bottom-0 left-0 max-w-[280px]">
-                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
-                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
-                    {aboutPageContent.values.items[2].title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                    {aboutPageContent.values.items[2].description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Right */}
-              <div className="absolute bottom-0 right-0 max-w-[280px]">
-                <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg">
-                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
-                    {aboutPageContent.values.items[3].title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                    {aboutPageContent.values.items[3].description}
-                  </p>
-                </div>
-              </div>
+                return (
+                  <div
+                    key={index}
+                    className={`absolute ${positions[index]} w-[250px]`}
+                  >
+                    <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg relative">
+                      {/* Colored line at top */}
+                      <div
+                        className={`absolute -top-1 left-1/2 transform -translate-x-1/2 w-14 h-3 ${colors[index]} rounded-full`}
+                      ></div>
+                      <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2 mt-2 text-center">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs md:text-sm text-gray-600 leading-relaxed text-center">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -242,10 +230,10 @@ export default function About() {
 
       {/* Our Approach Section */}
       <section className="py-16 md:py-16 bg-white px-4 md:px-16 text-center flex flex-col items-center justify-center">
-        <div className="max-w-6xl">
+        <div className="max-w-[1440px] mx-auto]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left - Content */}
-            <div>
+            <div className="flex flex-col items-center">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
                 {aboutPageContent.approach.title}
               </h2>
