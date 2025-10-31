@@ -174,7 +174,7 @@ export default function About() {
       {/* Values Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-primary-50 to-primary-50 px-4 md:px-16 ">
         <div className="max-w-[1440px] mx-auto relative">
-          <div className="relative min-h-[600px] flex items-center justify-center">
+          <div className="relative min-h-[600px] flex items-center justify-center group">
             {/* Center Image */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <Image
@@ -182,7 +182,7 @@ export default function About() {
                 alt="Our Core Values"
                 width={600}
                 height={600}
-                className="w-[400px] h-[400px] md:w-[700px] md:h-[700px]"
+                className="w-[400px] h-[400px] md:w-[700px] md:h-[700px] cursor-pointer"
               />
             </div>
 
@@ -203,10 +203,17 @@ export default function About() {
                   "bg-[#007bff]", // Bottom Right
                 ];
 
+                const delays = [
+                  "delay-0",    // Top Left - 0ms
+                  "delay-150",  // Top Right - 150ms
+                  "delay-500",  // Bottom Left - 500ms (swap with bottom right)
+                  "delay-300",  // Bottom Right - 300ms (swap with bottom left)
+                ];
+
                 return (
                   <div
                     key={index}
-                    className={`absolute ${positions[index]} w-[250px]`}
+                    className={`absolute ${positions[index]} w-[250px] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out ${delays[index]}`}
                   >
                     <div className="bg-white rounded-xl p-4 md:p-5 shadow-lg relative">
                       {/* Colored line at top */}
