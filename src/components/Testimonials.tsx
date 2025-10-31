@@ -8,14 +8,105 @@ export default function Testimonials() {
   const [showModal, setShowModal] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
+  const testimonials = [
+    {
+      name: "Reg",
+      role: "Community Member",
+      content:
+        "Thank you so much. I tried to sort this out two times in the market, the first person couldn't do it, and the second person charged me £90. Now, I've learnt how to do it, I should give you 90 quids. lol",
+      rating: 5,
+    },
+    {
+      name: "Chinyere",
+      role: "Community Partner",
+      content:
+        "I had the Cybervists support me in setting up my personal work system. They also delivered an Online Safety workshop for young people at C3 Centre Community during our Youth Mental Health Awareness Week Series.",
+      rating: 5,
+    },
+    {
+      name: "Angie",
+      role: "Community Partner",
+      content:
+        "I've NEVER really looked at emails properly until now – this game is a total eye-opener!",
+      rating: 5,
+    },
+    {
+      name: "Malia",
+      role: "Community Member",
+      content:
+        "Now I know how to join in online for the church service if I can't drive down. That's very helpful. Thank you",
+      rating: 5,
+    },
+    {
+      name: "Sawari",
+      role: "Volunteer",
+      content:
+        "Volunteering for Cybervists has helped me enhance my penetration testing skills while contributing to cybersecurity awareness. The supportive team and mentoring opportunities make it a great platform for aspiring professionals.",
+      rating: 5,
+    },
+    {
+      name: "Jade",
+      role: "Community Member",
+      content:
+        "I'm 81, I don't use computer very much but now I've learnt a lot. I'm so happy, I can share with my grand kids.",
+      rating: 5,
+    },
+
+    {
+      name: "Rina",
+      role: "Community Member",
+      content:
+        "Cybervists helped me guide my children safely online and feel more confident about technology. Their workshops are clear, friendly, and truly welcoming to all.",
+      rating: 5,
+    },
+    {
+      name: "Ryan",
+      role: "Community Member",
+      content:
+        "There is no way I could have spotted that in a million years. This phishing game is an eye opener. I never used to pay this much attention to my emails. I’m lucky this was a game, I could have easily fallen for that. Thanks mate.",
+      rating: 5,
+    },
+    {
+      name: "Dylan",
+      role: "Community Member",
+      content:
+        "I almost got scammed off my crypto currency. It was so convincing. The scammer somehow found my details, DOB etc, and almost convinced me they could help. I reached out to the Cybervists team and their support helped realise it was all a scam. They also guided me on how I can get genuine support which helped me solve my problems. I nearly lost my crypto. I really appreciate",
+      rating: 5,
+    },
+    {
+      name: "Brent",
+      role: "Community Member",
+      content:
+        "My old password had 6 characters. I’ve always kept them short because I forget them alot. Thank you for teaching how to create and remember strong passwords. My new one is much more longer and I can remember it easily Thank you for this workshop",
+      rating: 5,
+    },
+    {
+      name: "Christie",
+      role: "Community Member",
+      content:
+        "I thought these cartoon games were just for cartoons. Hearing other mums share their experience has been very insightful. I will definitely pay more attention to my two boys, they pay games quite often. Great session btw",
+      rating: 5,
+    },
+    {
+      name: "Mike",
+      role: "Community Member",
+      content:
+        "I nearly got scammed via a fake parking ticket  message I received. I showed one of your volunteers at the drop-in session and they not only showed me it’s fake but showed me ways to check genuine messages and what to do when not sure.",
+      rating: 5,
+    },
+  ];
+
+  const totalSlides = Math.ceil(testimonials.length / 3);
+
   useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev === 1 ? 0 : prev + 1));
+        setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
       }, 5000); // Change slide every 5 seconds
       return () => clearInterval(interval);
     }
-  }, [isPaused]);
+  }, [isPaused, totalSlides]);
+
   const [formData, setFormData] = useState<{
     name: string;
     role: string;
@@ -76,51 +167,6 @@ export default function Testimonials() {
     setFormData({ ...formData, [field]: updatedValues });
   };
 
-  const testimonials = [
-    {
-      name: "Reg",
-      role: "Community Member",
-      content:
-        "Thank you so much. I tried to sort this out two times in the market, the first person couldn't do it, and the second person charged me £90. Now, I've learnt how to do it, I should give you 90 quids. lol",
-      rating: 5,
-    },
-    {
-      name: "Chinyere",
-      role: "Community Partner",
-      content:
-        "I had the Cybervists support me in setting up my personal work system. They also delivered an Online Safety workshop for young people at C3 Centre Community during our Youth Mental Health Awareness Week Series.",
-      rating: 5,
-    },
-    {
-      name: "Angie",
-      role: "Community Partner",
-      content:
-        "I've NEVER really looked at emails properly until now – this game is a total eye-opener!",
-      rating: 5,
-    },
-    {
-      name: "Malia",
-      role: "Community Member",
-      content:
-        "Now I know how to join in online for the church service if I can't drive down. That's very helpful. Thank you",
-      rating: 5,
-    },
-    {
-      name: "Sawari",
-      role: "Volunteer",
-      content:
-        "Volunteering for Cybervists has helped me enhance my penetration testing skills while contributing to cybersecurity awareness. The supportive team and mentoring opportunities make it a great platform for aspiring professionals.",
-      rating: 5,
-    },
-    {
-      name: "Jade",
-      role: "Community Member",
-      content:
-        "I'm 81, I don't use computer very much but now I've learnt a lot. I'm so happy, I can share with my grand kids.",
-      rating: 5,
-    },
-  ];
-
   return (
     <section className="w-full py-16 md:py-24 bg-white">
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
@@ -129,8 +175,8 @@ export default function Testimonials() {
             What Our Community Says
           </h2>
           <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-            Real stories from organizations and individuals who've
-            strengthened their digital security with our programs
+            Real stories from organizations and individuals who've strengthened
+            their digital security with our programs
           </p>
         </div>
 
@@ -138,7 +184,9 @@ export default function Testimonials() {
           {/* Navigation Buttons */}
           <button
             onClick={() =>
-              setCurrentSlide(currentSlide === 0 ? 1 : currentSlide - 1)
+              setCurrentSlide(
+                currentSlide === 0 ? totalSlides - 1 : currentSlide - 1
+              )
             }
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center hover:bg-primary-700 transition-colors"
           >
@@ -147,7 +195,9 @@ export default function Testimonials() {
 
           <button
             onClick={() =>
-              setCurrentSlide(currentSlide === 1 ? 0 : currentSlide + 1)
+              setCurrentSlide(
+                currentSlide === totalSlides - 1 ? 0 : currentSlide + 1
+              )
             }
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center hover:bg-primary-700 transition-colors"
           >
@@ -155,7 +205,7 @@ export default function Testimonials() {
           </button>
 
           {/* Carousel Container */}
-          <div 
+          <div
             className="overflow-hidden mx-12"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
@@ -164,77 +214,47 @@ export default function Testimonials() {
               className="flex transition-transform duration-1000 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              {/* Slide 1 */}
-              <div className="w-full flex-shrink-0">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-                  {testimonials.slice(0, 3).map((testimonial, index) => (
-                    <div
-                      key={index}
-                      className="bg-gray-50 rounded-xl p-4 md:p-8 relative"
-                    >
-                      <Quote className="w-8 h-8 text-blue-500 mb-4" />
-                      <p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6 leading-relaxed">
-                        &ldquo;{testimonial.content}&rdquo;
-                      </p>
-                      <div className="flex items-center gap-2 mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                          />
-                        ))}
-                      </div>
-                      <div>
-                        <h4 className="text-sm md:text-base font-semibold text-gray-900">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-xs md:text-sm text-gray-600">
-                          {testimonial.role}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+              {Array.from({ length: totalSlides }, (_, slideIndex) => (
+                <div key={slideIndex} className="w-full flex-shrink-0">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+                    {testimonials
+                      .slice(slideIndex * 3, (slideIndex + 1) * 3)
+                      .map((testimonial, index) => (
+                        <div
+                          key={index}
+                          className="bg-gray-50 rounded-xl p-4 md:p-8 relative"
+                        >
+                          <Quote className="w-8 h-8 text-blue-500 mb-4" />
+                          <p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6 leading-relaxed">
+                            &ldquo;{testimonial.content}&rdquo;
+                          </p>
+                          <div className="flex items-center gap-2 mb-4">
+                            {[...Array(testimonial.rating)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                              />
+                            ))}
+                          </div>
+                          <div>
+                            <h4 className="text-sm md:text-base font-semibold text-gray-900">
+                              {testimonial.name}
+                            </h4>
+                            <p className="text-xs md:text-sm text-gray-600">
+                              {testimonial.role}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
                 </div>
-              </div>
-
-              {/* Slide 2 */}
-              <div className="w-full flex-shrink-0">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-                  {testimonials.slice(3, 6).map((testimonial, index) => (
-                    <div
-                      key={index}
-                      className="bg-gray-50 rounded-xl p-4 md:p-8 relative"
-                    >
-                      <Quote className="w-8 h-8 text-blue-500 mb-4" />
-                      <p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6 leading-relaxed">
-                        &ldquo;{testimonial.content}&rdquo;
-                      </p>
-                      <div className="flex items-center gap-2 mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                          />
-                        ))}
-                      </div>
-                      <div>
-                        <h4 className="text-sm md:text-base font-semibold text-gray-900">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-xs md:text-sm text-gray-600">
-                          {testimonial.role}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* Slide Indicators */}
           <div className="flex justify-center mt-8 gap-2">
-            {[0, 1].map((slide) => (
+            {Array.from({ length: totalSlides }, (_, slide) => (
               <button
                 key={slide}
                 onClick={() => setCurrentSlide(slide)}

@@ -2,7 +2,7 @@ const communityVideoContent = {
   title: "Hear From Our Community",
   subtitle:
     "Listen to what our community members have to say about the impact of our programs",
-  videoUrl: "https://youtube.com/shorts/0bX7VOyo3Ps?si=409pMW0aL6XvxYl0", // Placeholder - replace with actual YouTube link
+  videoUrl: "https://youtu.be/7oX3TlQFNJA", // Placeholder - replace with actual YouTube link
   description:
     "Our community members share their experiences and the positive impact our cybersecurity and digital literacy programs have had on their lives and organizations.",
   highlights: [
@@ -14,14 +14,27 @@ const communityVideoContent = {
 };
 
 function convertToEmbedUrl(url: string): string {
-  const videoIdMatch = url.match(/(?:shorts\/|v=|embed\/|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-  return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : url;
+  const videoIdMatch = url.match(
+    /(?:shorts\/|v=|embed\/|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+  );
+  return videoIdMatch
+    ? `https://www.youtube.com/embed/${videoIdMatch[1]}`
+    : url;
 }
 
 export default function CommunityVideo() {
   return (
-    <section className="w-full py-24 md:py-32 bg-gray-50">
-      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+    <section
+      className="w-full py-24 md:py-32 bg-gray-50 relative overflow-hidden"
+      style={{
+        backgroundImage: "url(/assets/bobomi.png)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="absolute inset-0 bg-white/90"></div>
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Messaging */}
           <div>
@@ -48,9 +61,9 @@ export default function CommunityVideo() {
             </p>
           </div>
 
-          {/* Right Column - Portrait Video */}
+          {/* Right Column - Video */}
           <div className="flex justify-center">
-            <div className="relative w-full max-w-sm aspect-[9/16] rounded-2xl overflow-hidden shadow-lg bg-gray-900">
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg bg-gray-900">
               <iframe
                 src={convertToEmbedUrl(communityVideoContent.videoUrl)}
                 title="Community Impact Video"

@@ -6,34 +6,19 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      content: "hello@cybervists.org",
-      action: "mailto:hello@cybervists.org",
+      content: "info@cybervists.org",
+      action: "mailto:info@cybervists.org",
     },
     {
       icon: Phone,
       title: "Call Us",
-      content: "+44 (0) 1792 123456",
-      action: "tel:+441792123456",
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      content: "Swansea, Wales, UK",
-      action: "#",
-    },
-    {
-      icon: Clock,
-      title: "Office Hours",
-      content: "Mon-Fri: 9AM-5PM GMT",
-      action: "#",
+      content: "+44 (0) 789 7768419",
+      action: "tel:+447897768419",
     },
   ];
 
   return (
-    <section
-      id="contact"
-      className="w-full py-16 md:py-24 bg-primary-400"
-    >
+    <section id="contact" className="w-full py-16 md:py-24 bg-primary-400">
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
           {/* Contact Information */}
@@ -51,7 +36,7 @@ export default function Contact() {
                 <Link
                   key={index}
                   href={info.action}
-                  className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-primary-800 rounded-lg hover:bg-primary-700 transition-colors duration-300"
+                  className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-primary-400 rounded-lg hover:bg-primary-500 transition-colors duration-300 border-[1px]"
                 >
                   <div className="w-10 h-10 bg-accent-500 rounded-lg flex items-center justify-center flex-shrink-0">
                     <info.icon className="w-5 h-5 text-white" />

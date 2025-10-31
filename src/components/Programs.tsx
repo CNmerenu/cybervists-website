@@ -19,32 +19,30 @@ export default function Programs() {
       "Empowering communities through bespoke cyber awareness literacy, ethical online use and technology support.",
     programs: [
       {
-        icon: Shield,
+        title: "Inclusion & Empowerment",
+        description:
+          "Building cyber-resilient communities through training, awareness events, and practical education that empowers individuals and community groups to recognise threats, protect their data, and respond confidently to digital security challenges.",
+        bgImage: "/assets/digital_inclusion.png",
+      },
+      {
         title: "Cyber Security",
         description:
           "Facilitating cyber resilient grassroots communities through continuous training and events centred on cybersecurity awareness. Building stronger defenses against digital threats.",
         bgImage: "/assets/cybersecurity_action.png",
       },
+
       {
-        icon: Users,
-        title: "Digital Inclusion",
+        title: "Responsible Online Use",
         description:
-          "Bridging the digital divide through comprehensive support programs tailored for vulnerable communities, delivering culturally appropriate training and coaching.",
-        bgImage: "/assets/digital_inclusion.png",
-      },
-      {
-        icon: Laptop,
-        title: "Technology Empowerment",
-        description:
-          "Making digital skills accessible to all, one community at a time. Empowering individuals with essential technology knowledge and practical digital literacy skills.",
-        bgImage: "/assets/digital_litreracy.png",
+          "Empowering families, children, and community members to practice respectful communication, and maintain healthy online habits that protect well-being and foster safe, positive internet experiences for all",
+        bgImage: "/assets/bobomi.png",
       },
     ],
   };
 
   return (
     <section id="programs" className="w-full py-16 md:py-24 bg-[#E8E8E8]">
-      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16 flex flex-col items-center justify-center">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
             {programsContent.title}
@@ -54,9 +52,9 @@ export default function Programs() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-32 mb-8 md:mb-12">
           {programsContent.programs.map((program, index) => (
-            <div key={index} className="space-y-4">
+            <div key={index} className="space-y-4 max-w-[300px] ">
               {/* Image Section */}
               <div
                 className="h-[250px] bg-cover bg-center bg-no-repeat rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
@@ -66,16 +64,11 @@ export default function Programs() {
               />
 
               {/* Text Section */}
-              <div className=" bg-none rounded-xl shadow-sm">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <program.icon className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900">
-                    {program.title}
-                  </h3>
-                </div>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed h-20 flex items-center">
+              <div className="rounded-xl shadow-sm p-2">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 capitalize">
+                  {program.title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed flex items-center">
                   {program.description}
                 </p>
               </div>

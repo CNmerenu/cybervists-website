@@ -7,21 +7,20 @@ import { useState, useEffect } from "react";
 
 const ctaContent = {
   enabled: true,
-  title: "Thinking About a Tech Career?",
+  title: "Do you need Support?",
   subtitle:
-    "We get it, breaking into tech can feel overwhelming. That's why we're offering free cybersecurity training to help you get started, no experience required. Follow us for:",
+    "We know you're busy, and tech can feel like another language. That's why we've made this:",
   mediaType: "image", // "image" or "video"
   mediaUrl: "/assets/cybersecurity_action.png",
   videoUrl: "https://youtube.com/shorts/0bX7VOyo3Ps?si=409pMW0aL6XvxYl0", // for video type
   infoItems: [
-    "🌟 Early access to free training",
-    "🎁 Chances to win career-boosting prizes",
-    "🤝 A supportive tech community",
-    "💼 Real pathways into cybersecurity careers",
+    "🎮 Gamified — Learning that feels like fun.",
+    "🎯 Tailored — Designed for the audience.",
+    "💪 Empowering — You'll leave with skills, not just information",
+    "👨👩👧 Together — A community digitally supporting each other",
   ],
-  finalText: "JThis is more than training. This is your tribe!",
-  buttonText: "Get Started Today",
-  buttonLink: "/#contact",
+  buttonText: "Reach Out Now",
+  buttonLink: "mailto:info@cybevists.org",
 };
 
 function convertToEmbedUrl(url: string): string {

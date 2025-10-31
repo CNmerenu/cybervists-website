@@ -54,13 +54,13 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="w-full py-16 md:py-24 bg-gray-800 relative overflow-hidden"
+      className="w-full py-16 md:py-24 bg-white relative overflow-hidden"
     >
       {/* Rotating Background Image */}
       <div className="absolute right-[-200px] top-1/2 -translate-y-1/2 opacity-15">
         <div className="animate-spin" style={{ animationDuration: "20s" }}>
           <Image
-            src="/assets/rotating-icon-light.svg"
+            src="/assets/rotating-icon.svg"
             alt=""
             width={1200}
             height={1200}
@@ -69,10 +69,10 @@ export default function Services() {
       </div>
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 text-white">
+          <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 text-gray-900">
             {servicesContent.title}
           </h2>
-          <p className="text-sm md:text-xl text-gray-300 max-w-3xl mx-auto px-2">
+          <p className="text-sm md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
             {servicesContent.subtitle}
           </p>
         </div>

@@ -71,18 +71,3 @@ export default function Hero() {
     </section>
   );
 }
-
-// {
-//         {/* Rotating Background Image */}
-//       <div className="absolute right-[-200px] top-1/2 -translate-y-1/2 opacity-15">
-//         <div className="animate-spin" style={{ animationDuration: "20s" }}>
-//           <Image
-//             src="/assets/rotating-icon.svg"
-//             alt=""
-//             width={1200}
-//             height={1200}
-//           />
-//         </div>
-//       </div>
-
-// }
