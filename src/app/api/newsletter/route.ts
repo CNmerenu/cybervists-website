@@ -1,3 +1,4 @@
+"use server";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
@@ -19,12 +20,10 @@ export async function POST(req: NextRequest) {
   try {
     // Nodemailer Transporter Configuration
     const transporter = nodemailer.createTransport({
-      host: "smtp.zoho.eu",
-      port: 465,
-      secure: true,
+      service: "gmail",
       auth: {
-        user: process.env.NEXT_PUBLIC_EMAIL_USER, // Your email
-        pass: process.env.NEXT_PUBLIC_EMAIL_PASS, // Your email password
+        user: process.env.NEXT_PUBLIC_EMAIL_USER,
+        pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
       },
     });
 

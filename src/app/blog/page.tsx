@@ -14,6 +14,7 @@ export default function BlogPage() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [posts, setPosts] = useState<Post[]>([]);
   const [featuredPost, setFeaturedPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -26,14 +27,14 @@ export default function BlogPage() {
       try {
         const [allPosts, featured] = await Promise.all([
           getAllPosts(),
-          getFeaturedPosts(1)
+          getFeaturedPosts(1),
         ]);
         setPosts(allPosts);
         setFeaturedPost(featured[0] || null);
         setDisplayedPosts(allPosts.slice(0, POSTS_PER_PAGE));
         setShowLoadMore(allPosts.length > POSTS_PER_PAGE);
       } catch (error) {
-        console.error('Failed to load posts:', error);
+        console.error("Failed to load posts:", error);
       } finally {
         setLoading(false);
       }
@@ -44,26 +45,40 @@ export default function BlogPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    setSubmitLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setIsSuccess(true);
-      setToastMessage("Successfully subscribed to our newsletter!");
-      setEmail("");
-      setShowModal(false);
-    } catch {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setToastMessage("Successfully subscribed to our newsletter!");
+        setEmail("");
+        setShowModal(false);
+      } else {
+        setIsSuccess(false);
+        setToastMessage("Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      console.log(error);
       setIsSuccess(false);
       setToastMessage("Failed to subscribe. Please try again.");
     }
-    
+
+    setSubmitLoading(false);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
   const loadMorePosts = () => {
     const currentLength = displayedPosts.length;
-    const nextPosts = posts.slice(currentLength, currentLength + POSTS_PER_PAGE);
+    const nextPosts = posts.slice(
+      currentLength,
+      currentLength + POSTS_PER_PAGE
+    );
     const newDisplayedPosts = [...displayedPosts, ...nextPosts];
     setDisplayedPosts(newDisplayedPosts);
     setShowLoadMore(newDisplayedPosts.length < posts.length);
@@ -89,11 +104,13 @@ export default function BlogPage() {
             Cybersecurity Insights
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-            Stay informed with the latest cybersecurity trends, best practices, and community insights 
-            to keep yourself and your organization secure in the digital world.
+            Stay informed with the latest cybersecurity trends, best practices,
+            and community insights to keep yourself and your organization secure
+            in the digital world.
           </p>
           <div className="text-sm text-gray-500">
-            {posts.length} {posts.length === 1 ? "article" : "articles"} available
+            {posts.length} {posts.length === 1 ? "article" : "articles"}{" "}
+            available
           </div>
         </div>
       </section>
@@ -102,13 +119,18 @@ export default function BlogPage() {
       {featuredPost && (
         <section className="py-16 bg-gray-50 px-4 md:px-16">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">Featured Article</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">
+              Featured Article
+            </h2>
             <Link href={`/blog/${featuredPost.slug.current}`}>
               <article className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                   <div className="relative h-64 lg:h-full overflow-hidden">
                     <Image
-                      src={featuredPost.mainImage?.asset?.url || "/assets/blog/default.jpg"}
+                      src={
+                        featuredPost.mainImage?.asset?.url ||
+                        "/assets/blog/default.jpg"
+                      }
                       alt={featuredPost.mainImage?.alt || featuredPost.title}
                       width={600}
                       height={400}
@@ -125,11 +147,14 @@ export default function BlogPage() {
                     <div className="flex items-center gap-4 text-sm text-gray-500">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
-                        {new Date(featuredPost.publishedAt).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        {new Date(featuredPost.publishedAt).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
                       </div>
                       <div className="flex items-center gap-2">
                         <User className="w-4 h-4" />
@@ -153,13 +178,15 @@ export default function BlogPage() {
       {/* All Articles Grid */}
       <section className="py-16 md:py-24 px-4 md:px-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">All Articles</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">
+            All Articles
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedPosts.map((post) => (
               <BlogCard key={post._id} post={post} />
             ))}
           </div>
-          
+
           {showLoadMore && (
             <div className="text-center mt-12">
               <button
@@ -180,7 +207,8 @@ export default function BlogPage() {
             Stay Updated
           </h2>
           <p className="text-base md:text-lg text-gray-600 mb-8">
-            Subscribe to our newsletter for the latest cybersecurity insights and community updates.
+            Subscribe to our newsletter for the latest cybersecurity insights
+            and community updates.
           </p>
           <button
             onClick={() => setShowModal(true)}
@@ -207,7 +235,7 @@ export default function BlogPage() {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -225,7 +253,7 @@ export default function BlogPage() {
                   />
                 </div>
               </div>
-              
+
               <div className="flex gap-3 pt-4">
                 <button
                   type="button"
@@ -236,9 +264,10 @@ export default function BlogPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+                  disabled={submitLoading}
+                  className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Subscribe
+                  {submitLoading ? "Subscribing..." : "Subscribe"}
                 </button>
               </div>
             </form>
@@ -248,9 +277,11 @@ export default function BlogPage() {
 
       {/* Toast Notification */}
       {showToast && (
-        <div className={`fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg transition-all duration-300 ${
-          isSuccess ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-        }`}>
+        <div
+          className={`fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg transition-all duration-300 ${
+            isSuccess ? "bg-green-500 text-white" : "bg-red-500 text-white"
+          }`}
+        >
           {toastMessage}
         </div>
       )}

@@ -7,6 +7,48 @@ export default function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const [feedbackModalType, setFeedbackModalType] = useState<'success' | 'error'>('success');
+  const [feedbackModalMessage, setFeedbackModalMessage] = useState('');
+
+  const handleFeedbackSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFeedbackLoading(true);
+    
+    try {
+      const response = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        setFeedbackModalType('success');
+        setFeedbackModalMessage('Thank you for your feedback! We appreciate your input.');
+        setFormData({
+          name: '',
+          role: '',
+          experience: '',
+          supportLevel: [],
+          supportType: [],
+          feedback: '',
+          futureEngagement: '',
+          rating: 5,
+        });
+        setShowModal(false);
+      } else {
+        setFeedbackModalType('error');
+        setFeedbackModalMessage('Failed to submit feedback. Please try again.');
+      }
+    } catch (error) {
+      setFeedbackModalType('error');
+      setFeedbackModalMessage('An error occurred. Please try again.');
+    }
+    
+    setFeedbackLoading(false);
+    setShowFeedbackModal(true);
+  };
 
   const testimonials = [
     {
@@ -292,7 +334,7 @@ export default function Testimonials() {
                 </button>
               </div>
 
-              <form className="space-y-4">
+              <form onSubmit={handleFeedbackSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Name
@@ -460,12 +502,50 @@ export default function Testimonials() {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
+                    disabled={feedbackLoading}
+                    className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit
+                    {feedbackLoading ? 'Submitting...' : 'Submit'}
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        )}
+        
+        {/* Feedback Response Modal */}
+        {showFeedbackModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl p-6 max-w-md w-full">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  {feedbackModalType === 'success' ? (
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm">✓</span>
+                    </div>
+                  ) : (
+                    <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm">✗</span>
+                    </div>
+                  )}
+                  <h3 className="text-lg font-bold text-gray-900">
+                    {feedbackModalType === 'success' ? 'Success!' : 'Error'}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setShowFeedbackModal(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-gray-600 mb-6">{feedbackModalMessage}</p>
+              <button
+                onClick={() => setShowFeedbackModal(false)}
+                className="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                Close
+              </button>
             </div>
           </div>
         )}
