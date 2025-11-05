@@ -91,8 +91,9 @@ export default function About() {
   return (
     <main className="w-full min-h-screen bg-white">
       {/* New Hero Section - Two Column Layout */}
-      <section className="py-8 md:py-16 px-4 md:px-16 bg-white">
-        <div className="max-w-7xl mx-auto h-full">
+      <section className="py-8 md:py-16 px-4 md:px-16 bg-white relative">
+        <div className="absolute inset-0 bg-[url('/assets/aboutusbg.jpg')] bg-cover bg-center opacity-5"></div>
+        <div className="max-w-7xl mx-auto h-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center h-full">
             {/* Left - Message (40%) */}
             <div className="lg:col-span-2 text-center lg:text-left">

@@ -17,14 +17,14 @@ interface Challenge {
 }
 
 const challengeContent = {
-  title: "The problem we are solving together",
+  title: "The prevailing challenge",
   subtitle:
     "Cybersecurity threats are escalating at an unprecedented rate, creating significant challenges for businesses, individuals, and communities worldwide.",
   challenges: [
     {
       icon: DollarSign,
       title: "Global Scam Losses",
-      stat: "$10.5B",
+      stat: "$1.03T",
       description:
         "Lost to online scams annually worldwide, devastating individuals and families",
       impact: "Lost globally per year",
