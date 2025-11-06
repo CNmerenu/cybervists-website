@@ -1,8 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+interface CommunitySignupData {
+  fullName: string;
+  email: string;
+  pronoun: string;
+  techSkill: string;
+  interests: string[];
+  otherInterest?: string;
+  hasExperience: string;
+  certifications: string[];
+  otherCertification?: string;
+  wantsCertifications?: string;
+  stemExperience: string;
+  volunteerHours: string;
+  otherHours?: string;
+  preferredTimes: string[];
+  comfortableWithDiverse: string;
+  consent: boolean;
+}
+
 // Input validation and sanitization
-function validateAndSanitizeInput(data: any) {
+function validateAndSanitizeInput(data: CommunitySignupData) {
   const {
     fullName,
     email,
