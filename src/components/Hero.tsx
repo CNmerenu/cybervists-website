@@ -51,7 +51,7 @@ export default function Hero() {
                     target="_blank"
                     className="px-6 py-3 md:px-8 md:py-4 bg-primary-600 text-white text-sm md:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
                   >
-                    Get Involved
+                    Join Our Community
                   </Link>
                   <Link
                     href={
@@ -61,7 +61,9 @@ export default function Hero() {
                     className="px-4 py-3 md:px-8 md:py-4 border border-blue-500/30 text-accent-600 font-semibold rounded-lg hover:bg-blue-500/10 transition-all duration-300 flex items-center gap-2 md:gap-4 justify-center text-sm md:text-base"
                   >
                     <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-                    <span className="hidden sm:inline">View Upcoming Events</span>
+                    <span className="hidden sm:inline">
+                      View Upcoming Events
+                    </span>
                     <span className="sm:hidden">Events</span>
                   </Link>
                 </div>

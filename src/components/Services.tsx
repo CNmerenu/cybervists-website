@@ -32,7 +32,7 @@ const servicesContent: ServiceContent = {
     {
       title: "Tech Research & Development",
       description:
-        "Innovative research into emerging technologies and development of privacy-focused digital solutions.",
+        "Innovative research on emerging technologies and solution based initiatives.",
       image: "/assets/research.png",
     },
     {
@@ -104,7 +104,7 @@ export default function Services() {
               </div>
             ))}
           </div>
-          
+
           {/* Bottom row - 2 services centered */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             {servicesContent.services.slice(3, 5).map((service, index) => (

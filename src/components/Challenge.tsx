@@ -1,15 +1,6 @@
-import {
-  DollarSign,
-  Users,
-  Clock,
-  UserX,
-  Mic,
-  Heart,
-  LucideIcon,
-} from "lucide-react";
+"use client";
 
 interface Challenge {
-  icon?: LucideIcon;
   title: string;
   stat: string;
   description: string;
@@ -22,7 +13,6 @@ const challengeContent = {
     "Cybersecurity threats are escalating at an unprecedented rate, creating significant challenges for businesses, individuals, and communities worldwide.",
   challenges: [
     {
-      icon: DollarSign,
       title: "Global Scam Losses",
       stat: "$1.03T",
       description:
@@ -30,7 +20,6 @@ const challengeContent = {
       impact: "Lost globally per year",
     },
     {
-      icon: Clock,
       title: "Attack Frequency",
       stat: "39 sec",
       description:
@@ -38,7 +27,6 @@ const challengeContent = {
       impact: "Between attacks",
     },
     {
-      icon: UserX,
       title: "Digital Exclusion",
       stat: "2.7B",
       description:
@@ -46,23 +34,20 @@ const challengeContent = {
       impact: "People digitally excluded",
     },
     {
-      icon: Users,
-      title: "Senior Isolation",
-      stat: "47%",
+      title: "Senior Online Scams",
+      stat: "58%",
       description:
-        "Of seniors feel left behind digitally, making them prime targets for scammers",
-      impact: "Of seniors affected",
+        "Seniors over 60 represent the majority of financial losses from online scams",
+      impact: "Seniors affected",
     },
     {
-      icon: Heart,
-      title: "Child Cyberbullying",
-      stat: "1 in 3",
+      title: "Teen Cyberbullying",
+      stat: "49%",
       description:
-        "Children experience cyberbullying, causing lasting psychological harm",
-      impact: "Children affected",
+        "Nearly 1 in 2 Teens have experienced some form of cyberbullying, leading to emotional and psychological distress",
+      impact: "Teens affected",
     },
     {
-      icon: Mic,
       title: "AI Voice Scams",
       stat: "1 in 10",
       description:
