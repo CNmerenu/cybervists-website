@@ -107,20 +107,8 @@ export default function Stats() {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden md:flex relative items-center justify-center">
-          {/* Left Stats */}
-          <div className="flex flex-col space-y-12 mr-12 md:mr-20">
-            {impactContent.stats.slice(0, 3).map((stat, index) => (
-              <div key={index} className="text-right">
-                <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                <div className="text-gray-700 text-sm md:text-lg max-w-sm">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Center Laptop Image */}
+        <div className="hidden md:flex relative items-center justify-between">
+          {/* Left Laptop Image */}
           <div className="flex-shrink-0 relative">
             <Image
               src="/assets/laptopimage-nobg.svg"
@@ -139,12 +127,12 @@ export default function Stats() {
             </div>
           </div>
 
-          {/* Right Stats */}
-          <div className="flex flex-col space-y-12 ml-12 md:ml-20">
-            {impactContent.stats.slice(3, 6).map((stat, index) => (
-              <div key={index} className="text-left">
+          {/* Right Stats - All Together */}
+          <div className="grid grid-cols-2 gap-8 ml-12">
+            {impactContent.stats.map((stat, index) => (
+              <div key={index} className="text-center">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                <div className="text-gray-700 text-sm md:text-lg max-w-sm">
+                <div className="text-gray-700 text-sm md:text-lg max-w-xs">
                   {stat.label}
                 </div>
               </div>

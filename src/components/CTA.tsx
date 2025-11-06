@@ -20,7 +20,7 @@ const ctaContent = {
     "👨👩👧 Together — A community digitally supporting each other",
   ],
   buttonText: "Reach Out Now",
-  buttonLink: "mailto:info@cybevists.org",
+  buttonLink: "mailto:info@cybervists.org",
 };
 
 function convertToEmbedUrl(url: string): string {
