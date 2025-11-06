@@ -24,12 +24,19 @@ export default function Hero() {
     preferredTimes: [] as string[],
     comfortableWithDiverse: "",
     consent: false,
+    honeypot: "",
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (formData.honeypot) {
+      return; // Silently ignore bot submissions
+    }
+    
     setLoading(true);
     
     try {
@@ -58,6 +65,7 @@ export default function Hero() {
           preferredTimes: [],
           comfortableWithDiverse: "",
           consent: false,
+          honeypot: "",
         });
       }
     } catch (error) {
@@ -506,6 +514,17 @@ export default function Hero() {
                     <span className="text-sm">Please confirm you consent for your information to be used for volunteer coordination purposes *</span>
                   </label>
                 </div>
+
+                {/* Honeypot field - hidden from users */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.honeypot}
+                  onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
                 
                 <button
                   type="submit"

@@ -9,6 +9,7 @@ export default function Contact() {
     name: "",
     email: "",
     message: "",
+    honeypot: "",
   });
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -17,6 +18,12 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (formData.honeypot) {
+      return; // Silently ignore bot submissions
+    }
+    
     setLoading(true);
 
     try {
@@ -29,7 +36,7 @@ export default function Contact() {
       if (response.ok) {
         setModalType("success");
         setModalMessage("Thank you! Your message has been sent successfully.");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", honeypot: "" });
       } else {
         setModalType("error");
         setModalMessage("Failed to send message. Please try again.");
@@ -146,6 +153,17 @@ export default function Contact() {
                   required
                 />
               </div>
+              
+              {/* Honeypot field - hidden from users */}
+              <input
+                type="text"
+                name="website"
+                value={formData.honeypot}
+                onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
               <button
                 type="submit"
                 disabled={loading}

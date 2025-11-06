@@ -4,7 +4,12 @@ import nodemailer from "nodemailer";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email } = body;
+    const { email, honeypot } = body;
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (honeypot) {
+      return NextResponse.json({ message: "Submitted successfully" }, { status: 200 }); // Fake success response
+    }
 
     // Input validation
     if (!email) {

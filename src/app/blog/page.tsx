@@ -11,6 +11,7 @@ import { getAllPosts, getFeaturedPosts } from "@/lib/blogData";
 export default function BlogPage() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -49,19 +50,26 @@ export default function BlogPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (honeypot) {
+      return; // Silently ignore bot submissions
+    }
+    
     setSubmitLoading(true);
 
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, honeypot }),
       });
 
       if (response.ok) {
         setIsSuccess(true);
         setToastMessage("Successfully subscribed to our newsletter!");
         setEmail("");
+        setHoneypot("");
         setShowModal(false);
       } else {
         setIsSuccess(false);
@@ -256,6 +264,17 @@ export default function BlogPage() {
                   />
                 </div>
               </div>
+              
+              {/* Honeypot field - hidden from users */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               <div className="flex gap-3 pt-4">
                 <button

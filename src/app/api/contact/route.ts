@@ -22,7 +22,12 @@ function validateEmail(email: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, message, honeypot } = body;
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (honeypot) {
+      return NextResponse.json({ success: true }); // Fake success response
+    }
 
     // Input validation
     if (!name || !email || !message) {

@@ -23,6 +23,7 @@ export default function Testimonials() {
     feedback: string;
     futureEngagement: string;
     rating: number;
+    honeypot: string;
   }>({
     name: "",
     role: "",
@@ -32,10 +33,17 @@ export default function Testimonials() {
     feedback: "",
     futureEngagement: "",
     rating: 5,
+    honeypot: "",
   });
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (formData.honeypot) {
+      return; // Silently ignore bot submissions
+    }
+    
     setFeedbackLoading(true);
 
     try {
@@ -59,6 +67,7 @@ export default function Testimonials() {
           feedback: "",
           futureEngagement: "",
           rating: 5,
+          honeypot: "",
         });
         setShowModal(false);
       } else {
@@ -502,6 +511,17 @@ export default function Testimonials() {
                     ))}
                   </div>
                 </div>
+
+                {/* Honeypot field - hidden from users */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.honeypot}
+                  onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
 
                 <div className="flex gap-3 pt-4">
                   <button

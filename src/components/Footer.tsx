@@ -10,6 +10,7 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 export default function Footer() {
   const [formData, setFormData] = useState({
     email: "",
+    honeypot: "",
   });
   const [status, setStatus] = useState({
     show: false,
@@ -20,6 +21,12 @@ export default function Footer() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check - if filled, it's likely a bot
+    if (formData.honeypot) {
+      return; // Silently ignore bot submissions
+    }
+    
     setLoading(true);
 
     try {
@@ -35,7 +42,7 @@ export default function Footer() {
           error: false,
           message: "Submitted. Great! We'll get back to you soon.",
         });
-        setFormData({ email: "" }); // Clear form
+        setFormData({ email: "", honeypot: "" }); // Clear form
       } else {
         console.error("Newsletter subscription failed:", response.status);
         setStatus({
@@ -253,6 +260,16 @@ export default function Footer() {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                  />
+                  {/* Honeypot field - hidden from users */}
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={formData.honeypot}
+                    onChange={handleChange}
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </div>
                 <button
