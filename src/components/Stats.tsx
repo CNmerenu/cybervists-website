@@ -18,12 +18,13 @@ const impactContent = {
       suffix: "+",
       label: "Volunteer hours dedicated to the community",
     },
-    { value: 1000, suffix: "+", label: "People impacted across our platforms" },
+    { value: 5000, suffix: "+", label: "People impacted across our platforms" },
     { value: 100, suffix: "%", label: "Training participant satisfaction" },
     {
       value: 98,
       suffix: "%",
-      label: "Training attendees feel more confident with digital tools",
+      label:
+        "Of participants feel more confident in securing their digital footprint",
     },
   ],
 };
@@ -99,9 +100,7 @@ export default function Stats() {
             {impactContent.stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                <div className="text-gray-700 text-sm">
-                  {stat.label}
-                </div>
+                <div className="text-gray-700 text-sm">{stat.label}</div>
               </div>
             ))}
           </div>
