@@ -85,8 +85,9 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 
 export default function Stats() {
   return (
-    <section className="w-full py-16 md:py-32 bg-gradient-to-b from-[#ffefe4] to-[#c5c5c5]">
-      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+    <section className="w-full py-16 md:py-32 bg-gradient-to-b from-[#ffefe4] to-[#c5c5c5] relative">
+      <div className="absolute inset-0 bg-[url('/assets/wales.svg')] bg-repeat bg-contain opacity-5"></div>
+      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16 relative z-10">
         {/* Section Title */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-4">
