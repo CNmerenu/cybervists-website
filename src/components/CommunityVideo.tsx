@@ -1,3 +1,8 @@
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import { siFacebook, siInstagram, siYoutube } from "simple-icons";
+
 const communityVideoContent = {
   title: "Hear From Our Community",
   subtitle:
@@ -62,7 +67,7 @@ export default function CommunityVideo() {
           </div>
 
           {/* Right Column - Video */}
-          <div className="flex justify-center">
+          <div className="flex justify-center flex-col gap-5">
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-lg bg-gray-900">
               <iframe
                 src={convertToEmbedUrl(communityVideoContent.videoUrl)}
@@ -71,6 +76,45 @@ export default function CommunityVideo() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
+            </div>
+            <div className="flex space-x-4">
+              <Link
+                href="https://www.facebook.com/profile.php?id=61579074960835"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                  <path d={siFacebook.path} />
+                </svg>
+              </Link>
+              <Link
+                href="https://www.youtube.com/@Cybervists_community"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                  <path d={siYoutube.path} />
+                </svg>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/company/cybervists/"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  className="w-5 h-5 text-white"
+                />
+              </Link>
+              <Link
+                href="https://www.instagram.com/cybervists?igsh=MTNuN2VzNTg2b2Mwdw%3D%3D"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
+              >
+                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                  <path d={siInstagram.path} />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>

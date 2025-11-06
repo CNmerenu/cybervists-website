@@ -1,5 +1,8 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
+import { ChevronDown, ExternalLink } from "lucide-react";
+
 interface Challenge {
   title: string;
   stat: string;
@@ -60,9 +63,51 @@ const challengeContent = {
     description:
       "Beyond financial losses, cyber attacks cause stress, anxiety, and loss of trust. Vulnerable communities including seniors, small businesses, and digitally excluded individuals are disproportionately affected and often lack the resources to recover.",
   },
+  sources: [
+    {
+      stat: "$1.03T - Global Scam Losses",
+      url: "https://www.gasa.org/post/global-state-of-scams-report-2024-1-trillion-stolen-in-12-months-gasa-feedzai",
+    },
+    {
+      stat: "39 sec - Attack Frequency",
+      url: "https://eng.umd.edu/news/story/study-hackers-attack-every-39-seconds",
+    },
+    {
+      stat: "2.7B - Digital Exclusion",
+      url: "https://www.trueambassadors.org.uk/what-are-the-main-barriers-to-digital-inclusion/",
+    },
+    {
+      stat: "1 in 10 - AI Voice Scams",
+      url: "https://www.businesswire.com/news/home/20230501005587/en/Artificial-Intelligence-Voice-Scams-on-the-Rise-with-1-in-4-Adults-Impacted",
+    },
+    {
+      stat: "58% - Senior Online Scams",
+      url: "https://www.ic3.gov/annualreport/reports/2023_ic3elderfraudreport.pdf",
+    },
+    {
+      stat: "49% - Teen Cyberbullying",
+      url: "https://www.comparitech.com/internet-providers/cyberbullying-statistics/",
+    },
+  ],
 };
 
 export default function Challenge() {
+  const [showSources, setShowSources] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowSources(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
   return (
     <section
       className="w-full py-24 md:py-32 bg-white relative overflow-hidden"
@@ -123,13 +168,51 @@ export default function Challenge() {
         </div>
 
         <div className="mt-20 text-center">
-          <div className="bg-gray-50 rounded-xl p-8 md:p-12 max-w-4xl mx-auto">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+          <div className="bg-accent-50 border-2 border-accent-200 rounded-xl p-8 md:p-12 max-w-4xl mx-auto shadow-lg">
+            <h3 className="text-2xl md:text-3xl font-black text-accent-800 mb-6">
               {challengeContent.summary.title}
             </h3>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg md:text-xl font-semibold text-accent-700 leading-relaxed">
               {challengeContent.summary.description}
             </p>
+          </div>
+        </div>
+
+        {/* Sources Dropdown */}
+        <div className="absolute -bottom-8 right-4">
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setShowSources(!showSources)}
+              className="flex items-center gap-1 px-2 py-1 bg-gray-600 text-white text-xs rounded opacity-60 hover:opacity-100 transition-opacity"
+            >
+              Sources
+              <ChevronDown
+                className={`w-3 h-3 transition-transform ${
+                  showSources ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {showSources && (
+              <div className="absolute bottom-full right-0 mb-1 bg-white border border-gray-200 rounded shadow-lg p-2 min-w-[250px]">
+                <div className="space-y-1">
+                  {challengeContent.sources.map((source, index) => (
+                    <a
+                      key={index}
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-2 p-1 hover:bg-gray-50 rounded text-xs group"
+                    >
+                      <span className="font-medium text-gray-700">
+                        {source.stat}
+                      </span>
+                      <ExternalLink className="w-2 h-2 text-gray-400 group-hover:text-gray-600" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
