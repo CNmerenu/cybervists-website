@@ -55,7 +55,7 @@ export default function PrivacyPolicy() {
                 href="mailto:privacy@cybervists.org"
                 className="text-blue-400 hover:text-blue-300"
               >
-                privacy@cybervists.org
+                info@cybervists.org
               </a>
             </p>
           </section>
