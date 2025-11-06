@@ -18,7 +18,7 @@ const impactContent = {
       suffix: "+",
       label: "Volunteer hours dedicated to the community",
     },
-    { value: 5000, suffix: "+", label: "People impacted across our platforms" },
+    { value: 5000, suffix: "+", label: "People reached across our platforms" },
     { value: 100, suffix: "%", label: "Training participant satisfaction" },
     {
       value: 98,
