@@ -108,7 +108,7 @@ export default function About() {
             {/* Right - Image (60%) */}
             <div className="lg:col-span-3 flex justify-center">
               <Image
-                src="/assets/aboutusbg.jpg"
+                src="/assets/aboutusimg.png"
                 alt="About Us Hero"
                 width={600}
                 height={600}
@@ -195,15 +195,18 @@ export default function About() {
                 const mobileOrder = [0, 1, 3, 2];
                 const mobileIndex = mobileOrder[index];
                 const mobileItem = aboutPageContent.values.items[mobileIndex];
-                
+
                 const colors = [
                   "bg-[#0f189a]",
-                  "bg-[#ff796d]", 
+                  "bg-[#ff796d]",
                   "bg-[#8094b2]",
                   "bg-[#007bff]",
                 ];
                 return (
-                  <div key={index} className="bg-white rounded-xl p-4 shadow-lg relative">
+                  <div
+                    key={index}
+                    className="bg-white rounded-xl p-4 shadow-lg relative"
+                  >
                     <div
                       className={`absolute -top-1 left-1/2 transform -translate-x-1/2 w-14 h-3 ${colors[mobileIndex]} rounded-full`}
                     ></div>
@@ -296,10 +299,7 @@ export default function About() {
               </p>
               <div className="space-y-6">
                 {aboutPageContent.approach.pillars.map((pillar, index) => (
-                  <div
-                    key={index}
-                    className="bg-gray-50 rounded-xl p-4 md:p-6"
-                  >
+                  <div key={index} className="bg-gray-50 rounded-xl p-4 md:p-6">
                     <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
                       {pillar.title}
                     </h3>

@@ -28,7 +28,7 @@ export default function Footer() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      
+
       if (response.ok) {
         setStatus({
           show: true,
@@ -37,7 +37,7 @@ export default function Footer() {
         });
         setFormData({ email: "" }); // Clear form
       } else {
-        console.error('Newsletter subscription failed:', response.status);
+        console.error("Newsletter subscription failed:", response.status);
         setStatus({
           show: true,
           error: true,
@@ -46,7 +46,7 @@ export default function Footer() {
         });
       }
     } catch (error) {
-      console.error('Newsletter submission error:', error);
+      console.error("Newsletter submission error:", error);
       setStatus({
         show: true,
         error: true,
@@ -54,7 +54,7 @@ export default function Footer() {
           "There was an issue submitting your email. Please try again later or please send us an email.",
       });
     }
-    
+
     setLoading(false);
     setTimeout(() => {
       // clear Message
@@ -124,7 +124,10 @@ export default function Footer() {
                   target="_blank"
                   className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors"
                 >
-                  <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5 text-white" />
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    className="w-5 h-5 text-white"
+                  />
                 </Link>
                 <Link
                   href="https://www.instagram.com/cybervists?igsh=MTNuN2VzNTg2b2Mwdw%3D%3D"
@@ -234,7 +237,9 @@ export default function Footer() {
           </div>
           <div className="w-full flex flex-col items-center md:items-end mb-6">
             <div className="w-full md:w-1/2 h-full md:pl-5">
-              <h2 className="text-white mb-3 text-center md:text-left">Newsletter Signup</h2>
+              <h2 className="text-white mb-3 text-center md:text-left">
+                Newsletter Signup
+              </h2>
               <form
                 onSubmit={handleSubmit}
                 className="flex flex-col sm:flex-row w-full gap-2 sm:gap-0"
@@ -247,6 +252,7 @@ export default function Footer() {
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <button

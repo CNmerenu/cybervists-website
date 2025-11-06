@@ -87,15 +87,14 @@ export default function Stats() {
   return (
     <section className="w-full py-16 md:py-32 bg-gradient-to-b from-[#ffefe4] to-[#c5c5c5]">
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16">
+        {/* Section Title */}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-4">
+            {impactContent.title}
+          </h2>
+        </div>
         {/* Mobile Layout */}
         <div className="block md:hidden">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-wider leading-tight">
-              <div>HOW WE ARE</div>
-              <div>MAKING A</div>
-              <div>DIFFERENCE</div>
-            </h2>
-          </div>
           <div className="grid grid-cols-2 gap-4">
             {impactContent.stats.map((stat, index) => (
               <div key={index} className="text-center">
@@ -111,20 +110,13 @@ export default function Stats() {
           {/* Left Laptop Image */}
           <div className="flex-shrink-0 relative">
             <Image
-              src="/assets/laptopimage-nobg.svg"
+              src="/assets/laptopimage.svg"
               alt="Laptop Impact"
               width={800}
               height={600}
               sizes="(max-width: 768px) 500px, 800px"
               className="w-[500px] md:w-[800px] h-auto"
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <h2 className="text-3xl md:text-6xl font-bold text-gray-900 uppercase tracking-wider text-center leading-tight">
-                <div>HOW WE ARE</div>
-                <div>MAKING A</div>
-                <div>DIFFERENCE</div>
-              </h2>
-            </div>
           </div>
 
           {/* Right Stats - All Together */}

@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 export default function Programs() {
-
   const programsContent = {
     title: "Our Main Pillars",
     subtitle:
@@ -30,7 +29,10 @@ export default function Programs() {
   };
 
   return (
-    <section id="programs" className="w-full py-16 md:py-24 bg-[#E8E8E8]">
+    <section
+      id="programs"
+      className="w-full py-16 md:py-24 bg-gradient-to-b from-white via-white to-[#ffefe4]/80"
+    >
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-16 flex flex-col items-center justify-center">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6">

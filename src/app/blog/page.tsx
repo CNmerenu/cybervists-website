@@ -68,7 +68,7 @@ export default function BlogPage() {
         setToastMessage("Failed to subscribe. Please try again.");
       }
     } catch (error) {
-      console.error('Newsletter subscription error:', error);
+      console.error("Newsletter subscription error:", error);
       setIsSuccess(false);
       setToastMessage("Failed to subscribe. Please try again.");
     }
@@ -105,12 +105,11 @@ export default function BlogPage() {
       <section className="py-16 md:py-24 px-4 md:px-16">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-6xl font-bold text-gray-900 mb-6">
-            Cybersecurity Insights
+            Digital Diaries
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-            Stay informed with the latest cybersecurity trends, best practices,
-            and community insights to keep yourself and your organization secure
-            in the digital world.
+            Real stories, practical tips, and community insights to help you
+            stay ahead and protect your digital world.
           </p>
           <div className="text-sm text-gray-500">
             {posts.length} {posts.length === 1 ? "article" : "articles"}{" "}
@@ -211,8 +210,8 @@ export default function BlogPage() {
             Stay Updated
           </h2>
           <p className="text-base md:text-lg text-gray-600 mb-8">
-            Subscribe to our newsletter for the latest cybersecurity insights
-            and community updates.
+            Subscribe to our newsletter for the latest digital insights and
+            community updates.
           </p>
           <button
             onClick={() => setShowModal(true)}

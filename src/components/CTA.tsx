@@ -9,15 +9,15 @@ const ctaContent = {
   enabled: true,
   title: "Do you need Support?",
   subtitle:
-    "We know you're busy, and tech can feel like another language. That's why we've made this:",
+    "We know you're busy, and tech can feel like another language. That's why we've made our sessions",
   mediaType: "image", // "image" or "video"
   mediaUrl: "/assets/cybersecurity_action.png",
   videoUrl: "https://youtube.com/shorts/0bX7VOyo3Ps?si=409pMW0aL6XvxYl0", // for video type
   infoItems: [
-    "🎮 Gamified — Learning that feels like fun.",
+    "🎮 Gamified — Learning that is actually fun.",
     "🎯 Tailored — Designed for the audience.",
-    "💪 Empowering — You'll leave with skills, not just information",
-    "👨👩👧 Together — A community digitally supporting each other",
+    "💪 Empowering — You'll leave with skills, not just information.",
+    "👨‍👩‍👧‍👦 Together — A community digitally supporting each other",
   ],
   buttonText: "Reach Out Now",
   buttonLink: "mailto:info@cybervists.org",
