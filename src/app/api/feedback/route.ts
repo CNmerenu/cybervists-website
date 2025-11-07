@@ -26,11 +26,11 @@ export async function POST(request: NextRequest) {
       feedback,
       futureEngagement,
       rating,
-      honeypot,
+      website,
     } = body;
     
     // Honeypot check - if filled, it's likely a bot
-    if (honeypot) {
+    if (website) {
       return NextResponse.json({ success: true }); // Fake success response
     }
 

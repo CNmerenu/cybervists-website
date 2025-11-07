@@ -18,7 +18,7 @@ interface CommunitySignupData {
   preferredTimes: string[];
   comfortableWithDiverse: string;
   consent: boolean;
-  honeypot?: string;
+  companyName?: string;
 }
 
 // Input validation and sanitization
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Honeypot check - if filled, it's likely a bot
-    if (body.honeypot) {
+    if (body.companyName) {
       return NextResponse.json({ success: true }); // Fake success response
     }
     

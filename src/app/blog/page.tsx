@@ -11,7 +11,7 @@ import { getAllPosts, getFeaturedPosts } from "@/lib/blogData";
 export default function BlogPage() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
-  const [honeypot, setHoneypot] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -52,7 +52,7 @@ export default function BlogPage() {
     if (!email) return;
     
     // Honeypot check - if filled, it's likely a bot
-    if (honeypot) {
+    if (firstName) {
       return; // Silently ignore bot submissions
     }
     
@@ -62,14 +62,14 @@ export default function BlogPage() {
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, honeypot }),
+        body: JSON.stringify({ email, firstName }),
       });
 
       if (response.ok) {
         setIsSuccess(true);
         setToastMessage("Successfully subscribed to our newsletter!");
         setEmail("");
-        setHoneypot("");
+        setFirstName("");
         setShowModal(false);
       } else {
         setIsSuccess(false);
@@ -266,15 +266,17 @@ export default function BlogPage() {
               </div>
               
               {/* Honeypot field - hidden from users */}
-              <input
-                type="text"
-                name="website"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                style={{ display: 'none' }}
-                tabIndex={-1}
-                autoComplete="off"
-              />
+              <div style={{position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden'}}>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  placeholder="First Name"
+                />
+              </div>
 
               <div className="flex gap-3 pt-4">
                 <button

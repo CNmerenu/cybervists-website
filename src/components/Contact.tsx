@@ -9,7 +9,7 @@ export default function Contact() {
     name: "",
     email: "",
     message: "",
-    honeypot: "",
+    organization: "",
   });
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +20,7 @@ export default function Contact() {
     e.preventDefault();
     
     // Honeypot check - if filled, it's likely a bot
-    if (formData.honeypot) {
+    if (formData.organization) {
       return; // Silently ignore bot submissions
     }
     
@@ -36,7 +36,7 @@ export default function Contact() {
       if (response.ok) {
         setModalType("success");
         setModalMessage("Thank you! Your message has been sent successfully.");
-        setFormData({ name: "", email: "", message: "", honeypot: "" });
+        setFormData({ name: "", email: "", message: "", organization: "" });
       } else {
         setModalType("error");
         setModalMessage("Failed to send message. Please try again.");
@@ -155,15 +155,17 @@ export default function Contact() {
               </div>
               
               {/* Honeypot field - hidden from users */}
-              <input
-                type="text"
-                name="website"
-                value={formData.honeypot}
-                onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
-                style={{ display: 'none' }}
-                tabIndex={-1}
-                autoComplete="off"
-              />
+              <div style={{position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden'}}>
+                <input
+                  type="text"
+                  name="organization"
+                  value={formData.organization}
+                  onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  placeholder="Organization"
+                />
+              </div>
               <button
                 type="submit"
                 disabled={loading}

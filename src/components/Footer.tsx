@@ -10,7 +10,7 @@ import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 export default function Footer() {
   const [formData, setFormData] = useState({
     email: "",
-    honeypot: "",
+    phoneNumber: "",
   });
   const [status, setStatus] = useState({
     show: false,
@@ -23,7 +23,7 @@ export default function Footer() {
     e.preventDefault();
     
     // Honeypot check - if filled, it's likely a bot
-    if (formData.honeypot) {
+    if (formData.phoneNumber) {
       return; // Silently ignore bot submissions
     }
     
@@ -42,7 +42,7 @@ export default function Footer() {
           error: false,
           message: "Submitted. Great! We'll get back to you soon.",
         });
-        setFormData({ email: "", honeypot: "" }); // Clear form
+        setFormData({ email: "", phoneNumber: "" }); // Clear form
       } else {
         console.error("Newsletter subscription failed:", response.status);
         setStatus({
@@ -262,15 +262,17 @@ export default function Footer() {
                     required
                   />
                   {/* Honeypot field - hidden from users */}
-                  <input
-                    type="text"
-                    name="honeypot"
-                    value={formData.honeypot}
-                    onChange={handleChange}
-                    style={{ display: 'none' }}
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
+                  <div style={{position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden'}}>
+                    <input
+                      type="text"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      placeholder="Phone Number"
+                    />
+                  </div>
                 </div>
                 <button
                   type="submit"

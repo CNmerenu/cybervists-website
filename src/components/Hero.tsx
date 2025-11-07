@@ -24,7 +24,7 @@ export default function Hero() {
     preferredTimes: [] as string[],
     comfortableWithDiverse: "",
     consent: false,
-    honeypot: "",
+    companyName: "",
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -33,7 +33,7 @@ export default function Hero() {
     e.preventDefault();
     
     // Honeypot check - if filled, it's likely a bot
-    if (formData.honeypot) {
+    if (formData.companyName) {
       return; // Silently ignore bot submissions
     }
     
@@ -65,7 +65,7 @@ export default function Hero() {
           preferredTimes: [],
           comfortableWithDiverse: "",
           consent: false,
-          honeypot: "",
+          companyName: "",
         });
       }
     } catch (error) {
@@ -516,15 +516,17 @@ export default function Hero() {
                 </div>
 
                 {/* Honeypot field - hidden from users */}
-                <input
-                  type="text"
-                  name="website"
-                  value={formData.honeypot}
-                  onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
-                  style={{ display: 'none' }}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
+                <div style={{position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden'}}>
+                  <input
+                    type="text"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    placeholder="Company Name"
+                  />
+                </div>
                 
                 <button
                   type="submit"
