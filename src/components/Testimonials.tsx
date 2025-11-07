@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 export default function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [formStartTime, setFormStartTime] = useState<number>(0);
   const [isPaused, setIsPaused] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
@@ -24,6 +25,7 @@ export default function Testimonials() {
     futureEngagement: string;
     rating: number;
     website: string;
+    timestamp: number;
   }>({
     name: "",
     role: "",
@@ -34,6 +36,7 @@ export default function Testimonials() {
     futureEngagement: "",
     rating: 5,
     website: "",
+    timestamp: 0,
   });
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
@@ -42,6 +45,12 @@ export default function Testimonials() {
     // Honeypot check - if filled, it's likely a bot
     if (formData.website) {
       return; // Silently ignore bot submissions
+    }
+    
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    const now = Date.now();
+    if (now - formStartTime < 6000) {
+      return; // Silently ignore submissions under 6 seconds
     }
     
     setFeedbackLoading(true);
@@ -68,8 +77,10 @@ export default function Testimonials() {
           futureEngagement: "",
           rating: 5,
           website: "",
+          timestamp: 0,
         });
         setShowModal(false);
+        setFormStartTime(0);
       } else {
         const errorData = await response.json().catch(() => ({}));
         console.error(
@@ -331,7 +342,12 @@ export default function Testimonials() {
         {/* Feedback Button */}
         <div className="text-center mt-12">
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+      const now = Date.now();
+      setFormStartTime(now);
+      setFormData({ ...formData, timestamp: now });
+      setShowModal(true);
+    }}
             className="px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
           >
             Please share your feedback

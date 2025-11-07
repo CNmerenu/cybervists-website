@@ -8,9 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
+  const [formStartTime, setFormStartTime] = useState<number>(Date.now());
   const [formData, setFormData] = useState({
     email: "",
     phoneNumber: "",
+    timestamp: Date.now(),
   });
   const [status, setStatus] = useState({
     show: false,
@@ -25,6 +27,12 @@ export default function Footer() {
     // Honeypot check - if filled, it's likely a bot
     if (formData.phoneNumber) {
       return; // Silently ignore bot submissions
+    }
+    
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    const now = Date.now();
+    if (now - formStartTime < 3000) {
+      return; // Silently ignore submissions under 3 seconds
     }
     
     setLoading(true);
@@ -42,7 +50,9 @@ export default function Footer() {
           error: false,
           message: "Submitted. Great! We'll get back to you soon.",
         });
-        setFormData({ email: "", phoneNumber: "" }); // Clear form
+        const newTimestamp = Date.now();
+        setFormData({ email: "", phoneNumber: "", timestamp: newTimestamp }); // Clear form
+        setFormStartTime(newTimestamp);
       } else {
         console.error("Newsletter subscription failed:", response.status);
         setStatus({

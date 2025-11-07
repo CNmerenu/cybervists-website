@@ -12,6 +12,7 @@ export default function BlogPage() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [formStartTime, setFormStartTime] = useState<number>(0);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -56,13 +57,19 @@ export default function BlogPage() {
       return; // Silently ignore bot submissions
     }
     
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    const now = Date.now();
+    if (now - formStartTime < 3000) {
+      return; // Silently ignore submissions under 3 seconds
+    }
+    
     setSubmitLoading(true);
 
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName }),
+        body: JSON.stringify({ email, firstName, timestamp: formStartTime }),
       });
 
       if (response.ok) {
@@ -70,6 +77,7 @@ export default function BlogPage() {
         setToastMessage("Successfully subscribed to our newsletter!");
         setEmail("");
         setFirstName("");
+        setFormStartTime(0);
         setShowModal(false);
       } else {
         setIsSuccess(false);
@@ -222,7 +230,11 @@ export default function BlogPage() {
             community updates.
           </p>
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+      const now = Date.now();
+      setFormStartTime(now);
+      setShowModal(true);
+    }}
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
           >
             Subscribe Now

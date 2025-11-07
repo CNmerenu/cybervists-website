@@ -27,10 +27,16 @@ export async function POST(request: NextRequest) {
       futureEngagement,
       rating,
       website,
+      timestamp,
     } = body;
     
     // Honeypot check - if filled, it's likely a bot
     if (website) {
+      return NextResponse.json({ success: true }); // Fake success response
+    }
+    
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    if (timestamp && Date.now() - timestamp < 6000) {
       return NextResponse.json({ success: true }); // Fake success response
     }
 

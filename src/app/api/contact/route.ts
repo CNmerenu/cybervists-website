@@ -22,10 +22,15 @@ function validateEmail(email: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message, organization } = body;
+    const { name, email, message, organization, timestamp } = body;
     
     // Honeypot check - if filled, it's likely a bot
     if (organization) {
+      return NextResponse.json({ success: true }); // Fake success response
+    }
+    
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    if (timestamp && Date.now() - timestamp < 4000) {
       return NextResponse.json({ success: true }); // Fake success response
     }
 

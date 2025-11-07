@@ -19,6 +19,7 @@ interface CommunitySignupData {
   comfortableWithDiverse: string;
   consent: boolean;
   companyName?: string;
+  timestamp?: number;
 }
 
 // Input validation and sanitization
@@ -113,6 +114,11 @@ export async function POST(request: NextRequest) {
     
     // Honeypot check - if filled, it's likely a bot
     if (body.companyName) {
+      return NextResponse.json({ success: true }); // Fake success response
+    }
+    
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    if (body.timestamp && Date.now() - body.timestamp < 5000) {
       return NextResponse.json({ success: true }); // Fake success response
     }
     

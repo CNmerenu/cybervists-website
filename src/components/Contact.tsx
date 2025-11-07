@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Contact() {
+  const [formStartTime] = useState<number>(Date.now());
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
     organization: "",
+    timestamp: Date.now(),
   });
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +26,12 @@ export default function Contact() {
       return; // Silently ignore bot submissions
     }
     
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    const now = Date.now();
+    if (now - formStartTime < 4000) {
+      return; // Silently ignore submissions under 4 seconds
+    }
+    
     setLoading(true);
 
     try {
@@ -36,7 +44,7 @@ export default function Contact() {
       if (response.ok) {
         setModalType("success");
         setModalMessage("Thank you! Your message has been sent successfully.");
-        setFormData({ name: "", email: "", message: "", organization: "" });
+        setFormData({ name: "", email: "", message: "", organization: "", timestamp: Date.now() });
       } else {
         setModalType("error");
         setModalMessage("Failed to send message. Please try again.");

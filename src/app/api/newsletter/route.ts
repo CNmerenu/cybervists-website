@@ -4,10 +4,15 @@ import nodemailer from "nodemailer";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, phoneNumber, firstName } = body;
+    const { email, phoneNumber, firstName, timestamp } = body;
     
     // Honeypot check - if filled, it's likely a bot
     if (phoneNumber || firstName) {
+      return NextResponse.json({ message: "Submitted successfully" }, { status: 200 }); // Fake success response
+    }
+    
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    if (timestamp && Date.now() - timestamp < 3000) {
       return NextResponse.json({ message: "Submitted successfully" }, { status: 200 }); // Fake success response
     }
 

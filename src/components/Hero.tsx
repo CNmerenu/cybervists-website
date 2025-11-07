@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function Hero() {
   const [showModal, setShowModal] = useState(false);
+  const [formStartTime, setFormStartTime] = useState<number>(0);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -25,6 +26,7 @@ export default function Hero() {
     comfortableWithDiverse: "",
     consent: false,
     companyName: "",
+    timestamp: 0,
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -35,6 +37,12 @@ export default function Hero() {
     // Honeypot check - if filled, it's likely a bot
     if (formData.companyName) {
       return; // Silently ignore bot submissions
+    }
+    
+    // Timestamp check - if submitted too quickly, it's likely a bot
+    const now = Date.now();
+    if (now - formStartTime < 5000) {
+      return; // Silently ignore submissions under 5 seconds
     }
     
     setLoading(true);
@@ -66,7 +74,9 @@ export default function Hero() {
           comfortableWithDiverse: "",
           consent: false,
           companyName: "",
+          timestamp: 0,
         });
+        setFormStartTime(0);
       }
     } catch (error) {
       console.error('Signup error:', error);
@@ -116,7 +126,12 @@ export default function Hero() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center md:justify-start w-full">
                   <button
-                    onClick={() => setShowModal(true)}
+                    onClick={() => {
+      const now = Date.now();
+      setFormStartTime(now);
+      setFormData({ ...formData, timestamp: now });
+      setShowModal(true);
+    }}
                     className="px-6 py-3 md:px-8 md:py-4 bg-primary-600 text-white text-sm md:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
                   >
                     Join Our Community
