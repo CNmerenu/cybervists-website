@@ -41,18 +41,18 @@ export default function Testimonials() {
 
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Honeypot check - if filled, it's likely a bot
     if (formData.website) {
       return; // Silently ignore bot submissions
     }
-    
+
     // Timestamp check - if submitted too quickly, it's likely a bot
     const now = Date.now();
     if (now - formStartTime < 6000) {
       return; // Silently ignore submissions under 6 seconds
     }
-    
+
     setFeedbackLoading(true);
 
     try {
@@ -309,7 +309,7 @@ export default function Testimonials() {
                               />
                             ))}
                           </div>
-                          <div>
+                          <div id="feedback">
                             <h4 className="text-sm md:text-base font-semibold text-gray-900">
                               {testimonial.name}
                             </h4>
@@ -343,11 +343,11 @@ export default function Testimonials() {
         <div className="text-center mt-12">
           <button
             onClick={() => {
-      const now = Date.now();
-      setFormStartTime(now);
-      setFormData({ ...formData, timestamp: now });
-      setShowModal(true);
-    }}
+              const now = Date.now();
+              setFormStartTime(now);
+              setFormData({ ...formData, timestamp: now });
+              setShowModal(true);
+            }}
             className="px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
           >
             Please share your feedback
@@ -529,12 +529,23 @@ export default function Testimonials() {
                 </div>
 
                 {/* Honeypot field - hidden from users */}
-                <div style={{position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden'}}>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    top: "auto",
+                    width: "1px",
+                    height: "1px",
+                    overflow: "hidden",
+                  }}
+                >
                   <input
                     type="text"
                     name="website"
                     value={formData.website}
-                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, website: e.target.value })
+                    }
                     tabIndex={-1}
                     autoComplete="off"
                     placeholder="Website URL"
