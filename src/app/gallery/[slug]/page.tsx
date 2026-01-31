@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ArrowLeft, HeartPulse, MapPin, Users } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import WorkshopGalleryClient from "@/components/WorkshopGalleryClient";
+import WorkshopGalleryClient from "@/src/components/WorkshopGalleryClient";
 import { getWorkshopBySlug, Workshop } from "@/lib/galleryData";
 
 export default function WorkshopGallery() {
@@ -24,7 +24,7 @@ export default function WorkshopGallery() {
           setNotFound(true);
         }
       } catch (error) {
-        console.error('Error fetching workshop:', error);
+        console.error("Error fetching workshop:", error);
         setNotFound(true);
       } finally {
         setLoading(false);

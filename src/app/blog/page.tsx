@@ -4,7 +4,7 @@ import { Calendar, User, ArrowRight, X, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import BlogCard from "@/components/BlogCard";
+import BlogCard from "@/src/components/BlogCard";
 import { Post } from "@/types";
 import { getAllPosts, getFeaturedPosts } from "@/lib/blogData";
 
@@ -51,18 +51,18 @@ export default function BlogPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    
+
     // Honeypot check - if filled, it's likely a bot
     if (firstName) {
       return; // Silently ignore bot submissions
     }
-    
+
     // Timestamp check - if submitted too quickly, it's likely a bot
     const now = Date.now();
     if (now - formStartTime < 3000) {
       return; // Silently ignore submissions under 3 seconds
     }
-    
+
     setSubmitLoading(true);
 
     try {
@@ -97,7 +97,7 @@ export default function BlogPage() {
     const currentLength = displayedPosts.length;
     const nextPosts = posts.slice(
       currentLength,
-      currentLength + POSTS_PER_PAGE
+      currentLength + POSTS_PER_PAGE,
     );
     const newDisplayedPosts = [...displayedPosts, ...nextPosts];
     setDisplayedPosts(newDisplayedPosts);
@@ -172,7 +172,7 @@ export default function BlogPage() {
                             year: "numeric",
                             month: "long",
                             day: "numeric",
-                          }
+                          },
                         )}
                       </div>
                       <div className="flex items-center gap-2">
@@ -231,10 +231,10 @@ export default function BlogPage() {
           </p>
           <button
             onClick={() => {
-      const now = Date.now();
-      setFormStartTime(now);
-      setShowModal(true);
-    }}
+              const now = Date.now();
+              setFormStartTime(now);
+              setShowModal(true);
+            }}
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
           >
             Subscribe Now
@@ -276,9 +276,18 @@ export default function BlogPage() {
                   />
                 </div>
               </div>
-              
+
               {/* Honeypot field - hidden from users */}
-              <div style={{position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden'}}>
+              <div
+                style={{
+                  position: "absolute",
+                  left: "-9999px",
+                  top: "auto",
+                  width: "1px",
+                  height: "1px",
+                  overflow: "hidden",
+                }}
+              >
                 <input
                   type="text"
                   name="firstName"

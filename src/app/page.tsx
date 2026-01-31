@@ -1,13 +1,13 @@
-import Hero from "@/components/Hero";
-import Challenge from "@/components/Challenge";
-import Services from "@/components/Services";
-import Stats from "@/components/Stats";
-import CTA from "@/components/CTA";
-import Partners from "@/components/Partners";
-import Programs from "@/components/Programs";
-import Testimonials from "@/components/Testimonials";
-import CommunityVideo from "@/components/CommunityVideo";
-import Contact from "@/components/Contact";
+import Hero from "@/src/components/Hero";
+import Challenge from "@/src/components/Challenge";
+import Services from "@/src/components/Services";
+import Stats from "@/src/components/Stats";
+import CTA from "@/src/components/CTA";
+import Partners from "@/src/components/Partners";
+import Programs from "@/src/components/Programs";
+import Testimonials from "@/src/components/Testimonials";
+import CommunityVideo from "@/src/components/CommunityVideo";
+import Contact from "@/src/components/Contact";
 
 export default async function Home() {
   return (

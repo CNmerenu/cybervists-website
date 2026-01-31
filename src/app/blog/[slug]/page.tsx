@@ -1,8 +1,8 @@
 import { Calendar, User, ArrowLeft, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import BlogPostClient from "@/components/BlogPostClient";
-import { getPostBySlug } from "@/lib/blogData";
+import BlogPostClient from "@/src/components/BlogPostClient";
+import { getPostBySlug } from "@/src/lib/blogData";
 import { notFound } from "next/navigation";
 
 interface Params {
@@ -37,7 +37,7 @@ export default async function BlogPost({ params }: Params) {
             <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               {post.title}
             </h1>
-            
+
             <div className="flex items-center gap-6 text-sm text-gray-600 mb-8">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
@@ -73,81 +73,87 @@ export default async function BlogPost({ params }: Params) {
           <div className="prose prose-lg max-w-none">
             <div className="text-gray-700 leading-relaxed space-y-6">
               {(() => {
-                const paragraphs = post.content?.split('\n\n') || [];
+                const paragraphs = post.content?.split("\n\n") || [];
                 const totalParagraphs = paragraphs.length;
                 const firstImagePosition = Math.floor(totalParagraphs * 0.3);
                 const secondImagePosition = Math.floor(totalParagraphs * 0.7);
-                
+
                 return paragraphs.map((paragraph, index) => {
-                
-                if (paragraph.startsWith('## ')) {
+                  if (paragraph.startsWith("## ")) {
+                    return (
+                      <h2
+                        key={index}
+                        className="text-2xl font-bold text-gray-900 mt-8 mb-4"
+                      >
+                        {paragraph.replace("## ", "")}
+                      </h2>
+                    );
+                  }
+                  if (paragraph.startsWith("# ")) {
+                    return (
+                      <h1
+                        key={index}
+                        className="text-3xl font-bold text-gray-900 mt-8 mb-4"
+                      >
+                        {paragraph.replace("# ", "")}
+                      </h1>
+                    );
+                  }
+
                   return (
-                    <h2 key={index} className="text-2xl font-bold text-gray-900 mt-8 mb-4">
-                      {paragraph.replace('## ', '')}
-                    </h2>
-                  );
-                }
-                if (paragraph.startsWith('# ')) {
-                  return (
-                    <h1 key={index} className="text-3xl font-bold text-gray-900 mt-8 mb-4">
-                      {paragraph.replace('# ', '')}
-                    </h1>
-                  );
-                }
-                
-                return (
-                  <div key={index}>
-                    <p className="text-base leading-relaxed">
-                      {paragraph}
-                    </p>
-                    
-                    {/* Embed first image after 30% of content */}
-                    {index === firstImagePosition && post.contentImages?.[0]?.asset?.url && (
-                      <div className="my-8">
-                        <Image
-                          src={post.contentImages[0].asset.url}
-                          alt={post.contentImages[0].alt || 'Content image'}
-                          width={400}
-                          height={250}
-                          className="w-2/3 mx-auto rounded-lg shadow-md"
-                        />
-                        {post.contentImages[0].caption && (
-                          <p className="text-sm text-gray-500 mt-2 italic text-center">
-                            {post.contentImages[0].caption}
-                          </p>
+                    <div key={index}>
+                      <p className="text-base leading-relaxed">{paragraph}</p>
+
+                      {/* Embed first image after 30% of content */}
+                      {index === firstImagePosition &&
+                        post.contentImages?.[0]?.asset?.url && (
+                          <div className="my-8">
+                            <Image
+                              src={post.contentImages[0].asset.url}
+                              alt={post.contentImages[0].alt || "Content image"}
+                              width={400}
+                              height={250}
+                              className="w-2/3 mx-auto rounded-lg shadow-md"
+                            />
+                            {post.contentImages[0].caption && (
+                              <p className="text-sm text-gray-500 mt-2 italic text-center">
+                                {post.contentImages[0].caption}
+                              </p>
+                            )}
+                          </div>
                         )}
-                      </div>
-                    )}
-                    
-                    {/* Embed second image after 70% of content */}
-                    {index === secondImagePosition && post.contentImages?.[1]?.asset?.url && (
-                      <div className="my-8">
-                        <Image
-                          src={post.contentImages[1].asset.url}
-                          alt={post.contentImages[1].alt || 'Content image'}
-                          width={400}
-                          height={250}
-                          className="w-2/3 mx-auto rounded-lg shadow-md"
-                        />
-                        {post.contentImages[1].caption && (
-                          <p className="text-sm text-gray-500 mt-2 italic text-center">
-                            {post.contentImages[1].caption}
-                          </p>
+
+                      {/* Embed second image after 70% of content */}
+                      {index === secondImagePosition &&
+                        post.contentImages?.[1]?.asset?.url && (
+                          <div className="my-8">
+                            <Image
+                              src={post.contentImages[1].asset.url}
+                              alt={post.contentImages[1].alt || "Content image"}
+                              width={400}
+                              height={250}
+                              className="w-2/3 mx-auto rounded-lg shadow-md"
+                            />
+                            {post.contentImages[1].caption && (
+                              <p className="text-sm text-gray-500 mt-2 italic text-center">
+                                {post.contentImages[1].caption}
+                              </p>
+                            )}
+                          </div>
                         )}
-                      </div>
-                    )}
-                  </div>
-                );
+                    </div>
+                  );
                 });
-              })()
-            }
+              })()}
             </div>
           </div>
 
           {/* References */}
           {post.references && post.references.length > 0 && (
             <div className="mt-12 pt-8 border-t border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">References</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                References
+              </h3>
               <ul className="space-y-2">
                 {post.references.map((ref, index) => (
                   <li key={index}>
