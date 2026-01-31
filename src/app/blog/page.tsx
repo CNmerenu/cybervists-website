@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import BlogCard from "@/src/components/BlogCard";
 import { Post } from "@/types";
-import { getAllPosts, getFeaturedPosts } from "@/lib/blogData";
+import { getAllPosts, getFeaturedPosts } from "@/src/lib/blogData";
 
 export default function BlogPage() {
   const [showModal, setShowModal] = useState(false);

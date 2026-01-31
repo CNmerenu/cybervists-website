@@ -10,6 +10,7 @@ export const postType = defineType({
     defineField({
       name: 'title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -17,6 +18,14 @@ export const postType = defineType({
       options: {
         source: 'title',
       },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'excerpt',
+      type: 'text',
+      title: 'Excerpt',
+      description: 'Short description of the post',
+      rows: 3,
     }),
     defineField({
       name: 'author',
@@ -38,17 +47,78 @@ export const postType = defineType({
       ]
     }),
     defineField({
-      name: 'categories',
+      name: 'contentImages',
       type: 'array',
-      of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
+      title: 'Content Images',
+      description: 'Images to be embedded within the content',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+            })
+          ]
+        })
+      ],
     }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'body',
       type: 'blockContent',
+      title: 'Body (Rich Text)',
+    }),
+    defineField({
+      name: 'content',
+      type: 'text',
+      title: 'Content (Plain Text)',
+      description: 'Plain text content for simple rendering',
+      rows: 20,
+    }),
+    defineField({
+      name: 'references',
+      type: 'array',
+      title: 'References',
+      description: 'External references and sources',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'title',
+              type: 'string',
+              title: 'Reference Title',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'url',
+              type: 'url',
+              title: 'URL',
+              validation: (Rule) => Rule.required().uri({
+                scheme: ['http', 'https']
+              }),
+            })
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'url',
+            },
+          },
+        })
+      ],
     }),
   ],
   preview: {

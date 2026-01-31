@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { MapPin, Users, Eye, HeartPulse } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { getWorkshopPreview, Workshop } from "@/lib/galleryData";
+import { getWorkshopPreview, Workshop } from "@/src/lib/galleryData";
 
 export default function Gallery() {
   const [workshops, setWorkshops] = useState<Omit<Workshop, "images">[]>([]);
@@ -13,7 +13,7 @@ export default function Gallery() {
   useEffect(() => {
     const fetchWorkshops = async () => {
       try {
-        const data = getWorkshopPreview();
+        const data = await getWorkshopPreview();
         setWorkshops(data);
       } catch (error) {
         console.error("Error fetching workshops:", error);
@@ -60,7 +60,7 @@ export default function Gallery() {
           <div className="space-y-16">
             {workshops.map((workshop) => (
               <div
-                key={workshop.id}
+                key={workshop._id}
                 className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
               >
                 {/* Workshop Header */}
@@ -95,7 +95,7 @@ export default function Gallery() {
                 {/* Preview Images */}
                 <div className="p-6 md:p-8">
                   <div className="grid grid-cols-2 gap-4 mb-6">
-                    {workshop.previewImages.map((imageUrl, index) => (
+                    {workshop.previewImages?.map((imageUrl: string, index: number) => (
                       <div
                         key={index}
                         className="relative overflow-hidden rounded-lg"

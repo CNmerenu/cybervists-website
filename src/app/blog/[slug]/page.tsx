@@ -4,6 +4,7 @@ import Link from "next/link";
 import BlogPostClient from "@/src/components/BlogPostClient";
 import { getPostBySlug } from "@/src/lib/blogData";
 import { notFound } from "next/navigation";
+import { Reference } from "@/src/types";
 
 interface Params {
   params: Promise<{ slug: string }>;
@@ -78,7 +79,7 @@ export default async function BlogPost({ params }: Params) {
                 const firstImagePosition = Math.floor(totalParagraphs * 0.3);
                 const secondImagePosition = Math.floor(totalParagraphs * 0.7);
 
-                return paragraphs.map((paragraph, index) => {
+                return paragraphs.map((paragraph: string, index: number) => {
                   if (paragraph.startsWith("## ")) {
                     return (
                       <h2
@@ -155,7 +156,7 @@ export default async function BlogPost({ params }: Params) {
                 References
               </h3>
               <ul className="space-y-2">
-                {post.references.map((ref, index) => (
+                {post.references.map((ref: Reference, index: number) => (
                   <li key={index}>
                     <a
                       href={ref.url}

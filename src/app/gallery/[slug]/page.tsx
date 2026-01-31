@@ -5,7 +5,7 @@ import { ArrowLeft, HeartPulse, MapPin, Users } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import WorkshopGalleryClient from "@/src/components/WorkshopGalleryClient";
-import { getWorkshopBySlug, Workshop } from "@/lib/galleryData";
+import { getWorkshopBySlug, Workshop } from "@/src/lib/galleryData";
 
 export default function WorkshopGallery() {
   const params = useParams();
@@ -17,7 +17,7 @@ export default function WorkshopGallery() {
   useEffect(() => {
     const fetchWorkshop = async () => {
       try {
-        const data = getWorkshopBySlug(slug);
+        const data = await getWorkshopBySlug(slug);
         if (data) {
           setWorkshop(data);
         } else {

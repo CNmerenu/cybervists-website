@@ -3,7 +3,7 @@
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { WorkshopImage } from "@/lib/galleryData";
+import { WorkshopImage } from "@/src/lib/galleryData";
 
 interface WorkshopGalleryClientProps {
   images: WorkshopImage[];
@@ -15,7 +15,7 @@ export default function WorkshopGalleryClient({
   workshopTitle,
 }: WorkshopGalleryClientProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
-    null
+    null,
   );
 
   const openModal = (index: number) => {
@@ -29,7 +29,7 @@ export default function WorkshopGalleryClient({
   const goToPrevious = () => {
     if (selectedImageIndex !== null) {
       setSelectedImageIndex(
-        selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1
+        selectedImageIndex === 0 ? images.length - 1 : selectedImageIndex - 1,
       );
     }
   };
@@ -37,7 +37,7 @@ export default function WorkshopGalleryClient({
   const goToNext = () => {
     if (selectedImageIndex !== null) {
       setSelectedImageIndex(
-        selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1
+        selectedImageIndex === images.length - 1 ? 0 : selectedImageIndex + 1,
       );
     }
   };
