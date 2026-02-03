@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import { groq } from "next-sanity";
 
 // Blog Post Queries
 export const allPostsQuery = groq`
@@ -14,7 +14,7 @@ export const allPostsQuery = groq`
       alt
     }
   }
-`
+`;
 
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
@@ -24,23 +24,17 @@ export const postBySlugQuery = groq`
     excerpt,
     publishedAt,
     body,
-    content,
     "author": author->{name, image},
     mainImage{
       asset->{_id, url},
       alt
-    },
-    contentImages[]{
-      asset->{url},
-      alt,
-      caption
     },
     references[]{
       title,
       url
     }
   }
-`
+`;
 
 export const featuredPostsQuery = groq`
   *[_type == "post"] | order(publishedAt desc) [0...$limit] {
@@ -55,7 +49,7 @@ export const featuredPostsQuery = groq`
       alt
     }
   }
-`
+`;
 
 // Workshop Queries
 export const allWorkshopsQuery = groq`
@@ -70,7 +64,7 @@ export const allWorkshopsQuery = groq`
     "previewImages": previewImages[].asset->url,
     "totalImages": count(images)
   }
-`
+`;
 
 export const workshopBySlugQuery = groq`
   *[_type == "workshop" && slug.current == $slug][0] {
@@ -87,7 +81,24 @@ export const workshopBySlugQuery = groq`
       caption
     }
   }
-`
+`;
+
+export const workshopByIdQuery = groq`
+  *[_type == "workshop" && _id == $_id][0] {
+    _id,
+    title,
+    slug,
+    description,
+    location,
+    participants,
+    partners,
+    "images": images[]{
+      "url": asset->url,
+      alt,
+      caption
+    }
+  }
+`;
 
 export const workshopPreviewQuery = groq`
   *[_type == "workshop"] | order(_createdAt desc) {
@@ -101,4 +112,4 @@ export const workshopPreviewQuery = groq`
     "previewImages": previewImages[].asset->url,
     "totalImages": count(images)
   }
-`
+`;

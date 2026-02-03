@@ -5,11 +5,12 @@ import { ArrowLeft, HeartPulse, MapPin, Users } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import WorkshopGalleryClient from "@/src/components/WorkshopGalleryClient";
-import { getWorkshopBySlug, Workshop } from "@/src/lib/galleryData";
+import { Workshop } from "@/src/lib/galleryData";
+import { getWorkshopById } from "@/src/sanity/lib/fetch";
 
 export default function WorkshopGallery() {
   const params = useParams();
-  const slug = params.slug as string;
+  const _id = params._id as string;
   const [workshop, setWorkshop] = useState<Workshop | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -17,7 +18,7 @@ export default function WorkshopGallery() {
   useEffect(() => {
     const fetchWorkshop = async () => {
       try {
-        const data = await getWorkshopBySlug(slug);
+        const data = await getWorkshopById(_id);
         if (data) {
           setWorkshop(data);
         } else {
@@ -31,10 +32,10 @@ export default function WorkshopGallery() {
       }
     };
 
-    if (slug) {
+    if (_id) {
       fetchWorkshop();
     }
-  }, [slug]);
+  }, [_id]);
 
   if (loading) {
     return (

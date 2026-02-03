@@ -1,4 +1,4 @@
-import { Post } from "@/types";
+import { Post } from "@/src/types";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -33,13 +33,15 @@ export default function BlogCard({ post }: { post: Post }) {
               {(() => {
                 try {
                   const date = new Date(post.publishedAt);
-                  return isNaN(date.getTime()) ? 'Date unavailable' : date.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  });
+                  return isNaN(date.getTime())
+                    ? "Date unavailable"
+                    : date.toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      });
                 } catch {
-                  return 'Date unavailable';
+                  return "Date unavailable";
                 }
               })()}
             </time>

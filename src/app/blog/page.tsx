@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import BlogCard from "@/src/components/BlogCard";
-import { Post } from "@/types";
+import { Post } from "@/src/types";
 import { getAllPosts, getFeaturedPosts } from "@/src/lib/blogData";
 
 export default function BlogPage() {

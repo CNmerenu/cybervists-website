@@ -47,30 +47,6 @@ export const postType = defineType({
       ]
     }),
     defineField({
-      name: 'contentImages',
-      type: 'array',
-      title: 'Content Images',
-      description: 'Images to be embedded within the content',
-      of: [
-        defineArrayMember({
-          type: 'image',
-          fields: [
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alternative text',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-            })
-          ]
-        })
-      ],
-    }),
-    defineField({
       name: 'publishedAt',
       type: 'datetime',
       validation: (Rule) => Rule.required(),
@@ -78,14 +54,8 @@ export const postType = defineType({
     defineField({
       name: 'body',
       type: 'blockContent',
-      title: 'Body (Rich Text)',
-    }),
-    defineField({
-      name: 'content',
-      type: 'text',
-      title: 'Content (Plain Text)',
-      description: 'Plain text content for simple rendering',
-      rows: 20,
+      title: 'Body',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'references',

@@ -95,20 +95,22 @@ export default function Gallery() {
                 {/* Preview Images */}
                 <div className="p-6 md:p-8">
                   <div className="grid grid-cols-2 gap-4 mb-6">
-                    {workshop.previewImages?.map((imageUrl: string, index: number) => (
-                      <div
-                        key={index}
-                        className="relative overflow-hidden rounded-lg"
-                      >
-                        <Image
-                          src={imageUrl}
-                          alt={`${workshop.title} preview ${index + 1}`}
-                          width={300}
-                          height={200}
-                          className="w-full h-48 object-cover"
-                        />
-                      </div>
-                    ))}
+                    {workshop.previewImages?.map(
+                      (imageUrl: string, index: number) => (
+                        <div
+                          key={index}
+                          className="relative overflow-hidden rounded-lg"
+                        >
+                          <Image
+                            src={imageUrl}
+                            alt={`${workshop.title} preview ${index + 1}`}
+                            width={300}
+                            height={200}
+                            className="w-full h-48 object-cover"
+                          />
+                        </div>
+                      ),
+                    )}
                   </div>
 
                   <div className="text-center">
@@ -116,7 +118,7 @@ export default function Gallery() {
                       {workshop.totalImages} photos in this gallery
                     </p>
                     <Link
-                      href={`/gallery/${workshop.slug}`}
+                      href={`/gallery/${workshop._id}`}
                       className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
                     >
                       <Eye className="w-4 h-4" />

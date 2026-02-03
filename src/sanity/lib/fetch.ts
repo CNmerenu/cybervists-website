@@ -6,6 +6,7 @@ import {
   allWorkshopsQuery,
   workshopBySlugQuery,
   workshopPreviewQuery,
+  workshopByIdQuery,
 } from "./queries";
 import { Post } from "@/src/types";
 
@@ -52,6 +53,15 @@ export async function getWorkshopBySlug(slug: string) {
     return await client.fetch(workshopBySlugQuery, { slug });
   } catch (error) {
     console.error("Error fetching workshop by slug:", error);
+    return null;
+  }
+}
+
+export async function getWorkshopById(_id: string) {
+  try {
+    return await client.fetch(workshopByIdQuery, { _id });
+  } catch (error) {
+    console.error("Error fetching workshop by _id:", error);
     return null;
   }
 }

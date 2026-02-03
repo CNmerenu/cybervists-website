@@ -1,3 +1,5 @@
+import type { PortableTextBlock } from '@portabletext/types'
+
 export interface Author {
   name: string;
   image?: {
@@ -36,10 +38,8 @@ export interface Post {
   };
   excerpt?: string;
   publishedAt: string;
-  body?: unknown[];
-  content?: string;
+  body: PortableTextBlock[];
   mainImage?: Image;
-  contentImages?: ContentImage[];
   author?: Author;
   references?: Reference[];
 }
