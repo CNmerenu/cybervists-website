@@ -50,6 +50,10 @@ export default function Gallery() {
               empower individuals and organizations with essential cybersecurity
               knowledge and digital literacy skills.
             </p>
+            <div className="text-sm text-gray-500">
+              {workshops.length}{" "}
+              {workshops.length === 1 ? "workshop" : "workshops"} available
+            </div>
           </div>
         </div>
       </section>
