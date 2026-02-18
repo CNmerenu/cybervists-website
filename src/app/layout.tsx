@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cybervists | Digital Literacy | Cybersecurity Inclusion",
-  description: "Digital Literacy & Cybersecurity Inclusion",
+  title: "Cybervists",
+  description: "Digital Inclusion | Cybersecurity Inclusion | Responsible Use",
   icons: {
     icon: "/assets/favicon.svg",
   },
