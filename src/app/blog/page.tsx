@@ -31,6 +31,7 @@ export default function BlogPage() {
           getAllPosts(),
           getFeaturedPosts(1),
         ]);
+        console.log("Fetched posts:", allPosts);
         setPosts(allPosts || []);
         setFeaturedPost(featured && featured.length > 0 ? featured[0] : null);
         setDisplayedPosts((allPosts || []).slice(0, POSTS_PER_PAGE));
@@ -163,7 +164,7 @@ export default function BlogPage() {
                     <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
                       {featuredPost.excerpt}
                     </p>
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                    <div className="flex flex-col gap-4 text-sm text-gray-500">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
                         {new Date(featuredPost.publishedAt).toLocaleDateString(
@@ -176,8 +177,24 @@ export default function BlogPage() {
                         )}
                       </div>
                       <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        {featuredPost.author?.name}
+                        {featuredPost.author?.name && (
+                          <>
+                            <User className="w-4 h-4" />
+                            {featuredPost.author?.name}
+                          </>
+                        )}
+                        {featuredPost.author2?.name && (
+                          <>
+                            <User className="w-4 h-4" />
+                            {featuredPost.author2?.name}
+                          </>
+                        )}
+                        {featuredPost.author3?.name && (
+                          <>
+                            <User className="w-4 h-4" />
+                            {featuredPost.author3?.name}
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="mt-6">

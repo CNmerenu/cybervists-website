@@ -27,7 +27,7 @@ export default function BlogCard({ post }: { post: Post }) {
             {post.excerpt}
           </p>
 
-          <div className="flex items-center justify-between text-xs text-gray-500">
+          <div className="flex flex-col justify-between text-xs text-gray-500 gap-2">
             <time className="flex items-center gap-1">
               <span className="w-1 h-1 bg-primary-600 rounded-full"></span>
               {(() => {
@@ -48,18 +48,17 @@ export default function BlogCard({ post }: { post: Post }) {
 
             {post.author && (
               <div className="flex items-center gap-2">
-                {post.author.image?.asset?.url && (
-                  <Image
-                    src={post.author.image.asset.url}
-                    alt={post.author.name}
-                    width={24}
-                    height={24}
-                    className="w-6 h-6 rounded-full"
-                  />
-                )}
-                <span className="text-xs text-gray-600">
-                  {post.author.name}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-600">
+                    {post.author?.name}
+                  </span>
+                  <span className="text-xs text-gray-600">
+                    {post.author2?.name}
+                  </span>
+                  <span className="text-xs text-gray-600">
+                    {post.author3?.name}
+                  </span>
+                </div>
               </div>
             )}
           </div>

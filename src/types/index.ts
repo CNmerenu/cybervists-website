@@ -1,4 +1,4 @@
-import type { PortableTextBlock } from '@portabletext/types'
+import type { PortableTextBlock } from "@portabletext/types";
 
 export interface Author {
   name: string;
@@ -27,7 +27,7 @@ export interface ContentImage {
 
 export interface Reference {
   title: string;
-  url: string;
+  url?: string;
 }
 
 export interface Post {
@@ -41,5 +41,7 @@ export interface Post {
   body: PortableTextBlock[];
   mainImage?: Image;
   author?: Author;
+  author2?: Author;
+  author3?: Author;
   references?: Reference[];
 }

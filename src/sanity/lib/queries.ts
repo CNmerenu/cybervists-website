@@ -9,6 +9,8 @@ export const allPostsQuery = groq`
     excerpt,
     publishedAt,
     "author": author->{name, image},
+    "author2": author2->{name, image},
+    "author3": author3->{name, image},
     mainImage{
       asset->{_id, url},
       alt
@@ -25,6 +27,8 @@ export const postBySlugQuery = groq`
     publishedAt,
     body,
     "author": author->{name, image},
+    "author2": author2->{name, image},
+    "author3": author3->{name, image},
     mainImage{
       asset->{_id, url},
       alt
@@ -44,6 +48,8 @@ export const featuredPostsQuery = groq`
     excerpt,
     publishedAt,
     "author": author->{name, image},
+    "author2": author2->{name, image},
+    "author3": author3->{name, image},
     mainImage{
       asset->{_id, url},
       alt

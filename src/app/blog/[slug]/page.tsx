@@ -13,7 +13,11 @@ const builder = imageUrlBuilder(client);
 
 const components: PortableTextComponents = {
   types: {
-    image: ({ value }: { value: { asset: { _ref: string }; alt?: string; caption?: string } }) => {
+    image: ({
+      value,
+    }: {
+      value: { asset: { _ref: string }; alt?: string; caption?: string };
+    }) => {
       const imageUrl = builder.image(value.asset).width(400).url();
       return (
         <div className="my-4">
@@ -77,12 +81,33 @@ export default async function BlogPost({ params }: Params) {
                   day: "numeric",
                 })}
               </div>
-              {post.author && (
+              {/* {post.author && (
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4" />
                   {post.author.name}
                 </div>
-              )}
+              )} */}
+              <div className="flex items-center gap-2">
+                {post.author?.name && (
+                  <>
+                    <User className="w-4 h-4" />
+                    {post.author?.name}
+                  </>
+                )}
+                {post.author2?.name && (
+                  <>
+                    <User className="w-4 h-4" />
+                    {post.author2?.name}
+                  </>
+                )}
+                {post.author3?.name && (
+                  <>
+                    <User className="w-4 h-4" />
+                    {post.author3?.name}
+                  </>
+                )}
+              </div>
+
               <BlogPostClient title={post.title} />
             </div>
 
