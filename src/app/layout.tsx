@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Cybervists",
-  description: "Digital Inclusion | Cybersecurity Inclusion | Responsible Use",
+  description: "Digital Inclusion | Cybersecurity | Responsible Use",
   icons: {
     icon: "/assets/favicon.svg",
   },
